@@ -1,5 +1,6 @@
 import React from "react";
 import { AppBar, Toolbar, Typography, Button, Box } from "@mui/material";
+import Switch from '@mui/material/Switch';
 import SwitchTheme from "../SwitchTheme"; 
 
 const NavBar = ({ darkMode, setDarkMode }) => {
@@ -22,7 +23,7 @@ const NavBar = ({ darkMode, setDarkMode }) => {
                     <Button color="inherit">Catalog</Button>
                 </Box>
                 <Box sx={{ display: "flex", gap: 2 }}>
-                    <SwitchTheme darkMode={darkMode} setDarkMode={setDarkMode} />
+                    <SwitchTheme />
                 </Box>
             </Toolbar>
         </AppBar>

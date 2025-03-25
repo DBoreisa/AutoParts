@@ -1,12 +1,25 @@
-import React from "react";
-import { IconButton } from "@mui/material";
-import { Brightness4, Brightness7 } from "@mui/icons-material";
+import React, { useContext } from "react";
+import { ThemeContext } from "../../ThemeContext";
+import { Switch, Typography, Box } from "@mui/material";
 
-const SwitchTheme = ({ darkMode, setDarkMode }) => {
+const SwitchTheme = () => {
+  const { mode, toggleTheme } = useContext(ThemeContext);
+  
+  const handleChange = () => {
+    toggleTheme()
+  };
+
   return (
-    <IconButton color="inherit" onClick={() => setDarkMode((prev) => !prev)}>
-      {darkMode ? <Brightness7 /> : <Brightness4 />}
-    </IconButton>
+    <Box sx={{display: "flex", alignItems: "center"}}>
+      <Typography>Light</Typography>
+      <Switch
+        checked={mode === "dark"}
+        onChange={handleChange}
+        inputProps={{ 'aria-label': 'controlled' }}
+      />
+      <Typography>Dark</Typography>
+    </Box>
+    
   );
 };
 
