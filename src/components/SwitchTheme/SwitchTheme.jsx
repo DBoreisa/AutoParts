@@ -15,7 +15,6 @@ const SwitchTheme = () => {
       <Switch
         checked={mode === "dark"}
         onChange={handleChange}
-        inputProps={{ 'aria-label': 'controlled' }}
       />
       <Typography>Dark</Typography>
     </Box>

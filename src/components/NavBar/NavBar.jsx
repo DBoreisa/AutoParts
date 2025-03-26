@@ -1,9 +1,8 @@
 import React from "react";
-import { AppBar, Toolbar, Typography, Button, Box } from "@mui/material";
-import Switch from '@mui/material/Switch';
+import { AppBar, Toolbar, Typography, Button, Box} from "@mui/material";
 import SwitchTheme from "../SwitchTheme"; 
 
-const NavBar = ({ darkMode, setDarkMode }) => {
+const NavBar = () => {  
     return (
         <AppBar position="static">
             <Toolbar sx={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
