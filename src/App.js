@@ -2,7 +2,7 @@ import React from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import NavBar from "./components/NavBar";
 import { ThemeProviderWrapper } from "./ThemeContext";
-import Footer from "./components/Footer";
+import Catalog from "./pages/CatalogPage";
 import Home from "./pages/HomePage";
 
 function App() {
@@ -12,6 +12,7 @@ function App() {
         <NavBar />
         <Routes>
           <Route path="/" element={<Home />}/>
+          <Route path="/catalog" element={<Catalog />}/>
         </Routes>
       </Router>
     </ThemeProviderWrapper>

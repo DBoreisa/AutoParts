@@ -1,10 +1,11 @@
 import React from "react";
 import { AppBar, Toolbar, Typography, Button, Box} from "@mui/material";
-import SwitchTheme from "../SwitchTheme"; 
+import ThemeSwitcher from "../ThemeSwitcher";
+import { Link } from "react-router-dom";
 
 const NavBar = () => {  
     return (
-        <AppBar position="static">
+        <AppBar position="fixed" sx={{ boxShadow: 3 }}>
             <Toolbar sx={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
                 <Box sx={{ display: "flex", alignItems: "center" }}>
                     <Box
@@ -18,11 +19,11 @@ const NavBar = () => {
                     </Typography> 
                 </Box>                  
                 <Box sx={{ display: "flex", gap: 2 }}>
-                    <Button color="inherit">Home</Button>
-                    <Button color="inherit">Catalog</Button>
+                    <Button component={Link} to="/" color="inherit">Home</Button>
+                    <Button component={Link} to="/catalog" color="inherit">Catalog</Button>
                 </Box>
                 <Box sx={{ display: "flex", gap: 2 }}>
-                    <SwitchTheme />
+                    <ThemeSwitcher />
                 </Box>
             </Toolbar>
         </AppBar>

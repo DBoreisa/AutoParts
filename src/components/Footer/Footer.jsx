@@ -5,7 +5,11 @@ const Footer = () => {
     return (
         <AppBar position="fixed" sx={{
             top: "auto",
-            bottom: "0"
+            bottom: "0",
+            width: "100%",
+            height: "40px",
+            display: "flex",
+            justifyContent: "center"
         }}>
             <Toolbar sx={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
                 <Typography variant="body2">
