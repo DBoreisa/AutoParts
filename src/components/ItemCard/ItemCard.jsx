@@ -3,7 +3,7 @@ import { Card, CardMedia, CardContent, CardHeader, Typography } from "@mui/mater
 
 const ItemCard = ({ name, price, img }) => {
     return (
-        <Card sx={{width: "260px", height:"220px"}}>
+        <Card elevation={3} sx={{width: "260px", height:"220px"}}>
             <CardMedia component="img" height="140" image={img} alt={name} />
             <CardHeader
                 title={name} 
