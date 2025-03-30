@@ -1,13 +1,25 @@
-import React from "react";
-import { FormControl,InputLabel, NativeSelect } from "@mui/material";
+import React, { useMemo, useState, useEffect } from "react";
+import { FormControl, InputLabel, NativeSelect, useTheme } from "@mui/material";
 import sortFunc from "./sortFunc";
 
 const SortItems = ({ cars, setSortedCars }) => {
-    const handleSort = (sortBy) => {
-        const sorted = sortFunc(sortBy, cars);
-        setSortedCars(sorted);
+    const [sortBy, setSortBy] = useState("Date");
+
+    // Memoize the sorted cars array based on the sortBy and cars dependencies
+    const sortedCars = useMemo(() => {
+        return sortFunc(sortBy, cars);
+    }, [sortBy, cars]);
+
+    // Update the sorted cars whenever the sortBy value changes
+    useEffect(() => {
+        setSortedCars(sortedCars);
+    }, [sortedCars, setSortedCars]);
+
+    const handleSort = (e) => {
+        setSortBy(e.target.value);
     };
 
+    const theme = useTheme();
     return (
         <FormControl fullWidth sx={{ minWidth: 170 }}>
             <InputLabel variant="standard" htmlFor="uncontrolled-native">
@@ -17,9 +29,9 @@ const SortItems = ({ cars, setSortedCars }) => {
                 defaultValue={"Date"}
                 inputProps={{
                     name: 'sort-by',
-                    id: 'sort-by',
+                    id: 'sort-by'
                 }}
-                onChange={(e) => handleSort(e.target.value)}
+                onChange={handleSort}
             >
                 <option value={"Date"}>Date</option>
                 <option value={"Alphabetical"}>Alphabetically, A-Z</option>

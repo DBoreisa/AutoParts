@@ -14,7 +14,7 @@ const ItemCard = ({ name, price, img }) => {
                 }}
             />
             <CardContent sx={{paddingBottom: "100px"}}>
-                <Typography variant="body2">Price: {price}</Typography>
+                <Typography variant="body2">Price: {price} €</Typography>
             </CardContent>
         </Card>
     );

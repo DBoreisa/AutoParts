@@ -18,7 +18,7 @@ const NavBar = () => {
                         AutoParts
                     </Typography> 
                 </Box>                  
-                <Box sx={{ display: "flex", gap: 2 }}>
+                <Box sx={{ position: "absolute", left: "50%", transform: "translateX(-50%)", display: "flex", gap: 2 }}>
                     <Button component={Link} to="/" color="inherit">Home</Button>
                     <Button component={Link} to="/catalog" color="inherit">Catalog</Button>
                 </Box>

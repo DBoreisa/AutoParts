@@ -5,16 +5,10 @@ import ItemCard from "../components/ItemCard";
 import FilterItems from "../components/FilterItems";
 import SortItems from "../components/SortItems";
 import cars from "../data/carsData";
-import carsData from "../data/carsData";
-import { useEffect } from "react";
 
 const CatalogPage = () => {
   const theme = useTheme();
   const [sortedCars, setSortedCars] = useState(cars);
-
-  useEffect(() => {
-    console.log("Updated SortedCars:", sortedCars);
-}, [sortedCars]);
 
   return (
     <>
@@ -34,7 +28,7 @@ const CatalogPage = () => {
           <Typography variant="h3" color={theme.palette.text.primary}>Products</Typography>
         </Box >
         <Box sx={{
-          paddingTop: 3, 
+          paddingTop: 2, 
           paddingBottom: 3,
           paddingRight: 7,
           paddingLeft: 7,
@@ -53,8 +47,12 @@ const CatalogPage = () => {
               <FilterItems/>
               <SortItems cars={cars} setSortedCars={setSortedCars}/>
             </Box>
-            <Box sx={{color: theme.palette.text.primary, paddingLeft: 5}}>
-              <Typography>999 products</Typography>
+            <Box sx={{color: theme.palette.text.primary, 
+              paddingLeft: 5, 
+              display: "flex", 
+              alignItems: "flex-end", 
+              }}>
+              <Typography>{sortedCars.length} products</Typography>
             </Box>
         </Box>
         <Box sx={{
