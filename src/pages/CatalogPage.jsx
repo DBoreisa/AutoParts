@@ -1,11 +1,21 @@
-import React from "react";
+import React ,{ useState } from "react";
 import Footer from "../components/Footer";
 import { Box, Typography, useTheme, Grid2 } from "@mui/material";
-import cars from "../data/carsData";
 import ItemCard from "../components/ItemCard";
+import FilterItems from "../components/FilterItems";
+import SortItems from "../components/SortItems";
+import cars from "../data/carsData";
+import carsData from "../data/carsData";
+import { useEffect } from "react";
 
 const CatalogPage = () => {
   const theme = useTheme();
+  const [sortedCars, setSortedCars] = useState(cars);
+
+  useEffect(() => {
+    console.log("Updated SortedCars:", sortedCars);
+}, [sortedCars]);
+
   return (
     <>
       <Box sx={{
@@ -14,7 +24,7 @@ const CatalogPage = () => {
         padding: 6
       }}>
         <Box sx={{
-          paddingTop: 3, 
+          paddingTop: 4, 
           paddingBottom: 3,
           borderTop: "solid 1px",
           borderBottom: "solid 1px",
@@ -31,13 +41,19 @@ const CatalogPage = () => {
           borderBottom: "solid 1px",
           borderColor: theme.palette.primary.main,
           display: "flex",
-          justifyContent: "space-between"
+          justifyContent: "space-between",
+          flexDirection: { xs: "column", sm: "row" }
           }}>
-            <Box sx={{display: "flex", gap: 4, color: theme.palette.text.primary}}>
-              <Typography>Filter by:</Typography>
-              <Typography>Sort by:</Typography>
+            <Box sx={{
+              display: "flex", 
+              gap: 4, 
+              color: theme.palette.text.primary, 
+              flexDirection: { xs: "column", sm: "row" }
+              }}>
+              <FilterItems/>
+              <SortItems cars={cars} setSortedCars={setSortedCars}/>
             </Box>
-            <Box sx={{color: theme.palette.text.primary}}>
+            <Box sx={{color: theme.palette.text.primary, paddingLeft: 5}}>
               <Typography>999 products</Typography>
             </Box>
         </Box>
@@ -50,7 +66,7 @@ const CatalogPage = () => {
             justifyContent: "center",
             paddingBottom: 4
           }}>
-            {cars.map((car) => (
+            {sortedCars.map((car) => (
                 <Grid2 size={6} key={car.id} width={"260px"}>
                   <ItemCard name={car.name} price={car.price} img={car.image}/>
                 </Grid2>
