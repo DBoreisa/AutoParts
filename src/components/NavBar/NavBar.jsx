@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
 import { AppBar, Toolbar, Typography, Button, Box} from "@mui/material";
 import ThemeSwitcher from "../ThemeSwitcher";
-import { Link } from "react-router-dom";
+import NavigationTabs from "../NavigationTabs";
+import SearchItem from "../SearchItem";
 
 const NavBar = () => {  
     return (
@@ -10,20 +11,21 @@ const NavBar = () => {
                 <Box sx={{ display: "flex", alignItems: "center" }}>
                     <Box
                         component="img"
-                        sx={{ height: 40, marginRight: 2 }}
+                        sx={{ 
+                            height: 40, 
+                            marginRight: 2
+                        }}
                         alt="Logo"
                         src="/logo.png" // Update with your logo path
                     /> 
-                    <Typography variant="h6" sx={{ flexGrow: 1 }}>
+                    <Typography variant="h6" sx={{ flexGrow: 1, display: {xs: "none", sm: "block"} }}>
                         AutoParts
                     </Typography> 
                 </Box>                  
-                <Box sx={{ position: "absolute", left: "50%", transform: "translateX(-50%)", display: "flex", gap: 2 }}>
-                    <Button component={Link} to="/" color="inherit">Home</Button>
-                    <Button component={Link} to="/catalog" color="inherit">Catalog</Button>
-                </Box>
-                <Box sx={{ display: "flex", gap: 2 }}>
-                    <ThemeSwitcher />
+                <NavigationTabs/>
+                <Box sx={{ display: "flex", gap: 2, alignItems: "center" }}>
+                    <SearchItem/>
+                    <ThemeSwitcher/>
                 </Box>
             </Toolbar>
         </AppBar>
@@ -31,3 +33,8 @@ const NavBar = () => {
 };
 
 export default NavBar;
+
+
+
+{/* <Button component={Link} to="/" color="inherit">Home</Button>
+<Button component={Link} to="/catalog" color="inherit">Catalog</Button> */}

@@ -1,5 +1,5 @@
 import React, { useMemo, useState, useEffect } from "react";
-import { FormControl, InputLabel, NativeSelect, useTheme } from "@mui/material";
+import { FormControl, InputLabel, NativeSelect, useTheme, MenuItem, Select } from "@mui/material";
 import sortFunc from "./sortFunc";
 
 const SortItems = ({ cars, setSortedCars }) => {
@@ -21,26 +21,24 @@ const SortItems = ({ cars, setSortedCars }) => {
 
     const theme = useTheme();
     return (
-        <FormControl fullWidth sx={{ minWidth: 170 }}>
-            <InputLabel variant="standard" htmlFor="uncontrolled-native">
-                Sort by:
-            </InputLabel>
-            <NativeSelect
-                defaultValue={"Date"}
-                inputProps={{
-                    name: 'sort-by',
-                    id: 'sort-by'
-                }}
+        <FormControl variant="standard" sx={{ m: 1, minWidth: 170 }}>
+            <InputLabel id="demo-simple-select-standard-label">Sort by:</InputLabel>
+            <Select
+                labelId="demo-simple-select-standard-label"
+                id="demo-simple-select-standard"
+                value={sortBy}
                 onChange={handleSort}
+                label="Filter by:"
             >
-                <option value={"Date"}>Date</option>
-                <option value={"Alphabetical"}>Alphabetically, A-Z</option>
-                <option value={"RevAlpahebetical"}>Alphabetically, Z-A</option>
-                <option value={"Price"}>Price, low to high</option>
-                <option value={"RevPrice"}>Price, high to low</option>
-            </NativeSelect>
+                <MenuItem value={"Date"}>Date</MenuItem>
+                <MenuItem value={"Alphabetical"}>Alphabetically, A-Z</MenuItem>
+                <MenuItem value={"RevAlpahebetical"}>Alphabetically, Z-A</MenuItem>
+                <MenuItem value={"Price"}>Price, low to high</MenuItem>
+                <MenuItem value={"RevPrice"}>Price, high to low</MenuItem>
+            </Select>
         </FormControl>
     );
 };
 
 export default SortItems;
+

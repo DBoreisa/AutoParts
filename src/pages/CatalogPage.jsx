@@ -40,15 +40,17 @@ const CatalogPage = () => {
           }}>
             <Box sx={{
               display: "flex", 
-              gap: 4, 
+              gap: {xs: 1, sm: 4}, 
               color: theme.palette.text.primary, 
-              flexDirection: { xs: "column", sm: "row" }
+              flexDirection: { xs: "column", sm: "row" },
               }}>
               <FilterItems/>
               <SortItems cars={cars} setSortedCars={setSortedCars}/>
             </Box>
             <Box sx={{color: theme.palette.text.primary, 
               paddingLeft: 5, 
+              paddingBottom: {xs: 0, sm: 1},
+              paddingTop: {xs: 3},
               display: "flex", 
               alignItems: "flex-end", 
               }}>
