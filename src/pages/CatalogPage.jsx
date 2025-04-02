@@ -60,7 +60,7 @@ const CatalogPage = () => {
         </Box>
         <Box sx={{
           width: "100%",
-          paddingTop: 3
+          paddingTop: 3,
         }}>
           <Grid2 container spacing={2} sx={{
             display: "flex",
