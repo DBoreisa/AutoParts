@@ -14,6 +14,7 @@ const CatalogPage = () => {
     <>
       <Box sx={{
         backgroundColor: theme.palette.background.default,
+        minHeight: "calc(100vh - 100px)",
         height: "100%",
         padding: 6
       }}>

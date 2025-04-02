@@ -11,7 +11,7 @@ const HomePage = () => {
             <Box sx={{minHeight: "100vh", 
                 backgroundColor: theme.palette.background.default,
                 display: "flex",
-                flexDirection: "column",
+                flexDirection: "column"
                 }}> 
                 <Box sx={{
                     backgroundImage: `url(${backgroundImg})`,
