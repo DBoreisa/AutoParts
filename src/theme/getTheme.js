@@ -1,11 +1,12 @@
+//src/theme/getTheme.js
 import { createTheme } from "@mui/material/styles";
 
 const getTheme = (mode) =>
   createTheme({
     palette: {
-      mode, // 'light' or 'dark'
+      mode, // 'light' arba 'dark'
       primary: {
-        main: mode === "dark" ? "#96a7b5" : "#4c76a1",
+        main: mode === "dark" ? "#96a7b5" : "#302ca4",
       },
       secondary: {
         main: mode === "dark" ? "#f48fb1" : "#dc004e",
@@ -16,6 +17,9 @@ const getTheme = (mode) =>
       },
       text: {
         primary: mode === "dark" ? "#ffffff" : "#000000",
+      },
+      header: {
+        default: mode === "dark" ? "#1e1e1e" : "#302ca4",
       },
     },
     typography: {

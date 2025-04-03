@@ -10,9 +10,9 @@ const Footer = () => {
             display: "flex",
             justifyContent: "center",
             alignItems: "center",
-            backgroundColor: theme.palette.background.paper,
+            backgroundColor: theme.palette.header.default,
             color: "white",
-            position: "relative"  // Ensures it stays in normal flow
+            position: "relative" 
         }}>
             <Typography variant="body2">
                 © {new Date().getFullYear()} AutoParts

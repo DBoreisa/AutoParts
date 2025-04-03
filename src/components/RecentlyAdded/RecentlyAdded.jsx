@@ -20,7 +20,7 @@ const RecentlyAdded = () => {
                 Recently Added: 
             </Typography>
             <Grid2 container spacing={2} sx={{flexDirection: { xs: "column", sm: "column", md: "column", lg: "row" }}}>
-            {cars.slice(0, 5).map((car) => (
+            {cars.slice(0, 4).map((car) => (
                 <Grid2 item xs={10} sm={6} md={4} lg={2} key={car.id}>
                     <ItemCard name={car.name} price={car.price} img={car.image}/>
                 </Grid2>

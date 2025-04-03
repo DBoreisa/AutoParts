@@ -11,12 +11,16 @@ const CatalogPage = () => {
   const [sortedCars, setSortedCars] = useState(cars);
 
   return (
-    <>
+    <Box sx={{
+      backgroundColor: theme.palette.background.default,
+    }}>
       <Box sx={{
-        backgroundColor: theme.palette.background.default,
+        
         minHeight: "calc(100vh - 100px)",
         height: "100%",
-        padding: 6
+        padding: 6,
+        width: {lg:"70%", xs: "100%"},
+        margin: "auto"
       }}>
         <Box sx={{
           paddingTop: 4, 
@@ -41,9 +45,10 @@ const CatalogPage = () => {
           }}>
             <Box sx={{
               display: "flex", 
-              gap: {xs: 1, sm: 4}, 
+              gap: 4, 
               color: theme.palette.text.primary, 
               flexDirection: { xs: "column", sm: "row" },
+              alignItems: "center"
               }}>
               <FilterItems/>
               <SortItems cars={cars} setSortedCars={setSortedCars}/>
@@ -76,7 +81,7 @@ const CatalogPage = () => {
         </Box>
       </Box>
       <Footer/>
-    </>
+    </Box>
   );
 };
 

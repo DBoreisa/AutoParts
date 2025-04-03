@@ -1,26 +1,62 @@
-import React, { useState } from "react";
-import { FormControl,InputLabel, Select, MenuItem } from "@mui/material";
+import React from "react";
+import { 
+    FormControl, 
+    InputLabel, 
+    NativeSelect, 
+    Dialog, 
+    DialogTitle, 
+    DialogContent, 
+    Button 
+} from "@mui/material";
+import { useState } from "react";
+import PriceSlider from "../PriceSlider";
 
 const FilterItems = () => {
-    const [filter, setFIlter] = useState("All")
+    const [isSelected, setIsSelected] = useState("");
+    const [open, setOpen] = useState(false);
+
+    const handleChange = (event) => {
+        const value = event.target.value;
+        setIsSelected(value);
+
+        if (value === "Price") {
+            setOpen(true); 
+        }
+    };
+
+    const handleClose = () => {
+        setOpen(false);
+    };
 
     return (
-        <FormControl variant="standard" sx={{ m: 1, minWidth: 170 }}>
-            <InputLabel id="demo-simple-select-standard-label">Filter by:</InputLabel>
-            <Select
-                labelId="demo-simple-select-standard-label"
-                id="demo-simple-select-standard"
-                value={filter}
-                // onChange={handleFilter}
-                label="Filter by:"
-            >
-                <MenuItem value={"All"}>All products</MenuItem>
-                <MenuItem value={"Price"}>Price, low to high</MenuItem>
-                <MenuItem value={"RevPrice"}>Price, high to low</MenuItem>
-            </Select>
-        </FormControl>
+        <>
+            <FormControl fullWidth sx={{ minWidth: 170 }}>
+                <InputLabel variant="standard" htmlFor="uncontrolled-native">
+                    Filter by:
+                </InputLabel>
+                <NativeSelect
+                value={isSelected}
+                onChange={handleChange}
+                inputProps={{
+                    name: 'filter-by',
+                    id: 'filter-by'
+                }}
+                >
+                    <option value="Select">Select</option>
+                    <option value="Price">Price</option>
+                    <option value="Category">Category</option>
+                </NativeSelect>          
+            </FormControl>
+
+            <Dialog open={open} onClose={handleClose}>
+                <DialogTitle>Adjust Price Range</DialogTitle>
+                <DialogContent>
+                    <PriceSlider />
+                    <Button onClick={handleClose} variant="contained" color="primary" sx={{ mt: 2 }}>Close</Button>
+                </DialogContent>
+            </Dialog>
+        </>
     );
 };
 
 export default FilterItems;
-
