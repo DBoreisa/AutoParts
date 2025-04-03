@@ -30,7 +30,7 @@ const FilterItems = () => {
 
     return (
         <>
-            <FormControl fullWidth sx={{ minWidth: 170 }}>
+            <FormControl fullWidth sx={{ width: 170 }}>
                 <InputLabel variant="standard" htmlFor="uncontrolled-native">
                     Filter by:
                 </InputLabel>

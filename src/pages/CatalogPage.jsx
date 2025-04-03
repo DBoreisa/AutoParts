@@ -11,16 +11,16 @@ const CatalogPage = () => {
   const [sortedCars, setSortedCars] = useState(cars);
 
   return (
-    <Box sx={{
-      backgroundColor: theme.palette.background.default,
-    }}>
+    <Box sx={{minHeight: "100vh", 
+            backgroundColor: theme.palette.background.default,
+            display: "flex",
+            flexDirection: "column",
+            paddingTop: "50px"
+          }}> 
       <Box sx={{
-        
-        minHeight: "calc(100vh - 100px)",
-        height: "100%",
-        padding: 6,
-        width: {lg:"70%", xs: "100%"},
-        margin: "auto"
+          // width: {lg:"70%", xs: "100%"},
+          maxWidth: "1200px",
+          margin: "auto"
       }}>
         <Box sx={{
           paddingTop: 4, 
@@ -41,7 +41,7 @@ const CatalogPage = () => {
           borderColor: theme.palette.primary.main,
           display: "flex",
           justifyContent: "space-between",
-          flexDirection: { xs: "column", sm: "row" }
+          flexDirection: { xs: "column", sm: "row" },
           }}>
             <Box sx={{
               display: "flex", 
@@ -53,12 +53,12 @@ const CatalogPage = () => {
               <FilterItems/>
               <SortItems cars={cars} setSortedCars={setSortedCars}/>
             </Box>
-            <Box sx={{color: theme.palette.text.primary, 
-              paddingLeft: 5, 
+            <Box sx={{color: theme.palette.text.primary,  
               paddingBottom: {xs: 0, sm: 1},
               paddingTop: {xs: 3},
               display: "flex", 
-              alignItems: "flex-end", 
+              alignItems: "flex-end",
+              justifyContent: "center"
               }}>
               <Typography>{sortedCars.length} products</Typography>
             </Box>

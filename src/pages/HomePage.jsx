@@ -13,7 +13,8 @@ const HomePage = () => {
             flexDirection: "column",
             }}> 
             <Box sx={{
-                width: {lg:"70%", xs: "100%"},
+                // width: {lg:"70%", xs: "100%"},
+                maxWidth: "1200px",
                 margin: "auto"
             }}>
                 <Box sx={{
