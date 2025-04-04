@@ -1,14 +1,18 @@
 import React from "react";
-import { Box, useTheme, Typography } from "@mui/material";
+import { Box, useTheme, Typography, useMediaQuery } from "@mui/material";
 import backgroundImg from "../Images/backgroundImg.jpg"
 import Footer from "../components/Footer";
 import ItemsCarousel from "../components/ItemsCarousel";
+import RecentlyAdded from "../components/RecentlyAdded";
 import cars from "../data/carsData";
 
 const HomePage = () => {
     const theme = useTheme();
+    const isMobile = useMediaQuery(theme.breakpoints.down("md"));
+
     return (
-        <Box sx={{minHeight: "100vh", 
+        <Box sx={{
+            minHeight: "100vh", 
             backgroundColor: theme.palette.background.default,
             display: "flex",
             flexDirection: "column",
@@ -16,6 +20,7 @@ const HomePage = () => {
             <Box sx={{
                 // width: {lg:"70%", xs: "100%"},
                 maxWidth: "1200px",
+                width: "100%",
                 margin: "auto"
             }}>
                 <Box sx={{
@@ -43,7 +48,11 @@ const HomePage = () => {
                         }}>
                             Recently added:
                     </Typography>
-                    <ItemsCarousel items={cars.slice(0, 4)}/>
+                    {isMobile ? (
+                        <RecentlyAdded />
+                    ) : (
+                        <ItemsCarousel items={cars.slice(0, 4)} />
+                    )}
                 </Box>
             </Box>
             <Footer />

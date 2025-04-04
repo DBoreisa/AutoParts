@@ -6,7 +6,7 @@ import SearchItem from "../SearchItem";
 
 const NavBar = () => {  
     return (
-        <AppBar position="fixed" sx={{ boxShadow: 3 }}>
+        <AppBar position="fixed" sx={{ boxShadow: 3, width: "100%" }}>
             <Toolbar sx={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
                 <Box sx={{ display: "flex", alignItems: "center" }}>
                     <Box

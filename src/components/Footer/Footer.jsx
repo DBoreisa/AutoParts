@@ -12,7 +12,7 @@ const Footer = () => {
             alignItems: "center",
             backgroundColor: theme.palette.header.default,
             color: "white",
-            position: "relative" 
+            position: "relative",
         }}>
             <Typography variant="body2">
                 © {new Date().getFullYear()} AutoParts
