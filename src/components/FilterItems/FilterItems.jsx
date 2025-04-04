@@ -2,7 +2,8 @@ import React from "react";
 import { 
     FormControl, 
     InputLabel, 
-    NativeSelect, 
+    Select, 
+    MenuItem,
     Dialog, 
     DialogTitle, 
     DialogContent, 
@@ -11,9 +12,10 @@ import {
 import { useState } from "react";
 import PriceSlider from "../PriceSlider";
 
-const FilterItems = () => {
-    const [isSelected, setIsSelected] = useState("");
+const FilterItems = ({ cars, setFilteredCars }) => {
+    const [isSelected, setIsSelected] = useState("Select");
     const [open, setOpen] = useState(false);
+    const [priceRange, setPriceRange] = useState([0, 100000]);
 
     const handleChange = (event) => {
         const value = event.target.value;
@@ -21,38 +23,56 @@ const FilterItems = () => {
 
         if (value === "Price") {
             setOpen(true); 
-        }
+        };
+        if (value === "Select") {
+            setPriceRange([0, 100000]); 
+            setFilteredCars(cars)
+        };
     };
 
     const handleClose = () => {
         setOpen(false);
     };
 
+    const filterFunc = () => {
+        const [lowest, highest] = priceRange;
+        const filteredCars = cars.filter(car => 
+            car.price >= lowest && car.price <= highest
+        );
+
+        setFilteredCars(filteredCars);
+    };
+
+    // Kai paspaudzia submit
+    const handleFilterSubmit = () => {
+        filterFunc();
+        handleClose();
+    };
+
     return (
         <>
-            <FormControl fullWidth sx={{ width: 170 }}>
+            <FormControl variant="standard" sx={{ width: 170 }}>
                 <InputLabel variant="standard" htmlFor="uncontrolled-native">
                     Filter by:
                 </InputLabel>
-                <NativeSelect
+                <Select
+                labelId="demo-simple-select-standard-label"
+                id="demo-simple-select-standard"
                 value={isSelected}
                 onChange={handleChange}
-                inputProps={{
-                    name: 'filter-by',
-                    id: 'filter-by'
-                }}
+                label="Filter by:"
                 >
-                    <option value="Select">Select</option>
-                    <option value="Price">Price</option>
-                    <option value="Category">Category</option>
-                </NativeSelect>          
+                    <MenuItem value="Select">Select</MenuItem>
+                    <MenuItem value="Price">Price</MenuItem>
+                    <MenuItem value="Category">Category</MenuItem>
+                </Select>          
             </FormControl>
 
             <Dialog open={open} onClose={handleClose}>
-                <DialogTitle>Adjust Price Range</DialogTitle>
-                <DialogContent>
-                    <PriceSlider />
-                    <Button onClick={handleClose} variant="contained" color="primary" sx={{ mt: 2 }}>Close</Button>
+                <DialogTitle sx={{textAlign: "center"}}>Price Range:</DialogTitle>
+                <DialogContent sx={{textAlign: "center"}}>
+                    <PriceSlider setPriceRange={setPriceRange}/>
+                    <Button onClick={handleFilterSubmit} variant="contained" color="primary" sx={{ mt: 2 }}>Submit</Button>
                 </DialogContent>
             </Dialog>
         </>

@@ -1,44 +1,71 @@
-import * as React from 'react';
-import Box from '@mui/material/Box';
-import Slider from '@mui/material/Slider';
+import { Slider, Box, TextField, Grid } from "@mui/material";
+import { useState, useEffect } from "react";
 
-function valuetext(value) {
-  return `${value}°C`;
-}
+export default function PriceSlider({ setPriceRange }) {
+  const [value, setValue] = useState([200, 8000]); // Default reiksmes
 
-const minDistance = 10;
-
-export default function PriceSlider() {
-  const [value2, setValue2] = React.useState([20, 37]);
-
-  const handleChange2 = (event, newValue, activeThumb) => {
-    if (!Array.isArray(newValue)) {
-      return;
-    }
-
-    if (newValue[1] - newValue[0] < minDistance) {
-      if (activeThumb === 0) {
-        const clamped = Math.min(newValue[0], 100 - minDistance);
-        setValue2([clamped, clamped + minDistance]);
-      } else {
-        const clamped = Math.max(newValue[1], minDistance);
-        setValue2([clamped - minDistance, clamped]);
-      }
-    } else {
-      setValue2(newValue);
-    }
+  const handleSliderChange = (event, newValue) => {
+    setValue(newValue);
   };
 
+  const handleInputChange = (index) => (event) => {
+    const newValue = [...value];
+    newValue[index] = event.target.value === "" ? "" : Number(event.target.value);
+    setValue(newValue);
+  };
+
+  const handleBlur = () => {
+    const clampedValues = [
+      Math.min(Math.max(value[0], 0), 99999), // Nurodo sliderio ribas ( 0 - 99999)
+      Math.min(Math.max(value[1], 0), 99999), // Nurodo sliderio ribas
+    ];
+    setValue(clampedValues);
+  };
+
+  // Kai keicias reiksme perduoda parent elementui
+  useEffect(() => {
+    setPriceRange(value);
+  }, [value, setPriceRange]);
+
   return (
-    <Box sx={{ width: 300 }}>
-      <Slider
-        getAriaLabel={() => 'Minimum distance shift'}
-        value={value2}
-        onChange={handleChange2}
-        valueLabelDisplay="auto"
-        getAriaValueText={valuetext}
-        disableSwap
-      />
+    <Box sx={{ width: 400, paddingTop: "30px" }}>
+      <Grid container spacing={2} alignItems="center">
+        {/* Left input */}
+        <Grid item>
+          <TextField
+            value={value[0]}
+            onChange={handleInputChange(0)}
+            onBlur={handleBlur}
+            inputProps={{ min: 0, max: 99999 }}
+            size="small"
+            sx={{ width: 90 }}
+          />
+        </Grid>
+
+        {/* Slider */}
+        <Grid item xs>
+          <Slider
+            value={value}
+            onChange={handleSliderChange}
+            valueLabelDisplay="auto"
+            min={0}
+            max={99999}
+            disableSwap
+          />
+        </Grid>
+
+        {/* Right input */}
+        <Grid item>
+          <TextField 
+            value={value[1]}
+            onChange={handleInputChange(1)}
+            onBlur={handleBlur}
+            inputProps={{ min: 0, max: 99999 }}
+            size="small"
+            sx={{ width: 90 }}
+          />
+        </Grid>
+      </Grid>
     </Box>
   );
-}
+};

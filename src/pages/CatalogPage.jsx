@@ -1,4 +1,4 @@
-import React ,{ useState } from "react";
+import React, {useState} from "react";
 import Footer from "../components/Footer";
 import { Box, Typography, useTheme, Grid2 } from "@mui/material";
 import ItemCard from "../components/ItemCard";
@@ -9,6 +9,12 @@ import cars from "../data/carsData";
 const CatalogPage = () => {
   const theme = useTheme();
   const [sortedCars, setSortedCars] = useState(cars);
+  const [filteredCars, setFilteredCars] = useState(cars);
+
+  const handleFilter = (filteredData) => {
+    setFilteredCars(filteredData);
+    setSortedCars(filteredData); // Resetina rikiavima, kai filtruoja
+  };
 
   return (
     <Box sx={{minHeight: "100vh", 
@@ -20,6 +26,7 @@ const CatalogPage = () => {
       <Box sx={{
           // width: {lg:"70%", xs: "100%"},
           maxWidth: "1200px",
+          width: "100%",
           margin: "auto"
       }}>
         <Box sx={{
@@ -50,8 +57,8 @@ const CatalogPage = () => {
               flexDirection: { xs: "column", sm: "row" },
               alignItems: "center"
               }}>
-              <FilterItems/>
-              <SortItems cars={cars} setSortedCars={setSortedCars}/>
+              <FilterItems cars={cars} setFilteredCars={handleFilter}/>
+              <SortItems cars={filteredCars} setSortedCars={setSortedCars}/>
             </Box>
             <Box sx={{color: theme.palette.text.primary,  
               paddingBottom: {xs: 0, sm: 1},
