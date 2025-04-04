@@ -2,7 +2,8 @@ import React from "react";
 import { Box, useTheme, Typography } from "@mui/material";
 import backgroundImg from "../Images/backgroundImg.jpg"
 import Footer from "../components/Footer";
-import RecentlyAdded from "../components/RecentlyAdded";
+import ItemsCarousel from "../components/ItemsCarousel";
+import cars from "../data/carsData";
 
 const HomePage = () => {
     const theme = useTheme();
@@ -28,17 +29,21 @@ const HomePage = () => {
                 }}>
                 </Box>
                 <Box sx={{ 
-                    flexGrow: 1, 
-                    overflowY: "auto", 
-                    paddingBottom: 7,
-                    display: "flex",
-                    flexDirection: "column",
-                    justifyContent: "center",
-                    alignItems: "center",
+                    flexGrow: 1,  
+                    paddingTop: 4,
+                    paddingBottom: 4,
                     background: "linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0))",
+                    width: "95%",
+                    margin: "auto"
                 }}>
-                    <RecentlyAdded/>
-                    <Typography>SU nuolaida</Typography>
+                    <Typography variant="h4" sx={{
+                        color: "white", 
+                        textAlign: "center",
+                        paddingBottom: 2
+                        }}>
+                            Recently added:
+                    </Typography>
+                    <ItemsCarousel items={cars.slice(0, 4)}/>
                 </Box>
             </Box>
             <Footer />
