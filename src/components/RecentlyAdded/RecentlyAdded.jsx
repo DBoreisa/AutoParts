@@ -12,9 +12,7 @@ const RecentlyAdded = () => {
             display: "flex",
             flexDirection: "column",   
             alignItems: "center",   
-            height: "100%",
-            width: "90%",
-            margin: "0 auto",
+            height: "100%"
         }}>
             <Grid2 
                 container 

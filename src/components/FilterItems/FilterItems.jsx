@@ -32,6 +32,7 @@ const FilterItems = ({ cars, setFilteredCars }) => {
 
     const handleClose = () => {
         setOpen(false);
+        setIsSelected("Select");
     };
 
     const filterFunc = () => {

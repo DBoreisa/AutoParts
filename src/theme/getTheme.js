@@ -17,6 +17,7 @@ const getTheme = (mode) =>
       },
       text: {
         primary: mode === "dark" ? "#ffffff" : "#000000",
+        secondary: mode === "dark" ? "#ffffff" : "#4a4948",
       },
       header: {
         default: mode === "dark" ? "#1e1e1e" : "#302ca4",
