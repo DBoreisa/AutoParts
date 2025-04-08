@@ -17,7 +17,7 @@ const CatalogPage = () => {
   };
 
   return (
-    <Box sx={{minHeight: "100vh", 
+    <Box sx={{minHeight: "calc(100vh - 50px)", 
             backgroundColor: theme.palette.background.default,
             display: "flex",
             flexDirection: "column",
@@ -26,6 +26,7 @@ const CatalogPage = () => {
       <Box sx={{
           // width: {lg:"70%", xs: "100%"},
           maxWidth: "1200px",
+          minHeight: "calc(100vh - 90px)",
           width: "100%",
           margin: "auto",
           boxShadow: 3

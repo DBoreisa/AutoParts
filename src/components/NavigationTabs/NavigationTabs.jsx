@@ -1,22 +1,18 @@
-import React, { useState } from "react";
-import { Box, Tabs, Tab, useTheme } from "@mui/material";
+import React from "react";
+import { Box, Tabs, Tab } from "@mui/material";
 import { useNavigate, useLocation } from "react-router-dom";
 
 const NavigationTabs = () => {
     const navigate = useNavigate();
     const location = useLocation();
-    const theme = useTheme();
 
-    // Mapping paths to tab index
     const tabMapping = ["/", "/catalog"];
-    const currentTab = tabMapping.indexOf(location.pathname) !== -1 ? tabMapping.indexOf(location.pathname) : 0;
-
-    
-    const [value, setValue] = useState(currentTab);
+    const value = tabMapping.indexOf(location.pathname) !== -1
+    ? tabMapping.indexOf(location.pathname)
+    : false;
 
     const handleChange = (event, newValue) => {
-        setValue(newValue);
-        navigate(tabMapping[newValue]); // Navigate to the selected tab's route
+    navigate(tabMapping[newValue]);
     };
 
     return (

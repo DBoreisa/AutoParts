@@ -3,8 +3,8 @@ import { styled, alpha } from "@mui/material/styles";
 import InputBase from "@mui/material/InputBase";
 import SearchIcon from "@mui/icons-material/Search";
 import Box from "@mui/material/Box";
+import useSearch from "./useSearch";
 import { useNavigate } from "react-router-dom";
-import NavigationTabs from "../NavigationTabs";
 
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
@@ -46,20 +46,17 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 
 const SearchItem = () => {
     const [open, setOpen] = useState(false);
+    const { searchItem, searchFunc } = useSearch();
     const navigate = useNavigate();
-    const [query, setQuery] = useState("");
 
     const handleChange = (e) => {
-      const newValue = e.target.value;
-      setQuery(newValue); 
-      if (newValue.trim() !== "") {
-        navigate(`/catalog`);
+      const query = e.target.value;
+      searchFunc(query);
+  
+      if (query.trim() !== "") {
+        // navigate(`/search?q=${encodeURIComponent(query)}`); 
+        navigate("/catalog")
       }
-    };
-
-    const handleClose = () => {
-      setOpen(false);
-      setQuery(""); // isvalo input po uzdarymo
     };
 
     return (
@@ -71,10 +68,9 @@ const SearchItem = () => {
             className={open ? "open" : ""}
             placeholder="Search…"
             inputProps={{ "aria-label": "search" }}
-            onBlur={handleClose} 
+            onBlur={() => setOpen(false)} // Collapse when it loses focus
             autoFocus={open}
-            value={query}
-            onChange={handleChange}
+            onChange={(e) => handleChange}
         />
         </Search>
     );
