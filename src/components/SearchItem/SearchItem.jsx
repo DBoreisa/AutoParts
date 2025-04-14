@@ -4,7 +4,6 @@ import InputBase from "@mui/material/InputBase";
 import SearchIcon from "@mui/icons-material/Search";
 import Box from "@mui/material/Box";
 import { useNavigate } from "react-router-dom";
-import NavigationTabs from "../NavigationTabs";
 
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
