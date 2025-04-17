@@ -9,13 +9,15 @@ import {
     DialogContent, 
     Button 
 } from "@mui/material";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import PriceSlider from "../PriceSlider";
+import { useSearch } from "../../contexts/SearchContext";
 
 const FilterItems = ({ cars, setFilteredCars }) => {
     const [isSelected, setIsSelected] = useState("Select");
     const [open, setOpen] = useState(false);
     const [priceRange, setPriceRange] = useState([0, 100000]);
+    const { searchQuery, setSearchQuery } = useSearch();
 
     const handleChange = (event) => {
         const value = event.target.value;
@@ -43,6 +45,14 @@ const FilterItems = ({ cars, setFilteredCars }) => {
 
         setFilteredCars(filteredCars);
     };
+
+    useEffect(() => {
+        const filteredCars = cars.filter(car => 
+            car.name.toLowerCase().includes(searchQuery.toLowerCase())
+        );
+
+        setFilteredCars(filteredCars);
+    }, [searchQuery, cars])
 
     // Kai paspaudzia submit
     const handleFilterSubmit = () => {

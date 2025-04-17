@@ -4,6 +4,7 @@ import InputBase from "@mui/material/InputBase";
 import SearchIcon from "@mui/icons-material/Search";
 import Box from "@mui/material/Box";
 import { useNavigate } from "react-router-dom";
+import { useSearch } from "../../contexts/SearchContext";
 
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
@@ -45,12 +46,12 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 
 const SearchItem = () => {
     const [open, setOpen] = useState(false);
+    const { searchQuery, setSearchQuery } = useSearch();
     const navigate = useNavigate();
-    const [query, setQuery] = useState("");
 
     const handleChange = (e) => {
       const newValue = e.target.value;
-      setQuery(newValue); 
+      setSearchQuery(newValue); 
       if (newValue.trim() !== "") {
         navigate(`/catalog`);
       }
@@ -58,7 +59,7 @@ const SearchItem = () => {
 
     const handleClose = () => {
       setOpen(false);
-      setQuery(""); // isvalo input po uzdarymo
+      setSearchQuery(""); // isvalo input po uzdarymo
     };
 
     return (
@@ -72,7 +73,7 @@ const SearchItem = () => {
             inputProps={{ "aria-label": "search" }}
             onBlur={handleClose} 
             autoFocus={open}
-            value={query}
+            value={searchQuery}
             onChange={handleChange}
         />
         </Search>

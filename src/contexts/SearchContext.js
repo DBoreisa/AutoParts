@@ -1,4 +1,4 @@
-import React, { createContext, useMemo, useState } from "react";
+import React, { createContext, useContext, useState } from "react";
 
 export const SearchContext = createContext();
 
@@ -7,7 +7,12 @@ export const SearchProviderWrapper = ({ children }) => {
 
     return (
         <SearchContext.Provider value={{ searchQuery, setSearchQuery }}>
-          <SearchProvider>{children}</SearchProvider>
+          {children}
         </SearchContext.Provider>
     );
 };
+
+export const useSearch = () => useContext(SearchContext);
+
+// { query, setQuery } = useContext(SearchContext);
+// export const useSearch = () => useContext(SearchContext); leidzia aiskiau naudoti konteksta: const { query, setQuery } = useSearch();
