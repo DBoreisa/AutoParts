@@ -59,7 +59,7 @@ const SearchItem = () => {
 
     const handleClose = () => {
       setOpen(false);
-      setSearchQuery(""); // isvalo input po uzdarymo
+      //setSearchQuery(""); // isvalo input po uzdarymo
     };
 
     return (
