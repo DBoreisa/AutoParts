@@ -1,6 +1,6 @@
 import React, {useState} from "react";
 import Footer from "../components/Footer";
-import { Box, Typography, useTheme, Grid2, darken } from "@mui/material";
+import { Box, Typography, useTheme, Grid2 } from "@mui/material";
 import ItemCard from "../components/ItemCard";
 import FilterItems from "../components/FilterItems";
 import SortItems from "../components/SortItems";
@@ -24,7 +24,6 @@ const CatalogPage = () => {
             paddingTop: "50px"
           }}> 
       <Box sx={{
-          // width: {lg:"70%", xs: "100%"},
           maxWidth: "1200px",
           minHeight: "calc(100vh - 90px)",
           width: "100%",
@@ -33,8 +32,7 @@ const CatalogPage = () => {
       }}>
         <Box sx={{
           paddingTop: 4, 
-          borderColor: theme.palette.text.primary,
-          
+          borderColor: theme.palette.text.primary,        
           textAlign: "center",
         }}>
           <Typography 
@@ -92,7 +90,7 @@ const CatalogPage = () => {
           }}>
             {sortedCars.map((car) => (
                 <Grid2 size={6} key={car.id} width={"260px"}>
-                  <ItemCard name={car.name} price={car.price} img={car.image}/>
+                  <ItemCard id={car.id} name={car.name} price={car.price} img={car.image[0]}/>
                 </Grid2>
             ))}
           </Grid2>

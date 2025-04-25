@@ -2,9 +2,9 @@ import React from "react";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css"; 
 import "slick-carousel/slick/slick-theme.css";
-import ItemCard from "../ItemCard";
 import { useTheme } from "@emotion/react";
 import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
+import { Box } from "@mui/material";
 
 const arrowStyle = {
     position: "absolute",
@@ -38,29 +38,47 @@ const NextArrow = ({ onClick }) => {
     );
   };
   
-const ItemsCarousel = ({items}) => {
+const ImagesCarousel = ({items}) => {
   const theme = useTheme();
 
   const settings = {
-    className: "center",
-    centerMode: true,
+    //className: "center",
+    //centerMode: true,
     infinite: true,
-    centerPadding: "90px",
-    slidesToShow: 3,
+    //centerPadding: "90px",
+    slidesToShow: 1,
+    slidesToScroll: 1,
     speed: 500,
     nextArrow: <NextArrow />,
     prevArrow: <PrevArrow />,
   };
 
   return (
-    <Slider {...settings}>
-      {items.map((car) => (
-        <div key={car.id} style={{ padding: "10px" }}>
-          <ItemCard id={car.id} name={car.name} price={car.price} img={car.image[0]} />
-        </div>
-      ))}
-    </Slider>
+    <Box sx={{ 
+            width: "50%", 
+            minWidth: "200px",     
+        }}>
+        <Slider {...settings}>
+        {items.map((image, index) => (
+            <Box
+                key={index}
+            >
+            <Box
+            component="img"
+            src={image}
+            alt={`Slide ${index}`}
+            sx={{
+                width: "100%",
+                //height: "300px",
+                objectFit: "cover",
+                borderRadius: 2,
+            }}
+            />
+        </Box>
+        ))}
+        </Slider>
+    </Box>
   );
 };
 
-export default ItemsCarousel;
+export default ImagesCarousel;

@@ -49,8 +49,8 @@ const HomePage = () => {
                         Specialists in Audi Gearboxes
                     </Typography>
                     <Typography sx={{ textAlign: "justify", color: theme.palette.text.secondary }}>
-                    Looking for a reliable Audi gearbox? We specialize in high-quality new and used Audi gearboxes at competitive prices. 
-                    Whether you're replacing or upgrading, we’ve got the right fit for your model—backed by expert support and fast delivery.
+                        Looking for a reliable Audi gearbox? We specialize in high-quality new and used Audi gearboxes at competitive prices. 
+                        Whether you're replacing or upgrading, we’ve got the right fit for your model—backed by expert support and fast delivery.
                     </Typography>
                 </Box>
                 <Box sx={{ 
@@ -84,10 +84,11 @@ const HomePage = () => {
                     marginBottom: 4,
                     boxShadow: 4
                 }}>
-                    <Typography variant="h5" sx={{
-                        color: theme.palette.text.primary, 
-                        textAlign: "center",
-                        paddingBottom: 1,
+                    <Typography variant="h5" 
+                        sx={{
+                            color: theme.palette.text.primary, 
+                            textAlign: "center",
+                            paddingBottom: 1,
                         }}>
                             On sale:
                     </Typography>

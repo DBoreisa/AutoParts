@@ -12,22 +12,22 @@ const NavigationTabs = () => {
     : false;
 
     const handleChange = (event, newValue) => {
-    navigate(tabMapping[newValue]);
+        navigate(tabMapping[newValue]);
     };
 
     return (
         <Box sx={{ position: "absolute", left: "50%", transform: "translateX(-50%)", display: "flex", gap: 2 }}>
             <Box>
                 <Tabs value={value} 
-                onChange={handleChange} 
-                aria-label="navigation tabs" 
-                textColor="inherit" 
-                indicatorColor="primary"
-                sx={{
-                    "& .MuiTabs-indicator": {
-                        backgroundColor: "white"
-                    }
-                }}
+                    onChange={handleChange} 
+                    aria-label="navigation tabs" 
+                    textColor="inherit" 
+                    indicatorColor="primary"
+                    sx={{
+                        "& .MuiTabs-indicator": {
+                            backgroundColor: "white"
+                        }
+                    }}
                 >
                     <Tab label="Home" />
                     <Tab label="Catalog" />

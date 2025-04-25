@@ -1,15 +1,30 @@
 import React from "react";
-import { Card, CardMedia, CardContent, CardHeader, Typography, CardActionArea } from "@mui/material";
+import { 
+    Card, 
+    CardMedia, 
+    CardContent, 
+    CardHeader, 
+    Typography, 
+    CardActionArea 
+} from "@mui/material";
+import { useNavigate } from "react-router-dom";
 
-const ItemCard = ({ name, price, img }) => {
+const ItemCard = ({ id, name, price, img }) => {
+    const navigate = useNavigate();
+
+    const handleClick = () => {
+        navigate(`/details/${id}`);
+    };
+
     return (
         <Card elevation={3} sx={{width: "260px", height:"220px"}}>
-            <CardActionArea sx={{
-                "&:hover": {
-                    transform: "scale(1.02)",
-                },
-                transition: "all 0.3s ease"
-            }}>
+            <CardActionArea 
+                sx={{
+                    "&:hover": { transform: "scale(1.02)" },
+                    transition: "all 0.3s ease",
+                }}
+                onClick={handleClick}
+            >
                 <CardMedia component="img" height="140" image={img} alt={name} />
                 <CardHeader
                     title={name} 
