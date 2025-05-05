@@ -9,7 +9,7 @@ const getTheme = (mode) =>
         main: mode === "dark" ? "#96a7b5" : "#77788c",
       },
       secondary: {
-        main: mode === "dark" ? "#f48fb1" : "#dc004e",
+        main: mode === "dark" ? "#dc004e" : "#dc004e",
       },
       background: {
         default: mode === "dark" ? "#121212" : "#ffffff",

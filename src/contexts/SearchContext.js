@@ -14,5 +14,4 @@ export const SearchProviderWrapper = ({ children }) => {
 
 export const useSearch = () => useContext(SearchContext);
 
-// { query, setQuery } = useContext(SearchContext);
 // export const useSearch = () => useContext(SearchContext); leidzia aiskiau naudoti konteksta: const { query, setQuery } = useSearch();

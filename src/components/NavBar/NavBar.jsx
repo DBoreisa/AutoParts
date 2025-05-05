@@ -3,6 +3,7 @@ import { AppBar, Toolbar, Typography, Box} from "@mui/material";
 import ThemeSwitcher from "../ThemeSwitcher";
 import NavigationTabs from "../NavigationTabs";
 import SearchItem from "../SearchItem";
+import CartBange from "../Cart/CartBadge";
 
 const NavBar = () => {  
     return (
@@ -22,10 +23,11 @@ const NavBar = () => {
                         AutoParts
                     </Typography> 
                 </Box>                  
-                <NavigationTabs/>
+                <NavigationTabs />
                 <Box sx={{ display: "flex", gap: 2, alignItems: "center" }}>
-                    <SearchItem/>
-                    <ThemeSwitcher/>
+                    <SearchItem />
+                    <CartBange />
+                    <ThemeSwitcher />
                 </Box>
             </Toolbar>
         </AppBar>
