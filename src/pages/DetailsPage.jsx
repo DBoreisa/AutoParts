@@ -74,7 +74,7 @@ const DetailsPage = () => {
                                 backgroundColor: theme.palette.primary.main,
                                 color: theme.palette.getContrastText(theme.palette.text.primary),
                                 margin: 2,
-                                width: "200px"
+                                width: "250px"
                             }}
                             onClick={addToCart}
                         >

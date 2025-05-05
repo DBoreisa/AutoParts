@@ -12,7 +12,7 @@ const useCart = (item) => {
     const addToCartText = cart.findIndex( c => c.id === item.id) >= 0 
         ? "Remove from cart" : "Add to cart";
 
-    return ( addToCart, addToCartText )
+    return { addToCart, addToCartText }
 };
 
 export default useCart;

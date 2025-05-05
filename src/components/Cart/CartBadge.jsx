@@ -17,7 +17,7 @@ export default function CartBange() {
   const { cart, showCart, setShowCart } = useCartContext();
 
   return (
-    <IconButton aria-label="cart">
+    <IconButton aria-label="cart" onClick={() => setShowCart(true)}>
       <StyledBadge badgeContent={cart.length} color="secondary">
         <ShoppingCartIcon sx={{ color: "white" }} />
       </StyledBadge>
