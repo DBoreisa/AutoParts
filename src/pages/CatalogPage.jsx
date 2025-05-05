@@ -36,17 +36,17 @@ const CatalogPage = () => {
           textAlign: "center",
         }}>
           <Typography 
-          variant="h3" 
-          color={theme.palette.text.primary} 
-          paddingBottom={3}
+            variant="h3" 
+            color={theme.palette.text.primary} 
+            paddingBottom={3}
           >
             Products
           </Typography>
         </Box >
         <Box sx={{
-          borderColor: theme.palette.text.primary,
-          backgroundColor: theme.palette.background.paper,
-          boxShadow: "0 4px 6px -1px rgba(0, 0, 0, 0.1)"
+            borderColor: theme.palette.text.primary,
+            backgroundColor: theme.palette.background.paper,
+            boxShadow: "0 4px 6px -1px rgba(0, 0, 0, 0.1)"
           }}>
             <Box sx={{
               backgroundColor: theme.palette.background.paper,
