@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { AppBar, Toolbar, Typography, Button, Box} from "@mui/material";
+import React from "react";
+import { AppBar, Toolbar, Typography, Box} from "@mui/material";
 import ThemeSwitcher from "../ThemeSwitcher";
 import NavigationTabs from "../NavigationTabs";
 import SearchItem from "../SearchItem";

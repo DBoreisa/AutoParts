@@ -17,7 +17,7 @@ const FilterItems = ({ cars, setFilteredCars }) => {
     const [isSelected, setIsSelected] = useState("Select");
     const [open, setOpen] = useState(false);
     const [priceRange, setPriceRange] = useState([0, 100000]);
-    const { searchQuery, setSearchQuery } = useSearch();
+    const { searchQuery } = useSearch();
 
     const handleChange = (event) => {
         const value = event.target.value;

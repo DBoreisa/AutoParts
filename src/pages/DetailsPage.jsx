@@ -29,7 +29,7 @@ const DetailsPage = () => {
                 <Box sx={{
                         display: "flex",
                         padding: 5,
-                }}
+                    }}
                 >
                     <ImagesCarousel items={car.image}/>
                 </Box>

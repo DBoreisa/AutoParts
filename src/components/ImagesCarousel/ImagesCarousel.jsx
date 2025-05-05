@@ -39,8 +39,6 @@ const NextArrow = ({ onClick }) => {
   };
   
 const ImagesCarousel = ({items}) => {
-  const theme = useTheme();
-
   const settings = {
     //className: "center",
     //centerMode: true,

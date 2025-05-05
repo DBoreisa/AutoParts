@@ -1,10 +1,9 @@
 import React from "react";
-import { Box, Typography, Grid2, Card, CardMedia, CardContent, CardHeader, useTheme } from "@mui/material";
+import { Box, Grid2 } from "@mui/material";
 import cars from "../../data/carsData";
 import ItemCard from "../ItemCard";
 
 const RecentlyAdded = () => {
-    const theme = useTheme();
     return ( 
         <Box sx={{
             padding: "20px",
