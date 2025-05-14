@@ -16,13 +16,14 @@ function App() {
         <CartProviderWrapper>
           <Router>
             <NavBar />
+            <Cart />
             <Routes>
               <Route path="/" element={<Home />}/>
               <Route path="/catalog" element={<Catalog />}/>
               <Route path="/details/:id" element={<Details />}/>
             </Routes>
           </Router>
-          <Cart />
+          
         </CartProviderWrapper>
       </SearchProviderWrapper>
     </ThemeProviderWrapper>

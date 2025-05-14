@@ -5,7 +5,7 @@ import IconButton from '@mui/material/IconButton';
 import ShoppingCartIcon  from '@mui/icons-material/ShoppingCart';
 import { useCartContext } from "../../contexts/CartContext";
 
-const StyledBadge = styled(Badge)(({ theme }) => ({
+const StyledBadge = styled(Badge)(() => ({
   '& .MuiBadge-badge': {
     right: -3,
     top: 13,
