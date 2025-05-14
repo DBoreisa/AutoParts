@@ -54,7 +54,7 @@ const Cart = () => {
             anchor="right"        
             PaperProps={{
                 sx: {
-                    width: 500,
+                    width: { xs: "100vw", sm: "100vw", md: 500 },
                     backgroundColor: theme.palette.background.paper
                 }
             }}
@@ -84,9 +84,25 @@ const Cart = () => {
                 <Button sx={{ margin: 2 }} variant="contained">
                     Proceed to payment
                 </Button>
-                : null
+                :   <Typography sx={{
+                        textAlign: "center",
+                        fontSize: 25,
+                        color: "rgb(181, 181, 181)"
+                    }}
+                    >
+                        Your cart is empty!
+                    </Typography>
             }
-            
+            <Button 
+                onClick={() => setShowCart(false)}
+                sx={{
+                    fontWeight: "bold",
+                    fontSize: 15,
+                    marginTop: 5
+                }}
+            >
+                Close
+            </Button>            
         </Drawer>
     );
 };
