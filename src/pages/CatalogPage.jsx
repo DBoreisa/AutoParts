@@ -24,7 +24,7 @@ const CatalogPage = () => {
             paddingTop: "50px"
           }}> 
       <Box sx={{
-          maxWidth: "1200px",
+          maxWidth: "70%",
           minHeight: "calc(100vh - 90px)",
           width: "100%",
           margin: "auto",

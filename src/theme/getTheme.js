@@ -26,6 +26,16 @@ const getTheme = (mode) =>
     typography: {
       fontFamily: "'Roboto', 'Arial', sans-serif",
     },
+    breakpoints: {
+      values: {
+        xs: 0,    // Mobile portrait
+        sm: 601,  // Mobile landscape
+        md: 961,  // Tablets
+        lg: 1281, // Laptops
+        xl: 1920, // Desktops
+        xxl: 2561
+      },
+    }
   });
 
 export default getTheme;

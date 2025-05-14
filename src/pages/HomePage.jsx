@@ -19,7 +19,7 @@ const HomePage = () => {
         }}> 
             <Box sx={{
                 // width: {lg:"70%", xs: "100%"},
-                maxWidth: "1200px",
+                maxWidth: "70%",
                 width: "100%",
                 margin: "auto",
                 boxShadow: 5
