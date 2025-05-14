@@ -51,25 +51,25 @@ const ImagesCarousel = ({items}) => {
   return (
     <Box sx={{ 
             width: "50%", 
-            minWidth: "200px",     
+            minWidth: "290px",   
+            marginBottom: 2  
         }}>
         <Slider {...settings}>
         {items.map((image, index) => (
-            <Box
+          <Box
                 key={index}
-            >
+           >
             <Box
             component="img"
             src={image}
             alt={`Slide ${index}`}
             sx={{
                 width: "100%",
-                //height: "300px",
                 objectFit: "cover",
                 borderRadius: 2,
             }}
             />
-        </Box>
+          </Box>
         ))}
         </Slider>
     </Box>

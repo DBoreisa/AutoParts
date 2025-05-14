@@ -14,25 +14,27 @@ const DetailsPage = () => {
     const { addToCart, addToCartText } = useCart(car); // 
 
     return (
-        <Box sx={{minHeight: "calc(100vh - 50px)", 
-                    backgroundColor: theme.palette.background.default,
-                    display: "flex",
-                    flexDirection: "column",
-                    paddingTop: "50px"
-                }}
+        <Box sx={{ 
+                backgroundColor: theme.palette.background.default,
+                display: "flex",
+                flexDirection: "column",
+                minHeight: "100vh"
+            }}
         > 
             <Box sx={{
-                      maxWidth: "70%",
-                      minHeight: "calc(100vh - 90px)",
-                      width: "100%",
-                      margin: "auto",
-                      boxShadow: 3
-                  }}
+                    maxWidth: {lg:"70%", xs: "100%"},
+                    minHeight: "calc(100vh - 120px)",
+                    width: "100%",
+                    margin: "auto",
+                    boxShadow: 3,
+                    paddingTop: 9
+                }}
             >
                 <Box sx={{
                         display: "flex",
-                        padding: 5,
-                        paddingTop: 9
+                        padding: {xs: 0, lg: 5},
+                        flexDirection: {xs: "column", lg: "row"},
+                        alignItems: "center",
                     }}
                 >
                     <ImagesCarousel items={car.image}/>
@@ -41,12 +43,13 @@ const DetailsPage = () => {
                         flexDirection: "column",
                         padding: 6,
                         paddingTop: 0,
-                        width: "44%"
+                        width: { xs: "70%", lg: "44%" },
+                        margin: { xs: "auto", lg: 0 }
                     }}>
                         <Typography 
                             variant="h3" 
                             color={theme.palette.text.primary} 
-                            sx={{ textAlign: 'center' }}
+                            sx={{ textAlign: 'center'}}
                         >
                             {car.name}
                         </Typography>
@@ -73,7 +76,7 @@ const DetailsPage = () => {
                             sx={{
                                 backgroundColor: theme.palette.primary.main,
                                 color: theme.palette.getContrastText(theme.palette.text.primary),
-                                margin: 2,
+                                marginTop: 2,
                                 width: "250px"
                             }}
                             onClick={addToCart}
