@@ -2,18 +2,18 @@ import React, { useMemo, useState, useEffect } from "react";
 import { FormControl, InputLabel, NativeSelect, useTheme, MenuItem, Select } from "@mui/material";
 import sortFunc from "./sortFunc";
 
-const SortItems = ({ cars, setSortedCars }) => {
+const SortItems = ({ products, setSortedProducts }) => {
     const [sortBy, setSortBy] = useState("Date");
 
-    // Memoize the sorted cars array based on the sortBy and cars dependencies
-    const sortedCars = useMemo(() => {
-        return sortFunc(sortBy, cars);
-    }, [sortBy, cars]);
+    // Memoize the sorted products array based on the sortBy and products dependencies
+    const sortedProducts = useMemo(() => {
+        return sortFunc(sortBy, products);
+    }, [sortBy, products]);
 
-    // Update the sorted cars whenever the sortBy value changes
+    // Update the sorted products whenever the sortBy value changes
     useEffect(() => {
-        setSortedCars(sortedCars);
-    }, [sortedCars, setSortedCars]);
+        setSortedProducts(sortedProducts);
+    }, [sortedProducts, setSortedProducts]);
 
     const handleSort = (e) => {
         setSortBy(e.target.value);

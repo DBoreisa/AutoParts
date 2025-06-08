@@ -5,7 +5,7 @@ import { useParams } from "react-router-dom";
 import cars from "../data/carsData";
 import ImagesCarousel from "../components/ImagesCarousel";
 import ShoppingCartTwoToneIcon from '@mui/icons-material/ShoppingCartTwoTone'; 
-import useCart from "../components/Cart/useCart";
+import useCart from "../hooks/useCart";
 
 const DetailsPage = () => {
     const theme = useTheme();

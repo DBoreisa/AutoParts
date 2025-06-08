@@ -5,16 +5,16 @@ import IconButton from '@mui/material/IconButton';
 import ShoppingCartIcon  from '@mui/icons-material/ShoppingCart';
 import { useCartContext } from "../../contexts/CartContext";
 
-const StyledBadge = styled(Badge)(({ theme }) => ({
+const StyledBadge = styled(Badge)(() => ({
   '& .MuiBadge-badge': {
     right: -3,
     top: 13,
     padding: '0 4px',
-  },
+  }
 }));
 
 export default function CartBange() {
-  const { cart, showCart, setShowCart } = useCartContext();
+  const { cart, setShowCart } = useCartContext();
 
   return (
     <IconButton aria-label="cart" onClick={() => setShowCart(true)}>

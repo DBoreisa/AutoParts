@@ -4,16 +4,17 @@ import { Box, Typography, useTheme, Grid2 } from "@mui/material";
 import ItemCard from "../components/ItemCard";
 import FilterItems from "../components/FilterItems";
 import SortItems from "../components/SortItems";
-import cars from "../data/carsData";
+import useProducts from "../hooks/useProducts";
 
 const CatalogPage = () => {
   const theme = useTheme();
-  const [sortedCars, setSortedCars] = useState(cars);
-  const [filteredCars, setFilteredCars] = useState(cars);
+  const products = useProducts();
+  const [sortedProducts, setSortedProducts] = useState(products);
+  const [filteredProducts, setFilteredProducts] = useState(products);
 
   const handleFilter = (filteredData) => {
-    setFilteredCars(filteredData);
-    setSortedCars(filteredData); // Resetina rikiavima, kai filtruoja
+    setFilteredProducts(filteredData);
+    setSortedProducts(filteredData); // Resetina rikiavima, kai filtruoja
   };
 
   return (
@@ -65,8 +66,8 @@ const CatalogPage = () => {
                 flexDirection: { xs: "column", sm: "row" },
                 alignItems: "center"
                 }}>
-                <FilterItems cars={cars} setFilteredCars={handleFilter}/>
-                <SortItems cars={filteredCars} setSortedCars={setSortedCars}/>
+                <FilterItems products={products} setFilteredProducts={handleFilter}/>
+                <SortItems products={filteredProducts} setSortedProducts={setSortedProducts}/>
               </Box>
               <Box sx={{color: theme.palette.text.primary,  
                 paddingBottom: {xs: 0, sm: 2},
@@ -75,7 +76,7 @@ const CatalogPage = () => {
                 alignItems: "flex-end",
                 justifyContent: "center"
                 }}>
-                <Typography>{sortedCars.length} products</Typography>
+                <Typography>{sortedProducts.length} products</Typography>
               </Box>
             </Box>
         </Box>
@@ -88,9 +89,9 @@ const CatalogPage = () => {
             justifyContent: "center",
             paddingBottom: 4
           }}>
-            {sortedCars.map((car) => (
-                <Grid2 size={6} key={car.id} width={"260px"}>
-                  <ItemCard id={car.id} name={car.name} price={car.price} img={car.image[0]}/>
+            {sortedProducts.map((product) => (
+                <Grid2 size={6} key={product.id} width={"260px"}>
+                  <ItemCard id={product.id} name={product.name} price={product.price} img={product.image[0]}/>
                 </Grid2>
             ))}
           </Grid2>

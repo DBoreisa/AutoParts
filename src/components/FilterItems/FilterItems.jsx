@@ -13,7 +13,7 @@ import { useState, useEffect } from "react";
 import PriceSlider from "../PriceSlider";
 import { useSearch } from "../../contexts/SearchContext";
 
-const FilterItems = ({ cars, setFilteredCars }) => {
+const FilterItems = ({ products, setFilteredProducts }) => {
     const [isSelected, setIsSelected] = useState("Select");
     const [open, setOpen] = useState(false);
     const [priceRange, setPriceRange] = useState([0, 100000]);
@@ -28,7 +28,7 @@ const FilterItems = ({ cars, setFilteredCars }) => {
         };
         if (value === "Select") {
             setPriceRange([0, 100000]); 
-            setFilteredCars(cars)
+            setFilteredProducts(products)
         };
     };
 
@@ -39,20 +39,20 @@ const FilterItems = ({ cars, setFilteredCars }) => {
 
     const filterFunc = () => {
         const [lowest, highest] = priceRange;
-        const filteredCars = cars.filter(car => 
-            car.price >= lowest && car.price <= highest
+        const filteredProducts = products.filter(product => 
+            product.price >= lowest && product.price <= highest
         );
 
-        setFilteredCars(filteredCars);
+        setFilteredProducts(filteredProducts);
     };
 
     useEffect(() => {
-        const filteredCars = cars.filter(car => 
-            car.name.toLowerCase().includes(searchQuery.toLowerCase())
+        const filteredProducts = products.filter(product => 
+            product.name.toLowerCase().includes(searchQuery.toLowerCase())
         );
 
-        setFilteredCars(filteredCars);
-    }, [searchQuery, cars])
+        setFilteredProducts(filteredProducts);
+    }, [searchQuery, products])
 
     // Kai paspaudzia submit
     const handleFilterSubmit = () => {
