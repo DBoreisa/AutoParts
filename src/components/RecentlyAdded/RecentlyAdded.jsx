@@ -2,8 +2,15 @@ import React from "react";
 import { Box, Grid2 } from "@mui/material";
 import cars from "../../data/carsData";
 import ItemCard from "../ItemCard";
+import { useNavigate } from "react-router-dom";
 
 const RecentlyAdded = () => {
+    const navigate = useNavigate();
+
+    const handleClick = (id) => {
+        navigate(`/details/${id}`);
+    };
+
     return ( 
         <Box sx={{
             padding: "20px",
@@ -20,8 +27,15 @@ const RecentlyAdded = () => {
                 alignItems="center"
             >
             {cars.slice(0, 4).map((car) => (
-                <Grid2 item xs={12} sm={6} md={6} key={car.id}>
-                    <ItemCard name={car.name} price={car.price} img={car.image}/>
+                <Grid2 
+                    item 
+                    xs={12} 
+                    sm={6} 
+                    md={6} 
+                    key={car.id}
+                    onClick={() => handleClick(car.id)}
+                >
+                    <ItemCard name={car.name} price={car.price} img={car.image[0]}/>
                 </Grid2>
             ))}
             </Grid2>

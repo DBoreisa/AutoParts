@@ -19,7 +19,7 @@ const NextArrow = ({ onClick }) => {
     return (
       <div
         onClick={onClick}
-        style={{ ...arrowStyle, right: "-40px" }} // adjust 'right' as needed
+        style={{ ...arrowStyle, right: "-40px" }} 
       >
         <IoIosArrowForward size={30} color={theme.palette.text.primary} />
       </div>
@@ -31,7 +31,7 @@ const NextArrow = ({ onClick }) => {
     return (
       <div
         onClick={onClick}
-        style={{ ...arrowStyle, left: "-40px" }} // adjust 'left' as needed
+        style={{ ...arrowStyle, left: "-40px" }} 
       >
         <IoIosArrowBack size={30} color={theme.palette.text.primary} />
       </div>
@@ -40,10 +40,7 @@ const NextArrow = ({ onClick }) => {
   
 const ImagesCarousel = ({items}) => {
   const settings = {
-    //className: "center",
-    //centerMode: true,
     infinite: true,
-    //centerPadding: "90px",
     slidesToShow: 1,
     slidesToScroll: 1,
     speed: 500,
@@ -54,25 +51,25 @@ const ImagesCarousel = ({items}) => {
   return (
     <Box sx={{ 
             width: "50%", 
-            minWidth: "200px",     
+            minWidth: "290px",   
+            marginBottom: 2  
         }}>
         <Slider {...settings}>
         {items.map((image, index) => (
-            <Box
+          <Box
                 key={index}
-            >
+           >
             <Box
             component="img"
             src={image}
             alt={`Slide ${index}`}
             sx={{
                 width: "100%",
-                //height: "300px",
                 objectFit: "cover",
                 borderRadius: 2,
             }}
             />
-        </Box>
+          </Box>
         ))}
         </Slider>
     </Box>

@@ -5,6 +5,8 @@ import "slick-carousel/slick/slick-theme.css";
 import ItemCard from "../ItemCard";
 import { useTheme } from "@emotion/react";
 import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 
 const arrowStyle = {
     position: "absolute",
@@ -19,7 +21,7 @@ const NextArrow = ({ onClick }) => {
     return (
       <div
         onClick={onClick}
-        style={{ ...arrowStyle, right: "-40px" }} // adjust 'right' as needed
+        style={{ ...arrowStyle, right: "-40px" }} 
       >
         <IoIosArrowForward size={30} color={theme.palette.text.primary} />
       </div>
@@ -31,7 +33,7 @@ const NextArrow = ({ onClick }) => {
     return (
       <div
         onClick={onClick}
-        style={{ ...arrowStyle, left: "-40px" }} // adjust 'left' as needed
+        style={{ ...arrowStyle, left: "-40px" }} 
       >
         <IoIosArrowBack size={30} color={theme.palette.text.primary} />
       </div>
@@ -46,10 +48,30 @@ const ItemsCarousel = ({items}) => {
     centerMode: true,
     infinite: true,
     centerPadding: "90px",
-    slidesToShow: 3,
+    //slidesToShow: 4,
     speed: 500,
     nextArrow: <NextArrow />,
     prevArrow: <PrevArrow />,
+    responsive: [
+      {
+        breakpoint: theme.breakpoints.values.xxl,  // 2560px
+        settings: {
+            slidesToShow: 4,
+        },
+      },
+      {
+          breakpoint: theme.breakpoints.values.xl,  // 1920px
+          settings: {
+              slidesToShow: 2.5,
+          },
+      },
+      {
+          breakpoint: theme.breakpoints.values.lg,  // 1280px
+          settings: {
+              slidesToShow: 1.5,
+          },
+      }
+    ],
   };
 
   return (
