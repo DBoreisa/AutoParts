@@ -1,5 +1,5 @@
 import React, { useMemo, useState, useEffect } from "react";
-import { FormControl, InputLabel, NativeSelect, useTheme, MenuItem, Select } from "@mui/material";
+import { FormControl, InputLabel, useTheme, MenuItem, Select } from "@mui/material";
 import sortFunc from "./sortFunc";
 
 const SortItems = ({ products, setSortedProducts }) => {

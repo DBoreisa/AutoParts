@@ -2,16 +2,21 @@ import React from "react";
 import Footer from "../components/Footer";
 import { Box, Button, Typography, useTheme } from "@mui/material";
 import { useParams } from "react-router-dom";
-import cars from "../data/carsData";
+import useProducts from "../hooks/useProducts";
 import ImagesCarousel from "../components/ImagesCarousel";
 import ShoppingCartTwoToneIcon from '@mui/icons-material/ShoppingCartTwoTone'; 
 import useCart from "../hooks/useCart";
 
 const DetailsPage = () => {
     const theme = useTheme();
+    const products = useProducts();
     const { id } = useParams();
-    const car = cars.find((car) => car.id.toString() === id);
-    const { addToCart, addToCartText } = useCart(car); // 
+    const product = products.find((product) => product.id.toString() === id);
+    const { addToCart, addToCartText } = useCart(product); 
+
+    if (!product) {
+        return <Typography>Loading product details...</Typography>;
+    }
 
     return (
         <Box sx={{ 
@@ -37,7 +42,7 @@ const DetailsPage = () => {
                         alignItems: "center",
                     }}
                 >
-                    <ImagesCarousel items={car.image}/>
+                    <ImagesCarousel items={product.images}/>
                     <Box sx={{
                         display: "flex",
                         flexDirection: "column",
@@ -51,7 +56,7 @@ const DetailsPage = () => {
                             color={theme.palette.text.primary} 
                             sx={{ textAlign: 'center'}}
                         >
-                            {car.name}
+                            {product.name}
                         </Typography>
                         <Typography 
                             color={theme.palette.text.secondary}
@@ -62,7 +67,7 @@ const DetailsPage = () => {
                                 fontSize: 25 
                             }}
                         >
-                            {car.price}
+                            {product.price}
                         </Typography>
                         <Typography 
                             color={theme.palette.text.secondary}
