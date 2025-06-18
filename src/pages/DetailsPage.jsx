@@ -17,7 +17,6 @@ const DetailsPage = () => {
     if (!product) {
         return <Typography>Loading product details...</Typography>;
     }
-
     return (
         <Box sx={{ 
                 backgroundColor: theme.palette.background.default,

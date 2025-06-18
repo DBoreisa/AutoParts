@@ -91,10 +91,9 @@ const CatalogPage = () => {
           }}>
             {sortedProducts.map((product) => (
                 <Grid2 size={6} key={product.id} width={"260px"}>
-                  {console.log(product.images)}
                   <ItemCard id={product.id} name={product.name} price={product.price} img={product.images[0]?.image}/>
                 </Grid2>
-            ))}
+            ))}         
           </Grid2>
         </Box>
       </Box>

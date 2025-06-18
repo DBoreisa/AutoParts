@@ -27,7 +27,7 @@ const Cart = () => {
                 }}
             >
                 <Avatar 
-                    src={item.image[0]} 
+                    src={item.images[0].image} 
                     sx={{ 
                         width: 70, 
                         height: 70, 

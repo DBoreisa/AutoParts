@@ -47,7 +47,7 @@ const ImagesCarousel = ({items}) => {
     nextArrow: <NextArrow />,
     prevArrow: <PrevArrow />,
   };
-
+  
   return (
     <Box sx={{ 
             width: "50%", 
@@ -55,22 +55,20 @@ const ImagesCarousel = ({items}) => {
             marginBottom: 2  
         }}>
         <Slider {...settings}>
-        {items.map((image, index) => (
-          <Box
-                key={index}
-           >
-            <Box
-            component="img"
-            src={image}
-            alt={`Slide ${index}`}
-            sx={{
-                width: "100%",
-                objectFit: "cover",
-                borderRadius: 2,
-            }}
-            />
-          </Box>
-        ))}
+          {items.map((image, index) => (
+            <Box key={index}>
+              <Box
+              component="img"
+              src={image.image}
+              alt={`Slide ${index}`}
+              sx={{
+                  width: "100%",
+                  objectFit: "cover",
+                  borderRadius: 2,
+              }}
+              />
+            </Box>
+          ))}
         </Slider>
     </Box>
   );
