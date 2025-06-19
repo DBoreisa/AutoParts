@@ -7,6 +7,7 @@ import { useTheme } from "@emotion/react";
 import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import useProducts from "../../hooks/useProducts"
 
 const arrowStyle = {
     position: "absolute",
@@ -42,6 +43,7 @@ const NextArrow = ({ onClick }) => {
   
 const ItemsCarousel = ({items}) => {
   const theme = useTheme();
+  const products = useProducts();
 
   const settings = {
     className: "center",
@@ -76,9 +78,9 @@ const ItemsCarousel = ({items}) => {
 
   return (
     <Slider {...settings}>
-      {items.map((car) => (
-        <div key={car.id} style={{ padding: "10px" }}>
-          <ItemCard id={car.id} name={car.name} price={car.price} img={car.image[0]} />
+      {products.map((product) => (
+        <div key={product.id} style={{ padding: "10px" }}>
+          <ItemCard id={product.id} name={product.name} price={product.price} img={product.images[0]?.image} />
         </div>
       ))}
     </Slider>
