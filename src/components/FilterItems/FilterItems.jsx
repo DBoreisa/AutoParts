@@ -13,11 +13,11 @@ import { useState, useEffect } from "react";
 import PriceSlider from "../PriceSlider";
 import { useSearch } from "../../contexts/SearchContext";
 
-const FilterItems = ({ products, setFilteredProducts }) => {
+const FilterItems = ({ filters, setFilters }) => {
     const [isSelected, setIsSelected] = useState("Select");
     const [open, setOpen] = useState(false);
     const [priceRange, setPriceRange] = useState([0, 100000]);
-    const { searchQuery } = useSearch();
+    // const { searchQuery } = useSearch();
 
     const handleChange = (event) => {
         const value = event.target.value;
@@ -27,9 +27,9 @@ const FilterItems = ({ products, setFilteredProducts }) => {
             setOpen(true); 
         };
         if (value === "Select") {
-            setPriceRange([0, 100000]); 
-            setFilteredProducts(products)
+            setFilters({});  // Reset filters
         };
+        // Add category logic later if needed
     };
 
     const handleClose = () => {
@@ -37,28 +37,29 @@ const FilterItems = ({ products, setFilteredProducts }) => {
         setIsSelected("Select");
     };
 
-    const filterFunc = () => {
-        const [lowest, highest] = priceRange;
-        const filteredProducts = products.filter(product => 
-            product.price >= lowest && product.price <= highest
-        );
-
-        setFilteredProducts(filteredProducts);
-    };
-
-    useEffect(() => {
-        const filteredProducts = products.filter(product => 
-            product.name.toLowerCase().includes(searchQuery.toLowerCase())
-        );
-
-        setFilteredProducts(filteredProducts);
-    }, [searchQuery, products])
-
-    // Kai paspaudzia submit
     const handleFilterSubmit = () => {
-        filterFunc();
+        const [min_price, max_price] = priceRange;
+        setFilters((prev) => ({
+            ...prev,
+            min_price,
+            max_price,
+        }));
         handleClose();
     };
+
+    // useEffect(() => {
+    //     const filteredProducts = products.filter(product => 
+    //         product.name.toLowerCase().includes(searchQuery.toLowerCase())
+    //     );
+
+    //     setFilteredProducts(filteredProducts);
+    // }, [searchQuery, products])
+
+    // // Kai paspaudzia submit
+    // const handleFilterSubmit = () => {
+    //     filterFunc();
+    //     handleClose();
+    // };
 
     return (
         <>

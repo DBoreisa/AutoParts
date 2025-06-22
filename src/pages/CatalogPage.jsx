@@ -1,21 +1,25 @@
-import React, {useState} from "react";
+import React, {useState, useEffect} from "react";
 import Footer from "../components/Footer";
 import { Box, Typography, useTheme, Grid2 } from "@mui/material";
 import ItemCard from "../components/ItemCard";
 import FilterItems from "../components/FilterItems";
 import SortItems from "../components/SortItems";
+import axios from "axios";
 import useProducts from "../hooks/useProducts";
 
 const CatalogPage = () => {
   const theme = useTheme();
-  const products = useProducts();
-  const [sortedProducts, setSortedProducts] = useState(products);
-  const [filteredProducts, setFilteredProducts] = useState(products);
+  //const products = useProducts();
+  // const [sortedProducts, setSortedProducts] = useState(products);
+  // const [filteredProducts, setFilteredProducts] = useState(products);
+  const [filters, setFilters] = useState({});
+  const [sortBy, setSortBy] = useState("Date");
+  const products = useProducts({ sort: sortBy, filters });
 
-  const handleFilter = (filteredData) => {
-    setFilteredProducts(filteredData);
-    setSortedProducts(filteredData); // Resetina rikiavima, kai filtruoja
-  };
+  // const handleFilter = (filteredData) => {
+  //   setFilteredProducts(filteredData);
+  //   setSortedProducts(filteredData); // Resetina rikiavima, kai filtruoja
+  // };
 
   return (
     <Box sx={{minHeight: "calc(100vh - 50px)", 
@@ -66,8 +70,8 @@ const CatalogPage = () => {
                 flexDirection: { xs: "column", sm: "row" },
                 alignItems: "center"
                 }}>
-                <FilterItems products={products} setFilteredProducts={handleFilter}/>
-                <SortItems products={filteredProducts} setSortedProducts={setSortedProducts}/>
+                <FilterItems filters={filters} setFilters={setFilters}/>
+                <SortItems sortBy={sortBy} setSortBy={setSortBy}/>
               </Box>
               <Box sx={{color: theme.palette.text.primary,  
                 paddingBottom: {xs: 0, sm: 2},
@@ -76,7 +80,7 @@ const CatalogPage = () => {
                 alignItems: "flex-end",
                 justifyContent: "center"
                 }}>
-                <Typography>{sortedProducts.length} products</Typography>
+                <Typography>{products.length} products</Typography>
               </Box>
             </Box>
         </Box>
@@ -89,7 +93,7 @@ const CatalogPage = () => {
             justifyContent: "center",
             paddingBottom: 4
           }}>
-            {sortedProducts.map((product) => (
+            {products.map((product) => (
                 <Grid2 size={6} key={product.id} width={"260px"}>
                   <ItemCard id={product.id} name={product.name} price={product.price} img={product.images[0]?.image}/>
                 </Grid2>
