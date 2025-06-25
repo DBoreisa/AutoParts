@@ -1,6 +1,5 @@
 import React, { useMemo, useState, useEffect } from "react";
 import { FormControl, InputLabel, useTheme, MenuItem, Select } from "@mui/material";
-import axios from "axios";
 
 const SortItems = ({ sortBy, setSortBy }) => {
     const theme = useTheme();

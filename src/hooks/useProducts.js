@@ -10,7 +10,7 @@ const useProducts = ({ sort = "Date", filters = {} } = {}) => {
                 const params = { sort, ...filters }; // Combine all query params
                 const queryString = new URLSearchParams(params).toString();
 
-                const res = await axios.get(`http://localhost:8000/api/products?${queryString}/`);
+                const res = await axios.get(`http://localhost:8000/api/products/?${queryString}`);
                 setProducts(res.data);
             } catch (error) {
                 console.error("Error fetching products:", error);
