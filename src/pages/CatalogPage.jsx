@@ -9,17 +9,9 @@ import useProducts from "../hooks/useProducts";
 
 const CatalogPage = () => {
   const theme = useTheme();
-  //const products = useProducts();
-  // const [sortedProducts, setSortedProducts] = useState(products);
-  // const [filteredProducts, setFilteredProducts] = useState(products);
   const [filters, setFilters] = useState({});
   const [sortBy, setSortBy] = useState("Date");
   const products = useProducts({ sort: sortBy, filters });
-
-  // const handleFilter = (filteredData) => {
-  //   setFilteredProducts(filteredData);
-  //   setSortedProducts(filteredData); // Resetina rikiavima, kai filtruoja
-  // };
 
   return (
     <Box sx={{minHeight: "calc(100vh - 50px)", 

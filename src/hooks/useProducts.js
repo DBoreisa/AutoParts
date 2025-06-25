@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 
-const useProducts = ({ sort, filters }) => {
+const useProducts = ({ sort = "Date", filters = {} } = {}) => {
     const [products, setProducts] = useState([]);
 
     useEffect(() => {

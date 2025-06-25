@@ -4,11 +4,12 @@ import backgroundImg from "../Images/backgroundImg.jpg"
 import Footer from "../components/Footer";
 import ItemsCarousel from "../components/ItemsCarousel";
 import RecentlyAdded from "../components/RecentlyAdded";
-import cars from "../data/carsData";
+import useProducts from "../hooks/useProducts";
 
 const HomePage = () => {
     const theme = useTheme();
     const isMobile = useMediaQuery(theme.breakpoints.down("md"));
+    const products = useProducts();
 
     return (
         <Box sx={{
@@ -71,7 +72,7 @@ const HomePage = () => {
                     {isMobile ? (
                         <RecentlyAdded />
                     ) : (
-                        <ItemsCarousel items={cars.slice(0, 4)} />
+                        <ItemsCarousel items={products.slice(0, 4)} />
                     )}
                 </Box>
                 <Box sx={{ 
@@ -94,7 +95,7 @@ const HomePage = () => {
                     {isMobile ? (
                         <RecentlyAdded />
                     ) : (
-                        <ItemsCarousel items={cars.slice(0, 4)} />
+                        <ItemsCarousel items={products.slice(0, 4)} />
                     )}
                 </Box>
             </Box>

@@ -1,33 +1,9 @@
 import React, { useMemo, useState, useEffect } from "react";
 import { FormControl, InputLabel, useTheme, MenuItem, Select } from "@mui/material";
 import axios from "axios";
-//import sortFunc from "./sortFunc";
 
-const SortItems = ({ products, setSortedProducts }) => {
-    const [sortBy, setSortBy] = useState("Date");
+const SortItems = ({ sortBy, setSortBy }) => {
     const theme = useTheme();
-
-    // // Memoize the sorted products array based on the sortBy and products dependencies
-    // const sortedProducts = useMemo(() => {
-    //     return sortFunc(sortBy, products);
-    // }, [sortBy, products]);
-
-    // // Update the sorted products whenever the sortBy value changes
-    // useEffect(() => {
-    //     setSortedProducts(sortedProducts);
-    // }, [sortedProducts, setSortedProducts]);
-
-    useEffect(() => {
-        const fetchSortedProducts = async () => {
-            try {
-                const res = await axios.get(`http://localhost:8000/api/products?sort=${sortBy}/`);
-                setSortedProducts(res.data);
-            } catch (error) {
-                console.error("Error fetching sorted products:", error);
-            }
-        };
-        fetchSortedProducts();
-    }, [sortBy, setSortedProducts]);
 
     const handleSort = (e) => {
         setSortBy(e.target.value);

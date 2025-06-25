@@ -47,20 +47,6 @@ const FilterItems = ({ filters, setFilters }) => {
         handleClose();
     };
 
-    // useEffect(() => {
-    //     const filteredProducts = products.filter(product => 
-    //         product.name.toLowerCase().includes(searchQuery.toLowerCase())
-    //     );
-
-    //     setFilteredProducts(filteredProducts);
-    // }, [searchQuery, products])
-
-    // // Kai paspaudzia submit
-    // const handleFilterSubmit = () => {
-    //     filterFunc();
-    //     handleClose();
-    // };
-
     return (
         <>
             <FormControl variant="standard" sx={{ width: 170 }}>
