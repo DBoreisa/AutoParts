@@ -4,14 +4,15 @@ import { Box, Typography, useTheme, Grid2 } from "@mui/material";
 import ItemCard from "../components/ItemCard";
 import FilterItems from "../components/FilterItems";
 import SortItems from "../components/SortItems";
-import axios from "axios";
+import { useSearch } from "../contexts/SearchContext";
 import useProducts from "../hooks/useProducts";
 
 const CatalogPage = () => {
   const theme = useTheme();
   const [filters, setFilters] = useState({});
   const [sortBy, setSortBy] = useState("Date");
-  const products = useProducts({ sort: sortBy, filters });
+  const { searchQuery } = useSearch();
+  const products = useProducts({ sort: sortBy, filters, searchQuery });
 
   return (
     <Box sx={{minHeight: "calc(100vh - 50px)", 
@@ -89,7 +90,7 @@ const CatalogPage = () => {
                 <Grid2 size={6} key={product.id} width={"260px"}>
                   <ItemCard id={product.id} name={product.name} price={product.price} img={product.images[0]?.image}/>
                 </Grid2>
-            ))}         
+            ))}        
           </Grid2>
         </Box>
       </Box>

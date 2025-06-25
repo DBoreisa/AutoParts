@@ -3,7 +3,7 @@ import { styled, alpha } from "@mui/material/styles";
 import InputBase from "@mui/material/InputBase";
 import SearchIcon from "@mui/icons-material/Search";
 import Box from "@mui/material/Box";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import { useSearch } from "../../contexts/SearchContext";
 
 const Search = styled("div")(({ theme }) => ({
@@ -48,11 +48,12 @@ const SearchItem = () => {
     const [open, setOpen] = useState(false);
     const { searchQuery, setSearchQuery } = useSearch();
     const navigate = useNavigate();
+    const location = useLocation();
 
     const handleChange = (e) => {
       const newValue = e.target.value;
       setSearchQuery(newValue); 
-      if (newValue.trim() !== "") {
+      if (newValue.trim() !== "" && location.pathname !== "/catalog") {
         navigate(`/catalog`);
       }
     };
