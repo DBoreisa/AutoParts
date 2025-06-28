@@ -4,6 +4,7 @@ import NavBar from "./components/NavBar";
 import { ThemeProviderWrapper } from "./contexts/ThemeContext";
 import { SearchProviderWrapper } from "./contexts/SearchContext";
 import { CartProviderWrapper } from "./contexts/CartContext";
+import { CurrencyProviderWrapper } from "./contexts/CurrencyContext";
 import Catalog from "./pages/CatalogPage";
 import Home from "./pages/HomePage";
 import Details from "./pages/DetailsPage";
@@ -14,15 +15,17 @@ function App() {
     <ThemeProviderWrapper>
       <SearchProviderWrapper>
         <CartProviderWrapper>
-          <Router>
-            <NavBar />
-            <Cart />
-            <Routes>
-              <Route path="/" element={<Home />}/>
-              <Route path="/catalog" element={<Catalog />}/>
-              <Route path="/details/:id" element={<Details />}/>
-            </Routes>
-          </Router>  
+          <CurrencyProviderWrapper>
+            <Router>
+              <NavBar />
+              <Cart />
+              <Routes>
+                <Route path="/" element={<Home />}/>
+                <Route path="/catalog" element={<Catalog />}/>
+                <Route path="/details/:id" element={<Details />}/>
+              </Routes>
+            </Router>  
+          </CurrencyProviderWrapper>
         </CartProviderWrapper>
       </SearchProviderWrapper>
     </ThemeProviderWrapper>

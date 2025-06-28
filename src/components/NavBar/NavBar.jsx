@@ -4,6 +4,7 @@ import ThemeSwitcher from "../ThemeSwitcher";
 import NavigationTabs from "../NavigationTabs";
 import SearchItem from "../SearchItem";
 import CartBange from "../Cart/CartBadge";
+import CurrencySwitch from "../CurrencySwitch/CurrencySwitch";
 
 const NavBar = () => {  
     return (
@@ -27,6 +28,7 @@ const NavBar = () => {
                 <Box sx={{ display: "flex", gap: 2, alignItems: "center" }}>
                     <SearchItem />
                     <CartBange />
+                    <CurrencySwitch />
                     <ThemeSwitcher />
                 </Box>
             </Toolbar>

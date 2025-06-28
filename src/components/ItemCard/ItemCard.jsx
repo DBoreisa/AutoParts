@@ -8,9 +8,13 @@ import {
     CardActionArea 
 } from "@mui/material";
 import { useNavigate } from "react-router-dom";
+import useCurrencyRate from "../../hooks/useCurrencyRate";
+import { useCurrencyContext } from "../../contexts/CurrencyContext";
 
 const ItemCard = ({ id, name, price, img }) => {
     const navigate = useNavigate();
+    const rate = useCurrencyRate();
+    const { currency } = useCurrencyContext();
 
     const handleClick = () => {
         navigate(`/details/${id}`);
@@ -35,7 +39,9 @@ const ItemCard = ({ id, name, price, img }) => {
                     }}
                 />
                 <CardContent sx={{paddingBottom: "100px"}}>
-                    <Typography variant="body2">Price: {price} €</Typography>
+                    <Typography variant="body2">
+                        Price: {(price * rate).toFixed(2)} {currency} 
+                    </Typography>
                 </CardContent>
             </CardActionArea>
         </Card>
