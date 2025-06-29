@@ -9,15 +9,13 @@ import {
     DialogContent, 
     Button 
 } from "@mui/material";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import PriceSlider from "../PriceSlider";
-import { useSearch } from "../../contexts/SearchContext";
 
 const FilterItems = ({ filters, setFilters }) => {
     const [isSelected, setIsSelected] = useState("Select");
     const [open, setOpen] = useState(false);
     const [priceRange, setPriceRange] = useState([0, 100000]);
-    // const { searchQuery } = useSearch();
 
     const handleChange = (event) => {
         const value = event.target.value;
