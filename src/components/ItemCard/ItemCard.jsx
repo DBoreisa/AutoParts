@@ -40,7 +40,7 @@ const ItemCard = ({ id, name, price, img }) => {
                 />
                 <CardContent sx={{paddingBottom: "100px"}}>
                     <Typography variant="body2">
-                        Price: {(price * rate).toFixed(2)} {currency} 
+                        Price: {(price * rate).toFixed(2)} {currency === "EUR" ? "€" : currency === "USD" ? "$" : currency === "GBP" ? "£" : currency}
                     </Typography>
                 </CardContent>
             </CardActionArea>

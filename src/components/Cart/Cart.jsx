@@ -2,11 +2,17 @@ import React from "react";
 import { Drawer, useTheme, Box, Avatar, Typography, Divider, Paper, Button } from "@mui/material";
 import { useCartContext } from "../../contexts/CartContext";
 import { useNavigate } from "react-router-dom";
+import useCurrencyRate from "../../hooks/useCurrencyRate";
+import { useCurrencyContext } from "../../contexts/CurrencyContext";
 
 const Cart = () => {
     const theme = useTheme();
     const { cart, showCart, setShowCart } = useCartContext();
     const navigate = useNavigate();
+    const rate = useCurrencyRate();
+    const { currency } = useCurrencyContext();
+    let sum = 0;
+    const totalPrice = cart.reduce((sum, item) => sum + parseFloat(item.price), 0);
 
     const handleItemClick = (id) => {
         setShowCart(false);
@@ -36,12 +42,18 @@ const Cart = () => {
                         borderRadius: 2
                     }} 
                 />
-                <Box display="flex" flexDirection={"column"}>
-                    <Typography variant="h6">
+                <Box sx={{
+                        display: "flex",
+                        flexDirection: "column",
+                        paddingRight: 4, 
+                        width: "100%"
+                    }}
+                >
+                    <Typography variant="h6" textAlign="left">
                         {item.name}
                     </Typography>
-                    <Typography variant="subtitle2">
-                        {item.price}
+                    <Typography variant="subtitle2" textAlign="right">
+                        {(item.price * rate).toFixed(2)} {currency === "EUR" ? "€" : currency === "USD" ? "$" : currency === "GBP" ? "£" : currency}
                     </Typography>
                 </Box>
             </Box>
@@ -83,9 +95,15 @@ const Cart = () => {
                 {cartContent}
             </Paper>
             {cart.length > 0 ? 
-                <Button sx={{ margin: 2 }} variant="contained">
-                    Proceed to payment
-                </Button>
+                <Box>
+                    <Typography sx={{ textAlign: "center", mt: 2, fontWeight: "bold" }}>
+                        Total: {(totalPrice * rate).toFixed(2)}{" "} {currency === "EUR" ? "€" : currency === "USD" ? "$" : currency === "GBP" ? "£" : currency}
+                    </Typography>
+                    <Button sx={{ margin: 2, width: "94%" }} variant="contained">
+                        Proceed to payment
+                    </Button>
+                </Box>
+                
                 :   <Typography sx={{
                         textAlign: "center",
                         fontSize: 25,

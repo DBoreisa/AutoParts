@@ -6,6 +6,8 @@ import useProducts from "../hooks/useProducts";
 import ImagesCarousel from "../components/ImagesCarousel";
 import ShoppingCartTwoToneIcon from '@mui/icons-material/ShoppingCartTwoTone'; 
 import useCart from "../hooks/useCart";
+import useCurrencyRate from "../hooks/useCurrencyRate";
+import { useCurrencyContext } from "../contexts/CurrencyContext";
 
 const DetailsPage = () => {
     const theme = useTheme();
@@ -13,6 +15,8 @@ const DetailsPage = () => {
     const { id } = useParams();
     const product = products.find((product) => product.id.toString() === id);
     const { addToCart, addToCartText } = useCart(product); 
+    const rate = useCurrencyRate();
+    const { currency } = useCurrencyContext();
 
     if (!product) {
         return <Typography>Loading product details...</Typography>;
@@ -66,7 +70,7 @@ const DetailsPage = () => {
                                 fontSize: 25 
                             }}
                         >
-                            {product.price}
+                            {(product.price * rate).toFixed(2)} {currency === "EUR" ? "€" : currency === "USD" ? "$" : currency === "GBP" ? "£" : currency}
                         </Typography>
                         <Typography 
                             color={theme.palette.text.secondary}
