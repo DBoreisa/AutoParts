@@ -32,11 +32,18 @@ const NavBar = () => {
 
     const DrawerList = (
         <Box sx={{ width: 250 }} role="presentation" >
-            <List>
+            <List sx={{ 
+                    gap: 3, 
+                    padding: 1, 
+                    display: "flex",
+                    width: "98vw",
+                    alignItems: "center",
+                    justifyContent: "right" 
+                }}>
                 <SearchItem />
-                        <CartBange />
-                        <CurrencySwitch />
-                        <ThemeSwitcher />
+                <CartBange />
+                <CurrencySwitch />
+                <ThemeSwitcher />
             </List>
         </Box>
     );
@@ -68,7 +75,18 @@ const NavBar = () => {
                         <ThemeSwitcher />
                     </Box>
                 )}
-                <Drawer open={open} onClose={toggleDrawer(false)} anchor={"right"}>
+                <Drawer 
+                    open={open} 
+                    onClose={toggleDrawer(false)} 
+                    anchor={"top"} 
+                    slotProps={{
+                        paper: {
+                        sx: {
+                            backgroundColor: theme.palette.header.default
+                        }
+                        }
+                    }}
+                >
                     {DrawerList}
                 </Drawer>
             </Toolbar>
