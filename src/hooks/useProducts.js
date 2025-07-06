@@ -14,7 +14,7 @@ const useProducts = ({ sort = "Date", filters, searchQuery } = {}) => {
                 
                 const queryString = new URLSearchParams(params).toString();
 
-                const res = await axios.get(`http://localhost:8000/api/products/?${queryString}`);
+                const res = await axios.get(`http://192.168.0.157:8000/api/products/?${queryString}`);
                 setProducts(res.data);
             } catch (error) {
                 console.error("Error fetching products:", error);
