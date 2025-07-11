@@ -10,15 +10,8 @@ import { useTheme, useMediaQuery } from "@mui/material";
 import DehazeIcon from '@mui/icons-material/Dehaze';
 import Button from "@mui/material/Button";
 import Drawer from '@mui/material/Drawer';
-
 import List from '@mui/material/List';
-import Divider from '@mui/material/Divider';
-import ListItem from '@mui/material/ListItem';
-import ListItemButton from '@mui/material/ListItemButton';
-import ListItemIcon from '@mui/material/ListItemIcon';
-import ListItemText from '@mui/material/ListItemText';
-import InboxIcon from '@mui/icons-material/MoveToInbox';
-import MailIcon from '@mui/icons-material/Mail';
+import logo from "../../Images/logo.png"
 
 const NavBar = () => {  
     const theme = useTheme();
@@ -51,18 +44,17 @@ const NavBar = () => {
         <AppBar position="fixed" sx={{ boxShadow: 3, width: "100%" }}>
             <Toolbar sx={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
                 <Box sx={{ display: "flex", alignItems: "center" }}>
-                    <Box
+                    <a href="/">
+                        <Box
                         component="img"
                         sx={{ 
-                            height: 40, 
-                            marginRight: 2
+                            height: 55, 
+                            marginRight: 0
                         }}
                         alt="Logo"
-                        src="/logo.png" // Update with your logo path
-                    /> 
-                    <Typography variant="h6" sx={{ flexGrow: 1, display: {xs: "none", sm: "block"} }}>
-                        AutoParts
-                    </Typography> 
+                        src={logo} // Update with your logo path
+                    />
+                    </a> 
                 </Box>                  
                 <NavigationTabs />
                 {isMobile ? (
