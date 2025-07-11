@@ -52,7 +52,7 @@ const NavBar = () => {
                             marginRight: 0
                         }}
                         alt="Logo"
-                        src={logo} // Update with your logo path
+                        src={logo}
                     />
                     </a> 
                 </Box>                  

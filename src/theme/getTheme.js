@@ -6,7 +6,7 @@ const getTheme = (mode) =>
     palette: {
       mode, // 'light' arba 'dark'
       primary: {
-        main: mode === "dark" ? "#96a7b5" : "#77788c",
+        main: mode === "dark" ? "#96a7b5" : "#414261",
       },
       secondary: {
         main: mode === "dark" ? "#dc004e" : "#dc004e",
@@ -20,7 +20,7 @@ const getTheme = (mode) =>
         secondary: mode === "dark" ? "#c7c6c5" : "#4a4948",
       },
       header: {
-        default: mode === "dark" ? "#1e1e1e" : "#77788c",
+        default: mode === "dark" ? "#1e1e1e" : "#414261",
       },
     },
     typography: {
