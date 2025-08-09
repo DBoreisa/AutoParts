@@ -18,18 +18,15 @@ jobs:
           node-version: 20
 
       - name: Add server to known_hosts
-        run: ssh-keyscan -H 37.27.35.83 >> ~/.ssh/known_hosts
+        run: |
+          mkdir -p ~/.ssh
+          ssh-keyscan -H 37.27.35.83 >> ~/.ssh/known_hosts
 
       - name: Install dependencies
         run: npm install
 
       - name: Build project
         run: npm run build
-
-      - name: Add server to known_hosts
-        run: |
-         mkdir -p ~/.ssh
-         ssh-keyscan -H 37.27.35.83 >> ~/.ssh/known_hosts
 
       - name: Deploy via rsync
         uses: burnett01/rsync-deployments@5.2
