@@ -2,7 +2,7 @@ name: Deploy Frontend
 
 on:
   push:
-    branches: [ "main" ] # Deploy only when main branch changes
+    branches: [ "main" ]
 
 jobs:
   build-and-deploy:
@@ -17,8 +17,11 @@ jobs:
         with:
           node-version: 20
 
+      - name: Add server to known_hosts
+        run: ssh-keyscan -H 37.27.35.83 >> ~/.ssh/known_hosts
+
       - name: Install dependencies
-        run: npm ci
+        run: npm install
 
       - name: Build project
         run: npm run build
@@ -28,7 +31,7 @@ jobs:
         with:
           switches: -avzr --delete
           path: build/
-          remote_path: /home/gearpro01efr/htdocs/gearpro01e.com # Change to your web root
+          remote_path: /home/gearpro01efr/htdocs/gearpro01e.com
           remote_host: 37.27.35.83
           remote_user: root
           remote_key: ${{ secrets.DEPLOY_KEY }}
