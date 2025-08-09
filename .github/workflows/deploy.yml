@@ -18,7 +18,7 @@ jobs:
           node-version: 20
 
       - name: Install dependencies
-        run: npm install
+        run: npm ci
 
       - name: Build project
         run: npm run build
@@ -29,6 +29,6 @@ jobs:
           switches: -avzr --delete
           path: build/
           remote_path: /home/gearpro01efr/htdocs/gearpro01e.com # Change to your web root
-          remote_host: your.server.ip
-          remote_user: your_user
+          remote_host: 37.27.35.83
+          remote_user: root
           remote_key: ${{ secrets.DEPLOY_KEY }}
