@@ -44,8 +44,8 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
   },
 }));
 
-const SearchItem = () => {
-    const [open, setOpen] = useState(false);
+const SearchItem = ({ alwaysOpen = false }) => {
+    const [open, setOpen] = useState(alwaysOpen);
     const { searchQuery, setSearchQuery } = useSearch();
     const navigate = useNavigate();
     const location = useLocation();
@@ -59,24 +59,29 @@ const SearchItem = () => {
     };
 
     const handleClose = () => {
-      setOpen(false);
+      if (!alwaysOpen && !searchQuery) {
+        setOpen(false);
+      }
+
       //setSearchQuery(""); // isvalo input po uzdarymo
     };
 
     return (
         <Search>
-        <SearchIconWrapper onClick={() => setOpen(true)}>
+        {!alwaysOpen && ( // paslepia icon
+          <SearchIconWrapper onClick={() => setOpen(true)}>
             <SearchIcon />
-        </SearchIconWrapper>
-        <StyledInputBase
-            className={open ? "open" : ""}
-            placeholder="Search…"
-            inputProps={{ "aria-label": "search" }}
-            onBlur={handleClose} 
-            autoFocus={open}
-            value={searchQuery}
-            onChange={handleChange}
-        />
+          </SearchIconWrapper>
+        )}
+          <StyledInputBase
+              className={open ? "open" : ""}
+              placeholder="Search…"
+              inputProps={{ "aria-label": "search" }}
+              onBlur={handleClose} 
+              autoFocus={open}
+              value={searchQuery}
+              onChange={handleChange}
+          />
         </Search>
     );
 };

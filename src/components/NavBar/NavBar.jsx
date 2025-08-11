@@ -28,22 +28,23 @@ const NavBar = () => {
         <Box sx={{ width: "100%" }} role="presentation" >
             <List sx={{ 
                     gap: 3, 
-                    padding: 1, 
+                    padding: 1,
+                    paddingTop: 2,
+                    paddingBottom: 0, 
                     display: "flex",
                     width: "95vw",
                     alignItems: "center",
-                    justifyContent: "right" 
-                }}>    
+                    justifyContent: "center" 
+                }}>                   
                 <CartBange />
                 <CurrencySwitch />
-                <ThemeSwitcher />
+                <ThemeSwitcher />               
             </List>
-            <List sx={{ 
-                justifyContent: "right",
+            <List sx={{               
                 paddingLeft: 3,
                 paddingRight: 3 
-                }}>
-                <SearchItem />
+            }}>
+                <SearchItem alwaysOpen={true}/> 
             </List>
         </Box>
     );
