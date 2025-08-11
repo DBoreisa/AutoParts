@@ -29,6 +29,7 @@ const SearchIconWrapper = styled(Box)({
 
 const StyledInputBase = styled(InputBase)(({ theme }) => ({
   color: "inherit",
+  flex: 1,
   width: "0",
   opacity: 0,
   transition: theme.transitions.create(["width", "opacity"], {

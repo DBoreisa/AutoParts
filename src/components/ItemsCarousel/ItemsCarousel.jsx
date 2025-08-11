@@ -59,7 +59,7 @@ const ItemsCarousel = ({items}) => {
       {
         breakpoint: theme.breakpoints.values.xxl,  // 2560px
         settings: {
-            slidesToShow: 4,
+            slidesToShow: 3.5,
         },
       },
       {
