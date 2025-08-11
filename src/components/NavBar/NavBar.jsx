@@ -11,7 +11,8 @@ import DehazeIcon from '@mui/icons-material/Dehaze';
 import Button from "@mui/material/Button";
 import Drawer from '@mui/material/Drawer';
 import List from '@mui/material/List';
-import logo from "../../Images/logo.png"
+import logo from "../../Images/logo.png";
+import logoMini from "../../Images/logo-mini.png";
 
 const NavBar = () => {  
     const theme = useTheme();
@@ -24,19 +25,25 @@ const NavBar = () => {
     };
 
     const DrawerList = (
-        <Box sx={{ width: 250 }} role="presentation" >
+        <Box sx={{ width: "100%" }} role="presentation" >
             <List sx={{ 
                     gap: 3, 
                     padding: 1, 
                     display: "flex",
-                    width: "98vw",
+                    width: "95vw",
                     alignItems: "center",
                     justifyContent: "right" 
-                }}>
-                <SearchItem />
+                }}>    
                 <CartBange />
                 <CurrencySwitch />
                 <ThemeSwitcher />
+            </List>
+            <List sx={{ 
+                justifyContent: "right",
+                paddingLeft: 3,
+                paddingRight: 3 
+                }}>
+                <SearchItem />
             </List>
         </Box>
     );
@@ -44,17 +51,32 @@ const NavBar = () => {
         <AppBar position="fixed" sx={{ boxShadow: 3, width: "100%" }}>
             <Toolbar sx={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
                 <Box sx={{ display: "flex", alignItems: "center" }}>
-                    <a href="/">
+                    {isMobile ? (
+                        <a href="/">
                         <Box
-                        component="img"
-                        sx={{ 
-                            height: 55, 
-                            marginRight: 0
-                        }}
-                        alt="Logo"
-                        src={logo}
-                    />
-                    </a> 
+                            component="img"
+                            sx={{ 
+                                height: 55, 
+                                marginRight: 0
+                            }}
+                            alt="LogoMini"
+                            src={logoMini}
+                        />
+                        </a> 
+                    ) : (
+                        <a href="/">
+                        <Box
+                            component="img"
+                            sx={{ 
+                                height: 55, 
+                                marginRight: 0
+                            }}
+                            alt="Logo"
+                            src={logo}
+                        />
+                        </a> 
+                    )}
+                    
                 </Box>                  
                 <NavigationTabs />
                 {isMobile ? (
@@ -73,9 +95,9 @@ const NavBar = () => {
                     anchor={"top"} 
                     slotProps={{
                         paper: {
-                        sx: {
-                            backgroundColor: theme.palette.header.default
-                        }
+                            sx: {
+                                backgroundColor: theme.palette.header.default
+                            }
                         }
                     }}
                 >

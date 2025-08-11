@@ -35,7 +35,7 @@ const DetailsPage = () => {
                     width: "100%",
                     margin: "auto",
                     boxShadow: 3,
-                    paddingTop: 9
+                    paddingTop: 9,
                 }}
             >
                 <Box sx={{
@@ -85,7 +85,8 @@ const DetailsPage = () => {
                                 backgroundColor: theme.palette.primary.main,
                                 color: theme.palette.getContrastText(theme.palette.text.primary),
                                 marginTop: 2,
-                                width: "250px"
+                                width: "250px",
+                                alignSelf: "center"
                             }}
                             onClick={addToCart}
                         >
