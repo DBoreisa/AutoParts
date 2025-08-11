@@ -1,6 +1,6 @@
 import React from "react";
 import { useState } from "react";
-import { AppBar, Toolbar, Typography, Box} from "@mui/material";
+import { AppBar, Toolbar, Box} from "@mui/material";
 import ThemeSwitcher from "../ThemeSwitcher";
 import NavigationTabs from "../NavigationTabs";
 import SearchItem from "../SearchItem";

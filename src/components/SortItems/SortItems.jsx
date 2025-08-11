@@ -1,4 +1,4 @@
-import React, { useMemo, useState, useEffect } from "react";
+import React from "react";
 import { FormControl, InputLabel, useTheme, MenuItem, Select } from "@mui/material";
 
 const SortItems = ({ sortBy, setSortBy }) => {
