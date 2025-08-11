@@ -1,5 +1,5 @@
 import React from "react";
-import { FormControl, InputLabel, useTheme, MenuItem, Select } from "@mui/material";
+import { FormControl, InputLabel, MenuItem, Select } from "@mui/material";
 
 const SortItems = ({ sortBy, setSortBy }) => {
     //const theme = useTheme();
