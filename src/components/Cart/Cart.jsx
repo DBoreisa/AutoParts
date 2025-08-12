@@ -48,7 +48,7 @@ const Cart = () => {
                         display: "flex",
                         flexDirection: "column",
                         paddingRight: 4, 
-                        width: "50%"
+                        width: "35%"
                     }}
                 >
                     <Typography variant="h5" textAlign="left">
