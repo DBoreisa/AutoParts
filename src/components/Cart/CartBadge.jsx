@@ -13,7 +13,7 @@ const StyledBadge = styled(Badge)(() => ({
   }
 }));
 
-export default function CartBange() {
+export default function CartBadge() {
   const { cart, setShowCart } = useCartContext();
 
   return (

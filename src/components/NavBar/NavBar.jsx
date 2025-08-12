@@ -4,7 +4,7 @@ import { AppBar, Toolbar, Box} from "@mui/material";
 import ThemeSwitcher from "../ThemeSwitcher";
 import NavigationTabs from "../NavigationTabs";
 import SearchItem from "../SearchItem";
-import CartBange from "../Cart/CartBadge";
+import CartBadge from "../Cart/CartBadge";
 import CurrencySwitch from "../CurrencySwitch/CurrencySwitch";
 import { useTheme, useMediaQuery } from "@mui/material";
 import DehazeIcon from '@mui/icons-material/Dehaze';
@@ -13,10 +13,22 @@ import Drawer from '@mui/material/Drawer';
 import List from '@mui/material/List';
 import logo from "../../Images/logo.png";
 import logoMini from "../../Images/logo-mini.png";
+import Badge from '@mui/material/Badge';
+import { useCartContext } from "../../contexts/CartContext";
+import { styled } from '@mui/material/styles';
 
 const NavBar = () => {  
     const theme = useTheme();
     const isMobile = useMediaQuery(theme.breakpoints.down("md")); 
+    const { cart } = useCartContext();
+
+    const StyledBadge = styled(Badge)(() => ({
+    '& .MuiBadge-badge': {
+        right: -3,
+        top: 13,
+        padding: '0 4px',
+        }
+    }));
 
     const [open, setOpen] = useState(false);
 
@@ -36,7 +48,7 @@ const NavBar = () => {
                     alignItems: "center",
                     justifyContent: "center" 
                 }}>                   
-                <CartBange />
+                <CartBadge />
                 <CurrencySwitch />
                 <ThemeSwitcher />               
             </List>
@@ -81,11 +93,15 @@ const NavBar = () => {
                 </Box>                  
                 <NavigationTabs />
                 {isMobile ? (
-                    <Button onClick={toggleDrawer(true)}><DehazeIcon sx={{ color: "white" }}/></Button>
+                    <Button onClick={toggleDrawer(true)}>
+                        <StyledBadge badgeContent={cart.length} color="secondary">
+                            <DehazeIcon sx={{ color: "white" }}/>
+                        </StyledBadge>                       
+                    </Button>
                 ) : (
                     <Box sx={{ display: "flex", gap: 2, alignItems: "center" }}>
                         <SearchItem />
-                        <CartBange />
+                        <CartBadge />
                         <CurrencySwitch />
                         <ThemeSwitcher />
                     </Box>

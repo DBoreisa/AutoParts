@@ -11,7 +11,6 @@ const Cart = () => {
     const navigate = useNavigate();
     const rate = useCurrencyRate();
     const { currency } = useCurrencyContext();
-    //let sum = 0;
     const totalPrice = cart.reduce((sum, item) => sum + parseFloat(item.price), 0);
 
     const handleItemClick = (id) => {
