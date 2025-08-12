@@ -4,15 +4,18 @@ import { useCartContext } from "../../contexts/CartContext";
 import { useNavigate } from "react-router-dom";
 import useCurrencyRate from "../../hooks/useCurrencyRate";
 import { useCurrencyContext } from "../../contexts/CurrencyContext";
+import useCart from "../../hooks/useCart";
+import ShoppingCartTwoToneIcon from '@mui/icons-material/ShoppingCartTwoTone'; 
 
 const Cart = () => {
-    const theme = useTheme();
+    const theme = useTheme();  
+    const { removeFromCart } = useCart();
     const { cart, showCart, setShowCart } = useCartContext();
+    const { currency } = useCurrencyContext();     
     const navigate = useNavigate();
     const rate = useCurrencyRate();
-    const { currency } = useCurrencyContext();
-    const totalPrice = cart.reduce((sum, item) => sum + parseFloat(item.price), 0);
-
+    const totalPrice = cart.reduce((sum, item) => sum + parseFloat(item.price), 0); 
+    
     const handleItemClick = (id) => {
         setShowCart(false);
         navigate(`/details/${id}`);
@@ -53,6 +56,25 @@ const Cart = () => {
                     </Typography>
                     <Typography variant="subtitle2" textAlign="right">
                         {(item.price * rate).toFixed(2)} {currency === "EUR" ? "€" : currency === "USD" ? "$" : currency === "GBP" ? "£" : currency}
+                    </Typography>
+                    <Typography>
+                        <Button 
+                            variant="outlined" 
+                            endIcon={<ShoppingCartTwoToneIcon />}
+                            sx={{
+                                backgroundColor: theme.palette.primary.main,
+                                color: theme.palette.getContrastText(theme.palette.text.primary),
+                                marginTop: 2,
+                                width: "250px",
+                                alignSelf: "center"
+                            }}
+                            onClick={(e) => {
+                                e.stopPropagation(); // Prevent triggering handleItemClick
+                                removeFromCart(item); // Remove this specific item
+                            }}
+                        >
+                            Remove from cart
+                        </Button>
                     </Typography>
                 </Box>
             </Box>

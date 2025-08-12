@@ -14,7 +14,7 @@ const DetailsPage = () => {
     const products = useProducts();
     const { id } = useParams();
     const product = products.find((product) => product.id.toString() === id);
-    const { addToCart, addToCartText } = useCart(product); 
+    const { addToCart, addToCartText } = useCart(); 
     const rate = useCurrencyRate();
     const { currency } = useCurrencyContext();
 
@@ -88,9 +88,12 @@ const DetailsPage = () => {
                                 width: "250px",
                                 alignSelf: "center"
                             }}
-                            onClick={addToCart}
+                            onClick={(e) => {
+                                e.stopPropagation(); // Prevent triggering handleItemClick
+                                addToCart(product); // Remove this specific item
+                            }}
                         >
-                            {addToCartText}
+                            {addToCartText(product)}
                         </Button>
                     </Box>
                 </Box>
