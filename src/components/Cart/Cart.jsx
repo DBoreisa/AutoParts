@@ -28,7 +28,7 @@ const Cart = () => {
         >
             <Box sx={{
                     display: "flex",
-                    alignItems: "start",
+                    alignItems: "space-between",
                     justifyContent: "space-between",
                     paddingTop: 2,
                     paddingBottom: 2
@@ -48,35 +48,34 @@ const Cart = () => {
                         display: "flex",
                         flexDirection: "column",
                         paddingRight: 4, 
-                        width: "100%"
+                        width: "50%"
                     }}
                 >
-                    <Typography variant="h6" textAlign="left">
+                    <Typography variant="h5" textAlign="left">
                         {item.name}
                     </Typography>
-                    <Typography variant="subtitle2" textAlign="right">
+                    <Typography variant="subtitle1" textAlign="left">
                         {(item.price * rate).toFixed(2)} {currency === "EUR" ? "€" : currency === "USD" ? "$" : currency === "GBP" ? "£" : currency}
-                    </Typography>
-                    <Typography>
-                        <Button 
-                            variant="outlined" 
-                            endIcon={<ShoppingCartTwoToneIcon />}
-                            sx={{
-                                backgroundColor: theme.palette.primary.main,
-                                color: theme.palette.getContrastText(theme.palette.text.primary),
-                                marginTop: 2,
-                                width: "250px",
-                                alignSelf: "center"
-                            }}
-                            onClick={(e) => {
-                                e.stopPropagation(); // Prevent triggering handleItemClick
-                                removeFromCart(item); // Remove this specific item
-                            }}
-                        >
-                            Remove from cart
-                        </Button>
-                    </Typography>
+                    </Typography>                                   
                 </Box>
+                <Button 
+                    variant="outlined" 
+                    endIcon={<ShoppingCartTwoToneIcon />}
+                    sx={{
+                        backgroundColor: theme.palette.primary.main,
+                        color: theme.palette.getContrastText(theme.palette.text.primary),
+                        marginTop: 2,
+                        width: "110px",
+                        alignSelf: "center",
+                        margin: 2
+                    }}
+                    onClick={(e) => {
+                        e.stopPropagation(); // Prevent triggering handleItemClick
+                        removeFromCart(item); 
+                    }}
+                >
+                    Remove
+                </Button>
             </Box>
             <Divider variant="inset" />
         </Box>

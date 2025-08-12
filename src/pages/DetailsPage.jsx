@@ -90,7 +90,7 @@ const DetailsPage = () => {
                             }}
                             onClick={(e) => {
                                 e.stopPropagation(); // Prevent triggering handleItemClick
-                                addToCart(product); // Remove this specific item
+                                addToCart(product); 
                             }}
                         >
                             {addToCartText(product)}
