@@ -16,7 +16,7 @@ const CatalogPage = () => {
 
   return (
     <Box sx={{minHeight: "calc(100vh - 50px)", 
-            backgroundColor: theme.palette.background.default,
+            backgroundColor: theme.palette.background.paper,
             display: "flex",
             flexDirection: "column",
             paddingTop: "50px"
@@ -26,7 +26,8 @@ const CatalogPage = () => {
           minHeight: "calc(100vh - 90px)",
           width: "100%",
           margin: "auto",
-          boxShadow: 3
+          boxShadow: 3,
+          backgroundColor: theme.palette.background.default,
       }}>
         <Box sx={{
           paddingTop: 4, 

@@ -13,6 +13,7 @@ const Footer = () => {
             backgroundColor: theme.palette.header.default,
             color: "white",
             position: "relative",
+            boxShadow: "0 -4px 6px rgba(0,0,0,0.2)",
         }}>
             <Typography variant="body2">
                 © {new Date().getFullYear()} AutoParts

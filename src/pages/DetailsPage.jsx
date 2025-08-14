@@ -23,7 +23,7 @@ const DetailsPage = () => {
     }
     return (
         <Box sx={{ 
-                backgroundColor: theme.palette.background.default,
+                backgroundColor: theme.palette.background.paper,
                 display: "flex",
                 flexDirection: "column",
                 minHeight: "100vh"
@@ -31,11 +31,12 @@ const DetailsPage = () => {
         > 
             <Box sx={{
                     maxWidth: {lg:"70%", xs: "100%"},
-                    minHeight: "calc(100vh - 120px)",
+                    minHeight: "calc(100vh - 113px)",
                     width: "100%",
                     margin: "auto",
                     boxShadow: 3,
                     paddingTop: 9,
+                    backgroundColor: theme.palette.background.default,
                 }}
             >
                 <Box sx={{

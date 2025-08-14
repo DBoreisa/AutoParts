@@ -53,13 +53,12 @@ const Cart = () => {
                         display: "flex",
                         flexDirection: "column",
                         paddingRight: 1, 
-                        // width: "40%"
                     }}
                 >
-                    <Typography variant="h5" textAlign="left">
+                    <Typography variant="h6" textAlign="left">
                         {item.name}
                     </Typography>
-                    <Typography variant="subtitle1" textAlign="left">
+                    <Typography variant="subtitle2" textAlign="left">
                         {(item.price * rate).toFixed(2)} {currency === "EUR" ? "€" : currency === "USD" ? "$" : currency === "GBP" ? "£" : currency}
                     </Typography>                                   
                 </Box>
