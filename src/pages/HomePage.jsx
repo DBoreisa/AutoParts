@@ -1,5 +1,5 @@
 import React from "react";
-import { Box, useTheme, Typography, useMediaQuery, colors } from "@mui/material";
+import { Box, useTheme, Typography, useMediaQuery } from "@mui/material";
 import backgroundImg from "../Images/backgroundImg.jpg"
 import Footer from "../components/Footer";
 import ItemsCarousel from "../components/ItemsCarousel";
