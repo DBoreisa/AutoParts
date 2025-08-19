@@ -8,6 +8,8 @@ import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import useProducts from "../../hooks/useProducts"
+import useScrollFade from "../../hooks/useScrollFade";
+import { Fade, Box } from "@mui/material"
 
 const arrowStyle = {
     position: "absolute",
@@ -77,14 +79,22 @@ const ItemsCarousel = ({items}) => {
     ],
   };
 
+  const { ref, visible } = useScrollFade();
+
   return (
-    <Slider {...settings}>
-      {products.map((product) => (
-        <div key={product.id} style={{ padding: "10px" }}>
-          <ItemCard id={product.id} name={product.name} price={product.price} img={product.images[0]?.image} />
-        </div>
-      ))}
-    </Slider>
+    <Box ref={ref}>
+      <Fade in={visible} timeout={1000}>
+        <Box>
+          <Slider {...settings}>
+            {products.map((product) => (
+              <div key={product.id} style={{ padding: "10px" }}>
+                <ItemCard id={product.id} name={product.name} price={product.price} img={product.images[0]?.image} />
+              </div>
+            ))}
+          </Slider>
+        </Box>
+      </Fade>
+    </Box>
   );
 };
 
