@@ -106,13 +106,17 @@ const HomePage = () => {
                     backgroundColor= {theme.palette.background.paper}
                     marginBottom={2}
                     padding={1}
+                    display={"flex"}
+                    justifyContent={"center"}
+                    alignItems={"end"}
+                    gap={2}
                 >
                     <Typography 
                         variant="h6" 
                         fontWeight={600}
-                        sx={{color: "theme.pallete.text.primary"}}
+                        sx={{color: theme.palette.text.secondary }}
                     >
-                        Folow us:
+                        Folow us:  
                     </Typography>
                     <a href="https://facebook.com">
                         <FacebookRoundedIcon color="primary" />
