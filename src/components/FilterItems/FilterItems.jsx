@@ -11,27 +11,31 @@ import {
 } from "@mui/material";
 import { useState } from "react";
 import PriceSlider from "../PriceSlider";
+import CategorySelection from "../CategorySelection";
 
 const FilterItems = ({ filters, setFilters }) => {
     const [isSelected, setIsSelected] = useState("Select");
-    const [open, setOpen] = useState(false);
+    const [openPrice, setOpenPrice] = useState(false);
+    const [openCategory, setOpenCategory] = useState(false);
     const [priceRange, setPriceRange] = useState([0, 100000]);
+    const [selectedCategories, setSelectedCategories] = useState([]);
 
-    const handleChange = (event) => {
+     const handleChange = (event) => {
         const value = event.target.value;
         setIsSelected(value);
 
         if (value === "Price") {
-            setOpen(true); 
-        };
-        if (value === "Select") {
+            setOpenPrice(true);
+        } else if (value === "Category") {
+            setOpenCategory(true);
+        } else if (value === "Select") {
             setFilters({});  // Reset filters
-        };
-        // Add category logic later if needed
+        }
     };
 
     const handleClose = () => {
-        setOpen(false);
+        setOpenPrice(false);
+        setOpenCategory(false);
         setIsSelected("Select");
     };
 
@@ -41,6 +45,14 @@ const FilterItems = ({ filters, setFilters }) => {
             ...prev,
             min_price,
             max_price,
+        }));
+        handleClose();
+    };
+
+    const handleCategorySubmit = () => {
+        setFilters((prev) => ({
+            ...prev,
+            categories: selectedCategories,
         }));
         handleClose();
     };
@@ -64,11 +76,31 @@ const FilterItems = ({ filters, setFilters }) => {
                 </Select>          
             </FormControl>
 
-            <Dialog open={open} onClose={handleClose}>
+            <Dialog open={openPrice} onClose={handleClose}>
                 <DialogTitle sx={{textAlign: "center"}}>Price Range:</DialogTitle>
                 <DialogContent sx={{textAlign: "center"}}>
                     <PriceSlider setPriceRange={setPriceRange}/>
-                    <Button onClick={handleFilterSubmit} variant="contained" color="primary" sx={{ mt: 2 }}>Submit</Button>
+                    <Button 
+                        onClick={handleFilterSubmit} 
+                        variant="contained" color="primary" 
+                        sx={{ mt: 2 }}
+                    >
+                        Submit
+                    </Button>
+                </DialogContent>
+            </Dialog>
+
+            <Dialog open={openCategory} onClose={handleClose}>
+                <DialogTitle sx={{textAlign: "center"}}>Select category:</DialogTitle>
+                <DialogContent sx={{textAlign: "center"}}>
+                    <CategorySelection setSelectedCategories={setSelectedCategories}/>
+                    <Button onClick={handleCategorySubmit} 
+                        variant="contained" 
+                        color="primary" 
+                        sx={{ mt: 2 }}
+                    >
+                        Submit
+                    </Button>
                 </DialogContent>
             </Dialog>
         </>

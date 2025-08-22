@@ -7,14 +7,15 @@ const useProducts = ({ sort = "Date", filters, searchQuery } = {}) => {
     useEffect(() => {
         const fetchProducts = async () => {
             try {
-                const params = { sort, ...filters }; // Combine all query params
+                const params = { ...filters, sort }; // Combine all query params
+                console.log("Fetching with params:", params);
                 if (searchQuery) {
                     params.search = searchQuery;  
                 }
                 
                 const queryString = new URLSearchParams(params).toString();
 
-                const res = await axios.get(`https://api.gearpro01e.com/?${queryString}`); 
+                const res = await axios.get(`https://api.gearpro01e.com/products/?${queryString}`); 
                 setProducts(res.data);
             } catch (error) {
                 console.error("Error fetching products:", error);
