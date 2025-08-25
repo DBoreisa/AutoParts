@@ -54,6 +54,7 @@ const SearchItem = ({ alwaysOpen = false }) => {
     const handleChange = (e) => {
       const newValue = e.target.value;
       setSearchQuery(newValue); 
+      
       if (newValue.trim() !== "" && location.pathname !== "/catalog") {
         navigate(`/catalog`);
       }

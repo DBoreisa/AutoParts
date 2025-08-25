@@ -2,22 +2,21 @@ import React from "react";
 import Footer from "../components/Footer";
 import { Box, Button, Typography, useTheme } from "@mui/material";
 import { useParams } from "react-router-dom";
-import useProducts from "../hooks/useProducts";
 import ImagesCarousel from "../components/ImagesCarousel";
 import ShoppingCartTwoToneIcon from '@mui/icons-material/ShoppingCartTwoTone'; 
 import useCart from "../hooks/useCart";
 import useCurrencyRate from "../hooks/useCurrencyRate";
 import { useCurrencyContext } from "../contexts/CurrencyContext";
+import useProduct from "../hooks/useProduct";
 
 const DetailsPage = () => {
     const theme = useTheme();
-    const products = useProducts();
     const { id } = useParams();
-    const product = products.find((product) => product.id.toString() === id);
+    const product = useProduct(id);
     const { addToCart, addToCartText } = useCart(); 
     const rate = useCurrencyRate();
     const { currency } = useCurrencyContext();
-
+    
     if (!product) {
         return <Typography>Loading product details...</Typography>;
     }

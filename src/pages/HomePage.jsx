@@ -4,14 +4,25 @@ import backgroundImg from "../Images/backgroundImg.jpg"
 import Footer from "../components/Footer";
 import ItemsCarousel from "../components/ItemsCarousel";
 import RecentlyAdded from "../components/RecentlyAdded";
-import useProducts from "../hooks/useProducts";
 import FacebookRoundedIcon from '@mui/icons-material/FacebookRounded';
 import InstagramIcon from '@mui/icons-material/Instagram';
+import { useEffect, useState } from "react";
+import axios from "axios";
 
 const HomePage = () => {
     const theme = useTheme();
     const isMobile = useMediaQuery(theme.breakpoints.down("md"));
-    const products = useProducts();
+
+    const [fiveProducts, setFiveProducts] = useState([]);
+
+    useEffect(() => {
+        const fetchProducts = async () => {
+            const res = await axios.get("https://api.gearpro01e.com/products/?sort=Date");
+            setFiveProducts(res.data.slice(0, 5)); // latest 5 products
+        };
+        fetchProducts();
+    }, []);
+
 
     return (
         <Box sx={{
@@ -75,7 +86,7 @@ const HomePage = () => {
                     {isMobile ? (
                         <RecentlyAdded />
                     ) : (
-                        <ItemsCarousel items={products.slice(0, 4)} />
+                        <ItemsCarousel items={fiveProducts} />
                     )}
                 </Box>
                 <Box sx={{ 
@@ -98,7 +109,7 @@ const HomePage = () => {
                     {isMobile ? (
                         <RecentlyAdded />
                     ) : (
-                        <ItemsCarousel items={products.slice(0, 4)} />
+                        <ItemsCarousel items={fiveProducts} />
                     )}
                 </Box>
                 <Box 

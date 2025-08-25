@@ -6,17 +6,18 @@ const CategorySelection = ({ setSelectedCategories }) => {
     const [categories, setCategories] = useState([]);
 
     useEffect(() => {
-    fetch("https://api.gearpro01e.com/categories/") 
-      .then((res) => res.json())
-      .then((data) => {
-        setCategories(data);
-        // Initialize selected state
-        const initSelected = {};
-        data.forEach((cat) => {
-          initSelected[cat] = false;
-        });
-        setSelected(initSelected);
-      });
+        fetch("https://api.gearpro01e.com/categories/") 
+        .then((res) => res.json())
+        .then((data) => {
+            setCategories(data);
+            // Initialize selected state
+            const initSelected = {};
+            data.forEach((cat) => {
+            initSelected[cat] = false;
+            });
+            setSelected(initSelected);
+        })
+        .catch(err => console.error("Error fetching categories:", err));
     }, []);
 
     const handleChange = (category) => (event) => {
@@ -29,18 +30,18 @@ const CategorySelection = ({ setSelectedCategories }) => {
     return (
         <Box sx={{ paddingTop: "20px" }}>
             <FormGroup>
-                {categories.map((category) => (
-                <FormControlLabel
-                    key={category}
-                    control={
-                    <Checkbox
-                        checked={!!selected[category]}
-                        onChange={handleChange(category)}
+                {categories.map((category, index) => (
+                    <FormControlLabel
+                        key={`${category}-${index}`}   // ensures unique key
+                        control={
+                        <Checkbox
+                            checked={!!selected[category]}
+                            onChange={handleChange(category)}
+                        />
+                        }
+                        label={category}  
                     />
-                    }
-                    label={category}
-                />
-                ))}
+                    ))}
             </FormGroup>
         </Box>
     );

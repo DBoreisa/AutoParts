@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useState, useEffect} from "react";
 import Footer from "../components/Footer";
 import { Box, Typography, useTheme, Grid2 } from "@mui/material";
 import ItemCard from "../components/ItemCard";
@@ -6,13 +6,27 @@ import FilterItems from "../components/FilterItems";
 import SortItems from "../components/SortItems";
 import { useSearch } from "../contexts/SearchContext";
 import useProducts from "../hooks/useProducts";
+import useProductSearch from "../hooks/useProductSearch";
+import { useLocation } from "react-router-dom";
 
 const CatalogPage = () => {
   const theme = useTheme();
   const [filters, setFilters] = useState({});
   const [sortBy, setSortBy] = useState("Date");
-  const { searchQuery } = useSearch();
-  const products = useProducts({ sort: sortBy, filters, searchQuery });
+  const { searchQuery, setSearchQuery } = useSearch();
+  const location = useLocation();
+  const isCatalogPage = location.pathname === "/catalog";
+
+  useEffect(() => {
+    if (!isCatalogPage) {
+      setSearchQuery(""); // clear global search
+    }
+  }, [isCatalogPage, setSearchQuery]);
+
+  const searchedProducts = useProductSearch(searchQuery, isCatalogPage);
+  const filteredProducts = useProducts({ sort: sortBy, filters, enabled: isCatalogPage  });
+
+  const products = searchQuery ? searchedProducts : filteredProducts;
 
   return (
     <Box sx={{minHeight: "calc(100vh - 50px)", 
@@ -42,6 +56,8 @@ const CatalogPage = () => {
             Products
           </Typography>
         </Box >
+
+        {/* filtrai ir rikiavimas */}
         <Box sx={{
             borderColor: theme.palette.text.primary,
             backgroundColor: theme.palette.background.paper,
@@ -78,6 +94,8 @@ const CatalogPage = () => {
               </Box>
             </Box>
         </Box>
+
+        {/* Products grid */}
         <Box sx={{
           width: "100%",
           paddingTop: 3,
