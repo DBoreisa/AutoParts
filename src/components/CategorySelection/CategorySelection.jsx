@@ -7,17 +7,17 @@ const CategorySelection = ({ setSelectedCategories }) => {
 
     useEffect(() => {
         fetch("https://api.gearpro01e.com/categories/") 
-        .then((res) => res.json())
-        .then((data) => {
-            setCategories(data);
-            // Initialize selected state
-            const initSelected = {};
-            data.forEach((cat) => {
-            initSelected[cat] = false;
-            });
-            setSelected(initSelected);
-        })
-        .catch(err => console.error("Error fetching categories:", err));
+            .then((res) => res.json())
+            .then((data) => {
+                setCategories(data); // data is ["engine compartment", "interior", ...]
+                // initialize state
+                const initSelected = {};
+                data.forEach((cat) => {
+                    initSelected[cat] = false;
+                });
+                setSelected(initSelected);
+            })
+            .catch(err => console.error("Error fetching categories:", err));
     }, []);
 
     const handleChange = (category) => (event) => {
@@ -32,7 +32,7 @@ const CategorySelection = ({ setSelectedCategories }) => {
             <FormGroup>
                 {categories.map((category, index) => (
                     <FormControlLabel
-                        key={`${category}-${index}`}   // ensures unique key
+                        key={`${category}-${index}`}   // uztikrina unikalu key
                         control={
                         <Checkbox
                             checked={!!selected[category]}

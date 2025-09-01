@@ -9,18 +9,32 @@ const useProducts = ({ sort = "Date", filters = {}, enabled = false } = {}) => {
 
         const fetchProducts = async () => {
             try {
-                const params = { ...filters, sort }; // Combine all query params
-                console.log("Fetching with params:", params);
-                /*if (searchQuery) {
-                    params.search = searchQuery;  
-                }*/
-                
-                const queryString = new URLSearchParams(params).toString();
+                const params = new URLSearchParams();
+
+                // Filtrai
+                Object.entries(filters).forEach(([key, value]) => {
+                    let paramKey = key;
+
+                    // frontendo kintamaji sulygina su backendo 
+                    if (key === "categories") {
+                        paramKey = "category";
+                    }
+
+                    if (Array.isArray(value)) {
+                        value.forEach(v => params.append(paramKey, v));
+                    } else if (value) {
+                        params.append(paramKey, value);
+                    }
+                });
+
+
+                // Rikiavimas
+                params.append("sort", sort);
 
                 const res = await axios.get(
-                    `https://api.gearpro01e.com/products/?${queryString}`
-                ); 
-                console.log(queryString)
+                `https://api.gearpro01e.com/products/?${params.toString()}`
+                );
+
                 setProducts(res.data);
             } catch (error) {
                 console.error("Error fetching products:", error);
@@ -31,6 +45,6 @@ const useProducts = ({ sort = "Date", filters = {}, enabled = false } = {}) => {
     }, [sort, filters, enabled]);
 
     return products;
-};
+    };
 
 export default useProducts;
