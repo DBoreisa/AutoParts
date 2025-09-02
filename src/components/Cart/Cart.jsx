@@ -65,21 +65,23 @@ const Cart = () => {
             </Box>
             <Button 
                 variant="outlined" 
-                endIcon={<ShoppingCartTwoToneIcon />}
+                //endIcon={<ShoppingCartTwoToneIcon />}
                 sx={{
                     backgroundColor: theme.palette.primary.main,
                     color: theme.palette.getContrastText(theme.palette.text.primary),
-                    marginTop: 2,
-                    width: "110px",
                     alignSelf: "center",
-                    margin: 2
+                    margin: 2,
+                    paddingX: 2,
+                    width: "10px",
+                    borderRadius: 10,
+                    minWidth: "auto"
                 }}
                 onClick={(e) => {
                     e.stopPropagation(); // Prevent triggering handleItemClick
                     removeFromCart(item); 
                 }}
             >
-                Remove
+                X
             </Button>  
         </Box>
         <Divider variant="inset" />
