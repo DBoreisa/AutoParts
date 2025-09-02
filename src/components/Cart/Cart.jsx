@@ -5,7 +5,6 @@ import { useNavigate } from "react-router-dom";
 import useCurrencyRate from "../../hooks/useCurrencyRate";
 import { useCurrencyContext } from "../../contexts/CurrencyContext";
 import useCart from "../../hooks/useCart";
-import ShoppingCartTwoToneIcon from '@mui/icons-material/ShoppingCartTwoTone'; 
 
 const Cart = () => {
     const theme = useTheme();  
@@ -65,7 +64,6 @@ const Cart = () => {
             </Box>
             <Button 
                 variant="outlined" 
-                //endIcon={<ShoppingCartTwoToneIcon />}
                 sx={{
                     backgroundColor: theme.palette.primary.main,
                     color: theme.palette.getContrastText(theme.palette.text.primary),
