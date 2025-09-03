@@ -69,7 +69,7 @@ const Cart = () => {
                     color: theme.palette.getContrastText(theme.palette.text.primary),
                     alignSelf: "center",
                     margin: 2,
-                    paddingX: 2,
+                    paddingX: 2.2,
                     width: "10px",
                     borderRadius: 10,
                     minWidth: "auto"
