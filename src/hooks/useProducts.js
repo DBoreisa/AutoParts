@@ -15,11 +15,6 @@ const useProducts = ({ sort = "Date", filters = {}, enabled = false } = {}) => {
                 Object.entries(filters).forEach(([key, value]) => {
                     let paramKey = key;
 
-                    // frontendo kintamaji sulygina su backendo 
-                    if (key === "categories") {
-                        paramKey = "category";
-                    }
-
                     if (Array.isArray(value)) {
                         value.forEach(v => params.append(paramKey, v));
                     } else if (value) {

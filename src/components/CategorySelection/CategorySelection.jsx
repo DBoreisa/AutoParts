@@ -9,19 +9,19 @@ const CategorySelection = ({ setSelectedCategories }) => {
         fetch("https://api.gearpro01e.com/categories/") 
             .then((res) => res.json())
             .then((data) => {
-                setCategories(data); // data is ["engine compartment", "interior", ...]
+                setCategories(data); 
                 // initialize state
                 const initSelected = {};
                 data.forEach((cat) => {
-                    initSelected[cat] = false;
+                    initSelected[cat.value] = false; // use .value here
                 });
                 setSelected(initSelected);
             })
             .catch(err => console.error("Error fetching categories:", err));
     }, []);
 
-    const handleChange = (category) => (event) => {
-        const updated = { ...selected, [category]: event.target.checked };
+    const handleChange = (categoryValue) => (event) => {
+        const updated = { ...selected, [categoryValue]: event.target.checked };
         setSelected(updated);
         const selectedCats = Object.keys(updated).filter((key) => updated[key]);
         setSelectedCategories(selectedCats);
@@ -32,16 +32,16 @@ const CategorySelection = ({ setSelectedCategories }) => {
             <FormGroup>
                 {categories.map((category, index) => (
                     <FormControlLabel
-                        key={`${category}-${index}`}   // uztikrina unikalu key
+                        key={category.value}
                         control={
-                        <Checkbox
-                            checked={!!selected[category]}
-                            onChange={handleChange(category)}
-                        />
+                            <Checkbox
+                                checked={!!selected[category.value]}
+                                onChange={handleChange(category.value)}
+                            />
                         }
-                        label={category}  
+                        label={category.label}   // use label for UI
                     />
-                    ))}
+                ))}
             </FormGroup>
         </Box>
     );
