@@ -31,11 +31,23 @@ const ItemCard = ({ id, name, price, img }) => {
             >
                 <CardMedia component="img" height="140" image={img} alt={name} />
                 <CardHeader
-                    title={name} 
+                    title={
+                        <Typography
+                        variant="h6"
+                        sx={{
+                            fontSize: name.length > 20 ? "0.85rem" : "1.25rem",
+                            whiteSpace: "nowrap",
+                            overflow: "hidden",
+                            textOverflow: "ellipsis",
+                        }}
+                        >
+                        {name}
+                        </Typography>
+                    } 
                     sx={{ 
                         textAlign: "center", 
-                        padding: "5px", 
-                        borderBottom: "solid 1px #91979c" 
+                        padding: name.length > 20 ? "10px" : "5px",
+                        borderBottom: "solid 1px #91979c",
                     }}
                 />
                 <CardContent sx={{paddingBottom: "100px"}}>
