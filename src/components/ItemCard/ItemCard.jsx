@@ -5,13 +5,14 @@ import {
     CardContent, 
     CardHeader, 
     Typography, 
-    CardActionArea 
+    CardActionArea,
+    Box 
 } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import useCurrencyRate from "../../hooks/useCurrencyRate";
 import { useCurrencyContext } from "../../contexts/CurrencyContext";
 
-const ItemCard = ({ id, name, price, img }) => {
+const ItemCard = ({ id, name, price, img, on_sale, sale_price }) => {
     const navigate = useNavigate();
     const rate = useCurrencyRate();
     const { currency } = useCurrencyContext();
@@ -50,10 +51,49 @@ const ItemCard = ({ id, name, price, img }) => {
                         borderBottom: "solid 1px #91979c",
                     }}
                 />
-                <CardContent sx={{paddingBottom: "100px"}}>
-                    <Typography variant="body2">
-                        Price: {(price * rate).toFixed(2)} {currency === "EUR" ? "€" : currency === "USD" ? "$" : currency === "GBP" ? "£" : currency}
-                    </Typography>
+                <CardContent sx={{ paddingBottom: "100px" }}>
+                    {on_sale ? (
+                        <Box sx={{ display: "flex", gap: 1 }}>
+                            <Typography variant="body2">Price:</Typography>
+                            <Typography
+                                variant="body2"
+                                sx={{ textDecoration: "line-through", color: "gray" }}
+                            > 
+                                {(price * rate).toFixed(2)}{" "}
+                                {currency === "EUR"
+                                ? "€"
+                                : currency === "USD"
+                                ? "$"
+                                : currency === "GBP"
+                                ? "£"
+                                : currency}
+                            </Typography>
+                            <Typography
+                                variant="body1"
+                                sx={{ fontWeight: "bold", color: "red", transform: "translateY(-2px)"  }}
+                            >
+                                {(sale_price * rate).toFixed(2)}{" "}
+                                {currency === "EUR"
+                                ? "€"
+                                : currency === "USD"
+                                ? "$"
+                                : currency === "GBP"
+                                ? "£"
+                                : currency}
+                            </Typography>
+                        </Box>
+                    ) : (
+                        <Typography variant="body2">
+                            Price: {(price * rate).toFixed(2)}{" "}
+                            {currency === "EUR"
+                                ? "€"
+                                : currency === "USD"
+                                ? "$"
+                                : currency === "GBP"
+                                ? "£"
+                                : currency}
+                        </Typography>
+                    )}
                 </CardContent>
             </CardActionArea>
         </Card>

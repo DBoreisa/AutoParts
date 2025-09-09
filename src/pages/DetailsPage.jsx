@@ -20,6 +20,9 @@ const DetailsPage = () => {
     if (!product) {
         return <Typography>Loading product details...</Typography>;
     }
+
+    const { name, description, price, sale_price, on_sale, images } = product;
+
     return (
         <Box sx={{ 
                 backgroundColor: theme.palette.background.paper,
@@ -45,7 +48,7 @@ const DetailsPage = () => {
                         alignItems: "center",
                     }}
                 >
-                    <ImagesCarousel items={product.images}/>
+                    <ImagesCarousel items={images}/>
                     <Box sx={{
                         display: "flex",
                         flexDirection: "column",
@@ -57,26 +60,69 @@ const DetailsPage = () => {
                         <Typography 
                             variant="h3" 
                             color={theme.palette.text.primary} 
-                            sx={{ textAlign: 'center'}}
+                            sx={{ textAlign: 'center', paddingBottom: 2}}
                         >
-                            {product.name}
+                            {name}
+
                         </Typography>
-                        <Typography 
-                            color={theme.palette.text.secondary}
-                            sx={{ 
-                                textAlign: 'justify',
-                                fontWeight: "bold",
-                                paddingBottom: 2,
-                                fontSize: 25 
-                            }}
-                        >
-                            {(product.price * rate).toFixed(2)} {currency === "EUR" ? "€" : currency === "USD" ? "$" : currency === "GBP" ? "£" : currency}
-                        </Typography>
+                            {on_sale ? (
+                                <Box display="inline-flex" gap={1} alignItems="flex-end" >
+                                    <Typography 
+                                        color={theme.palette.text.secondary}
+                                        variant="h5"
+                                        sx={{  
+                                            textDecoration: "line-through", 
+                                            color: "gray",     
+                                            transform: "translateY(-3px)"                                                            
+                                        }}
+                                    >
+                                        {(price * rate).toFixed(2)}{" "}
+                                        {currency === "EUR"
+                                        ? "€"
+                                        : currency === "USD"
+                                        ? "$"
+                                        : currency === "GBP"
+                                        ? "£"
+                                        : currency}
+                                    </Typography>
+                                    <Typography
+                                        variant="h4"
+                                        sx={{ fontWeight: "bold", color: "red" }}
+                                    >
+                                        {(sale_price * rate).toFixed(2)}{" "}
+                                        {currency === "EUR"
+                                        ? "€"
+                                        : currency === "USD"
+                                        ? "$"
+                                        : currency === "GBP"
+                                        ? "£"
+                                        : currency}
+                                    </Typography>
+                                </Box>
+                            ) : (
+                                <Typography 
+                                        color={theme.palette.text.secondary}
+                                        variant="h4"
+                                        sx={{ 
+                                            textAlign: 'justify',
+                                            paddingBottom: 2,                                         
+                                        }}
+                                    >
+                                        {(price * rate).toFixed(2)}{" "}
+                                        {currency === "EUR"
+                                        ? "€"
+                                        : currency === "USD"
+                                        ? "$"
+                                        : currency === "GBP"
+                                        ? "£"
+                                        : currency}
+                                    </Typography>
+                            )}
                         <Typography 
                             color={theme.palette.text.secondary}
                             sx={{ textAlign: 'justify' }}
                         >
-                            {product.description}
+                            {description}
                         </Typography>
                         <Button 
                             variant="outlined" 

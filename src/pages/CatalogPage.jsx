@@ -107,7 +107,14 @@ const CatalogPage = () => {
           }}>
             {products.map((product) => (
                 <Grid2 size={6} key={product.id} width={"260px"}>
-                  <ItemCard id={product.id} name={product.name} price={product.price} img={product.images[0]?.image}/>
+                  <ItemCard 
+                    id={product.id} 
+                    name={product.name} 
+                    price={product.price} 
+                    img={product.images[0]?.image}
+                    on_sale={product.on_sale}
+                    sale_price={product.sale_price}
+                  />
                 </Grid2>
             ))}        
           </Grid2>
