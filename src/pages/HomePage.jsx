@@ -23,6 +23,15 @@ const HomePage = () => {
         fetchProducts();
     }, []);
 
+    const [saleProducts, setSaleProducts] = useState([]);
+
+    useEffect(() => {
+        const fetchProducts = async () => {
+            const res = await axios.get("https://api.gearpro01e.com/products/?on_sale=true");
+            setSaleProducts(res.data)
+        };
+        fetchProducts();
+    }, []);
 
     return (
         <Box sx={{
@@ -109,7 +118,7 @@ const HomePage = () => {
                     {isMobile ? (
                         <RecentlyAdded />
                     ) : (
-                        <ItemsCarousel items={fiveProducts} />
+                        <ItemsCarousel items={saleProducts} />
                     )}
                 </Box>
                 <Box 

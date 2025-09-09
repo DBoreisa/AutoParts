@@ -87,7 +87,14 @@ const ItemsCarousel = ({items}) => {
           <Slider {...settings}>
             {items.map((item) => (
               <div key={item.id} style={{ padding: "10px" }}>
-                <ItemCard id={item.id} name={item.name} price={item.price} img={item.images[0]?.image} />
+                <ItemCard 
+                  id={item.id}
+                  name={item.name} 
+                  price={item.price} 
+                  img={item.images[0]?.image}
+                  on_sale={item.on_sale}
+                  sale_price={item.sale_price}
+                />
               </div>
             ))}
           </Slider>
