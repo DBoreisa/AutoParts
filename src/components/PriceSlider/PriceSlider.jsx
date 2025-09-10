@@ -16,8 +16,8 @@ export default function PriceSlider({ setPriceRange }) {
 
   const handleBlur = () => {
     const clampedValues = [
-      Math.min(Math.max(value[0], 0), 99999), // Nurodo sliderio ribas ( 0 - 99999)
-      Math.min(Math.max(value[1], 0), 99999), // Nurodo sliderio ribas
+      Math.min(Math.max(value[0], 0), 1000), // Nurodo sliderio ribas ( 0 - 99999)
+      Math.min(Math.max(value[1], 0), 1000), // Nurodo sliderio ribas
     ];
     setValue(clampedValues);
   };
@@ -36,7 +36,7 @@ export default function PriceSlider({ setPriceRange }) {
             value={value[0]}
             onChange={handleInputChange(0)}
             onBlur={handleBlur}
-            inputProps={{ min: 0, max: 99999 }}
+            inputProps={{ min: 0, max: 1000 }}
             size="small"
             sx={{ width: 90 }}
           />
@@ -49,7 +49,7 @@ export default function PriceSlider({ setPriceRange }) {
             onChange={handleSliderChange}
             valueLabelDisplay="auto"
             min={0}
-            max={99999}
+            max={1000}
             disableSwap
           />
         </Grid>

@@ -28,6 +28,8 @@ const FilterItems = ({ filters, setFilters }) => {
             setOpenPrice(true);
         } else if (value === "Category") {
             setOpenCategory(true);
+        } else if (value === "On sale") {
+            handleOnSale();
         } else if (value === "Select") {
             setFilters({});  // Reset filters
         }
@@ -57,6 +59,14 @@ const FilterItems = ({ filters, setFilters }) => {
         handleClose();
     };
 
+    const handleOnSale = () => {
+        setFilters((prev) => ({
+            ...prev,
+            on_sale: !prev.on_sale,
+        }));
+        handleClose();
+    };
+
     return (
         <>
             <FormControl variant="standard" sx={{ width: 170 }}>
@@ -73,6 +83,7 @@ const FilterItems = ({ filters, setFilters }) => {
                     <MenuItem value="Select">Select</MenuItem>
                     <MenuItem value="Price">Price</MenuItem>
                     <MenuItem value="Category">Category</MenuItem>
+                    <MenuItem value="On sale">On sale</MenuItem>
                 </Select>          
             </FormControl>
 
