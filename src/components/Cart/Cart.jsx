@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import useCurrencyRate from "../../hooks/useCurrencyRate";
 import { useCurrencyContext } from "../../contexts/CurrencyContext";
 import useCart from "../../hooks/useCart";
+import PaymentBtn from "../PaymentBtn";
 
 const Cart = () => {
     const theme = useTheme();  
@@ -13,7 +14,10 @@ const Cart = () => {
     const { currency } = useCurrencyContext();     
     const navigate = useNavigate();
     const rate = useCurrencyRate();
-    const totalPrice = cart.reduce((sum, item) => sum + parseFloat(item.price), 0); 
+    const totalPrice = cart.reduce((sum, item) => {
+        const price = item.sale_price ? parseFloat(item.sale_price) : parseFloat(item.price);
+        return sum + price;
+    }, 0);
     
     const handleItemClick = (id) => {
         setShowCart(false);
@@ -58,7 +62,8 @@ const Cart = () => {
                         {item.name}
                     </Typography>
                     <Typography variant="subtitle2" textAlign="left">
-                        {(item.price * rate).toFixed(2)} {currency === "EUR" ? "€" : currency === "USD" ? "$" : currency === "GBP" ? "£" : currency}
+                        {((item.sale_price ?? item.price) * rate).toFixed(2)}{" "}
+                        {currency === "EUR" ? "€" : currency === "USD" ? "$" : currency === "GBP" ? "£" : currency}
                     </Typography>                                   
                 </Box>
             </Box>
@@ -124,9 +129,7 @@ const Cart = () => {
                     <Typography sx={{ textAlign: "center", mt: 2, fontWeight: "bold" }}>
                         Total: {(totalPrice * rate).toFixed(2)}{" "} {currency === "EUR" ? "€" : currency === "USD" ? "$" : currency === "GBP" ? "£" : currency}
                     </Typography>
-                    <Button sx={{ margin: 2, width: "94%" }} variant="contained">
-                        Proceed to payment
-                    </Button>
+                    <PaymentBtn />
                 </Box>
                 
                 :   <Typography sx={{
