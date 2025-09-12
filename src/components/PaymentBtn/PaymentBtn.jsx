@@ -11,7 +11,7 @@ const PaymentBtn = ({ cart, currency }) => {
         setLoading(true);
 
         try {
-            const res = await fetch("http://localhost:8000/create-checkout-session/", {
+            const res = await fetch("https://api.gearpro01e.com/payments/create-checkout-session/", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({
@@ -26,7 +26,7 @@ const PaymentBtn = ({ cart, currency }) => {
             const stripe = await stripePromise;
 
             const { error } = await stripe.redirectToCheckout({ sessionId: id });
-            
+
             if (error) {
                 console.error("Stripe error:", error);
                 alert(error.message);
