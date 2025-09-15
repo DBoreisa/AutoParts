@@ -10,6 +10,13 @@ const PaymentBtn = ({ cart, currency }) => {
     const handlePayment = async () => {
         setLoading(true);
 
+        const payload = {
+            cart,
+            currency: currency || "eur"
+        };
+
+        console.log("Sending payload to backend:", payload); // <-- log it
+
         try {
             const res = await fetch("https://api.gearpro01e.com/payments/create-checkout-session/", {
                 method: "POST",
