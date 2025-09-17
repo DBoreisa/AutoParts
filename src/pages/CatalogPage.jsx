@@ -19,12 +19,12 @@ const CatalogPage = () => {
 
   useEffect(() => {
     if (!isCatalogPage) {
-      setSearchQuery(""); // clear global search
+      setSearchQuery(""); // isvalyti global search
     }
   }, [isCatalogPage, setSearchQuery]);
 
   const searchedProducts = useProductSearch(searchQuery, isCatalogPage);
-  const filteredProducts = useProducts({ sort: sortBy, filters, enabled: isCatalogPage  });
+  const filteredProducts = useProducts({ sort: sortBy, filters, enabled: isCatalogPage });
 
   const products = searchQuery ? searchedProducts : filteredProducts;
 

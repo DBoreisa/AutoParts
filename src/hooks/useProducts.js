@@ -26,8 +26,11 @@ const useProducts = ({ sort = "Date", filters = {}, enabled = false } = {}) => {
                 // Rikiavimas
                 params.append("sort", sort);
 
+                // fetch is_active (jei stock > 0)
+                params.append("is_active", "true");
+
                 const res = await axios.get(
-                `https://api.gearpro01e.com/products/?${params.toString()}`
+                    `https://api.gearpro01e.com/products/?${params.toString()}`
                 );
 
                 setProducts(res.data);

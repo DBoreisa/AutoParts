@@ -30,7 +30,8 @@ const useCart = () => {
     const updateQuantity = (itemId, quantity) => {
         setCart(prevCart =>
             prevCart.map(c =>
-                c.id === itemId ? { ...c, quantity } : c
+                c.id === itemId ? { ...c, quantity: quantity > 0 ? quantity : 1 } 
+                : c
             )
         );
     };
