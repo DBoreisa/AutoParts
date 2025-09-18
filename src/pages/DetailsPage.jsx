@@ -13,7 +13,7 @@ const DetailsPage = () => {
     const theme = useTheme();
     const { id } = useParams();
     const product = useProduct(id);
-    const { addToCart, addToCartText } = useCart(); 
+    const { addToCart, addToCartText, isInCart, removeFromCart} = useCart(); 
     const rate = useCurrencyRate();
     const { currency } = useCurrencyContext();
     
@@ -136,7 +136,11 @@ const DetailsPage = () => {
                             }}
                             onClick={(e) => {
                                 e.stopPropagation(); // Prevent triggering handleItemClick
-                                addToCart(product); 
+                                if (isInCart(product)) {
+                                    removeFromCart(product);  
+                                } else {
+                                    addToCart(product);      
+                                } 
                             }}
                         >
                             {addToCartText(product)}

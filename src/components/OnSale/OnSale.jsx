@@ -4,9 +4,9 @@ import useProducts from "../../hooks/useProducts"
 import ItemCard from "../ItemCard";
 import { useNavigate } from "react-router-dom";
 
-const RecentlyAdded = () => {
+const OnSale = () => {
     const navigate = useNavigate();
-    const products = useProducts({ sort: "Date", enabled: true });
+    const products = useProducts({ enabled: true, filters: { on_sale: "true" } });
 
     const handleClick = (id) => {
         navigate(`/details/${id}`);
@@ -27,7 +27,7 @@ const RecentlyAdded = () => {
                 justifyContent="center"
                 alignItems="center"
             >
-            {products.slice(0, 4).map((product) => (
+            {products.map((product) => (
                 <Grid2 
                     item 
                     xs={12} 
@@ -36,7 +36,13 @@ const RecentlyAdded = () => {
                     key={product.id}
                     onClick={() => handleClick(product.id)}
                 >
-                    <ItemCard name={product.name} price={product.price} img={product.images[0]?.image}/>
+                    <ItemCard 
+                        name={product.name} 
+                        price={product.price} 
+                        img={product.images[0]?.image}
+                        on_sale={product.on_sale}
+                        sale_price={product.sale_price}
+                    />
                 </Grid2>
             ))}
             </Grid2>
@@ -44,4 +50,4 @@ const RecentlyAdded = () => {
     );
 };
 
-export default RecentlyAdded;
+export default OnSale;

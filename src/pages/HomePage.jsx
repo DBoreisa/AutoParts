@@ -4,6 +4,7 @@ import backgroundImg from "../Images/backgroundImg.jpg"
 import Footer from "../components/Footer";
 import ItemsCarousel from "../components/ItemsCarousel";
 import RecentlyAdded from "../components/RecentlyAdded";
+import OnSale from "../components/OnSale";
 import FacebookRoundedIcon from '@mui/icons-material/FacebookRounded';
 import InstagramIcon from '@mui/icons-material/Instagram';
 import { useEffect, useState } from "react";
@@ -116,7 +117,7 @@ const HomePage = () => {
                             On sale:
                     </Typography>
                     {isMobile ? (
-                        <RecentlyAdded />
+                        <OnSale />
                     ) : (
                         <ItemsCarousel items={saleProducts} />
                     )}
@@ -138,10 +139,10 @@ const HomePage = () => {
                     >
                         Folow us:  
                     </Typography>
-                    <a href="https://facebook.com">
+                    <a rel="noreferrer noopener" target="_blank" href="https://facebook.com">
                         <FacebookRoundedIcon color="primary" />
                     </a>
-                    <a href="https://instagram.com">
+                    <a rel="noreferrer noopener" target="_blank" href="https://www.instagram.com/gearpro01e?igsh=N2d0azE4NnN3dm5k">
                         <InstagramIcon color="primary"/>
                     </a>
                 </Box>
