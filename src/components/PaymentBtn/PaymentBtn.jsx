@@ -4,7 +4,7 @@ import { Button } from "@mui/material";
 
 const stripePromise = loadStripe("pk_test_51S5lKEFIroDd0p84WEBAD3seQk3KraJ8rWphK7vl83XsOjROEJia2rZBDikh03c3NVdGf7KvlINvAURdDSss0eu000SLx0b8GP");
 
-const PaymentBtn = ({ cart, currency }) => {
+const PaymentBtn = ({ cart, currency, onSuccess }) => {
     const [loading, setLoading] = useState(false);
 
     const handlePayment = async () => {
@@ -37,6 +37,9 @@ const PaymentBtn = ({ cart, currency }) => {
             if (error) {
                 console.error("Stripe error:", error);
                 alert(error.message);
+            } else {
+                // Isvalo, jei be err
+                if (onSuccess) onSuccess();
             }
 
         } catch (err) {

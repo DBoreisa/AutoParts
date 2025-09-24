@@ -12,7 +12,7 @@ import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 
 const Cart = () => {
     const theme = useTheme();  
-    const { removeFromCart, updateQuantity  } = useCart();
+    const { removeFromCart, updateQuantity, clearCart } = useCart();
     const { cart, showCart, setShowCart } = useCartContext();
     const { currency } = useCurrencyContext();     
     const navigate = useNavigate();
@@ -219,7 +219,7 @@ const Cart = () => {
                     <Typography sx={{ textAlign: "center", mt: 2, fontWeight: "bold" }}>
                         Total: {(totalPrice * rate).toFixed(2)}{" "} {currency === "EUR" ? "€" : currency === "USD" ? "$" : currency === "GBP" ? "£" : currency}
                     </Typography>
-                    <PaymentBtn cart={cart} currency={currency} />
+                    <PaymentBtn cart={cart} currency={currency} onSuccess={() => clearCart()}/>
                 </Box>
                 
                 :   <Typography sx={{

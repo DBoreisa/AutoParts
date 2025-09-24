@@ -36,9 +36,13 @@ const useCart = () => {
         );
     };
 
+    const clearCart = () => {
+        setCart([]);
+    };
+
     const addToCartText = (item) => isInCart(item) ? "Remove from cart" : "Add to cart";
 
-    return { addToCart, removeFromCart, isInCart, addToCartText, updateQuantity };
+    return { addToCart, removeFromCart, isInCart, addToCartText, updateQuantity, clearCart };
 };
 
 export default useCart;
