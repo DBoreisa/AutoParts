@@ -38,7 +38,6 @@ const PaymentBtn = ({ cart, currency, onSuccess }) => {
                 console.error("Stripe error:", error);
                 alert(error.message);
             } else {
-                // Isvalo, jei be err
                 if (onSuccess) onSuccess();
             }
 

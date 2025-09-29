@@ -219,7 +219,10 @@ const Cart = () => {
                     <Typography sx={{ textAlign: "center", mt: 2, fontWeight: "bold" }}>
                         Total: {(totalPrice * rate).toFixed(2)}{" "} {currency === "EUR" ? "€" : currency === "USD" ? "$" : currency === "GBP" ? "£" : currency}
                     </Typography>
-                    <PaymentBtn cart={cart} currency={currency} onSuccess={() => clearCart()}/>
+                    <PaymentBtn 
+                        cart={cart} 
+                        currency={currency} 
+                        onSuccess={clearCart}/>
                 </Box>
                 
                 :   <Typography sx={{

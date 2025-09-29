@@ -9,12 +9,15 @@ import FacebookRoundedIcon from '@mui/icons-material/FacebookRounded';
 import InstagramIcon from '@mui/icons-material/Instagram';
 import { useEffect, useState } from "react";
 import axios from "axios";
+import { Snackbar, Alert } from "@mui/material";
 
 const HomePage = () => {
     const theme = useTheme();
     const isMobile = useMediaQuery(theme.breakpoints.down("md"));
 
     const [fiveProducts, setFiveProducts] = useState([]);
+    const [saleProducts, setSaleProducts] = useState([]);
+    const [showSuccess, setShowSuccess] = useState(false);
 
     useEffect(() => {
         const fetchProducts = async () => {
@@ -24,14 +27,20 @@ const HomePage = () => {
         fetchProducts();
     }, []);
 
-    const [saleProducts, setSaleProducts] = useState([]);
-
     useEffect(() => {
         const fetchProducts = async () => {
             const res = await axios.get("https://api.gearpro01e.com/products/?on_sale=true");
             setSaleProducts(res.data)
         };
         fetchProducts();
+    }, []);
+
+    useEffect(() => {
+        const params = new URLSearchParams(window.location.search);
+        if (params.get("payment") === "success") {
+            setShowSuccess(true);
+            window.history.replaceState({}, document.title, "/");
+        }
     }, []);
 
     return (
@@ -148,6 +157,52 @@ const HomePage = () => {
                 </Box>
             </Box>
             <Footer />
+            <Snackbar
+                open={showSuccess}
+                autoHideDuration={5000}
+                onClose={() => setShowSuccess(false)}
+                anchorOrigin={{ vertical: "top", horizontal: "60px" }}
+                sx={{
+                    position: "fixed",
+                    top: "50% !important",
+                    left: "50% !important",
+                    transform: "translate(-50%, -50%)",
+                    backgroundColor: "rgba(0, 0, 0, 0.5)", 
+                    width: "100vw",
+                    height: "100vh",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                }}
+            >
+                <Alert
+                    onClose={() => setShowSuccess(false)}
+                    severity="success"
+                    sx={{
+                        width: "40vw",
+                        minWidth: "300px",
+                        height: "30vh",
+                        display: "flex",
+                        alignItems: "center",           // keeps icon + text aligned
+                        justifyContent: "center",       // center horizontally
+                        textAlign: "center",
+                        fontSize: "1.5rem",
+                        position: "relative",           // for close button positioning
+                        backgroundColor: theme.palette.header.default,
+                    }}
+                    slotProps={{
+                        closeButton: {
+                        sx: {
+                            position: "absolute",       // place in corner
+                            top: 8,
+                            right: 8,
+                        },
+                        },
+                    }}
+                    >
+                    Thank you for your purchase!
+                </Alert>
+            </Snackbar>
         </Box>
     );
 };
