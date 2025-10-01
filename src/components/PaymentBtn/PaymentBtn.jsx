@@ -4,27 +4,17 @@ import { Button } from "@mui/material";
 
 const stripePromise = loadStripe("pk_test_51S5lKEFIroDd0p84WEBAD3seQk3KraJ8rWphK7vl83XsOjROEJia2rZBDikh03c3NVdGf7KvlINvAURdDSss0eu000SLx0b8GP");
 
-const PaymentBtn = ({ cart, currency, onSuccess }) => {
+const PaymentBtn = ({ cart, currency }) => {
     const [loading, setLoading] = useState(false);
 
     const handlePayment = async () => {
         setLoading(true);
 
-        const payload = {
-            cart,
-            currency: currency || "eur"
-        };
-
-        console.log("Sending payload to backend:", payload); // <-- log it
-
         try {
             const res = await fetch("https://api.gearpro01e.com/payments/create-checkout-session/", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({
-                cart,
-                currency: currency || "eur",   // send current currency
-                }),
+                body: JSON.stringify({ cart, currency }),
             });
 
             if (!res.ok) throw new Error("Failed to create checkout session");
