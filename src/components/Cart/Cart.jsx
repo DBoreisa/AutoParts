@@ -222,7 +222,8 @@ const Cart = () => {
                     <PaymentBtn 
                         cart={cart} 
                         currency={currency} 
-                        onSuccess={clearCart}/>
+                        onSuccess={clearCart}
+                    />
                 </Box>
                 
                 :   <Typography sx={{

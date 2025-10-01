@@ -10,6 +10,7 @@ import InstagramIcon from '@mui/icons-material/Instagram';
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { Snackbar, Alert } from "@mui/material";
+import useCart from "../hooks/useCart";
 
 const HomePage = () => {
     const theme = useTheme();
@@ -18,6 +19,7 @@ const HomePage = () => {
     const [fiveProducts, setFiveProducts] = useState([]);
     const [saleProducts, setSaleProducts] = useState([]);
     const [showSuccess, setShowSuccess] = useState(false);
+    const { clearCart } = useCart();
 
     useEffect(() => {
         const fetchProducts = async () => {
@@ -39,9 +41,10 @@ const HomePage = () => {
         const params = new URLSearchParams(window.location.search);
         if (params.get("payment") === "success") {
             setShowSuccess(true);
+            clearCart(); 
             window.history.replaceState({}, document.title, "/");
         }
-    }, []);
+    }, [clearCart]);
 
     return (
         <Box sx={{

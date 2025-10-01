@@ -37,8 +37,6 @@ const PaymentBtn = ({ cart, currency, onSuccess }) => {
             if (error) {
                 console.error("Stripe error:", error);
                 alert(error.message);
-            } else {
-                if (onSuccess) onSuccess();
             }
 
         } catch (err) {
