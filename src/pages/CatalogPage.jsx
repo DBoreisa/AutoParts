@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from "react";
 import Footer from "../components/Footer";
-import { Box, Typography, useTheme, Grid2 } from "@mui/material";
+import { Box, Typography, useTheme, Grid2, Button } from "@mui/material";
 import ItemCard from "../components/ItemCard";
 import FilterItems from "../components/FilterItems";
 import SortItems from "../components/SortItems";
@@ -82,6 +82,18 @@ const CatalogPage = () => {
                 }}>
                 <FilterItems filters={filters} setFilters={setFilters}/>
                 <SortItems sortBy={sortBy} setSortBy={setSortBy}/>
+                <Button 
+                  variant="outlined"                  
+                  onClick={() => setFilters({})}
+                  sx={{
+                    alignSelf: "center", 
+                    color: theme.palette.text.primary,
+                    marginTop: { xs: -1, sm: 1 },
+                    marginLeft: { sm: -1 }                 
+                  }}
+                >
+                  Clear filters
+                </Button>
               </Box>
               <Box sx={{color: theme.palette.text.primary,  
                 paddingBottom: {xs: 0, sm: 2},

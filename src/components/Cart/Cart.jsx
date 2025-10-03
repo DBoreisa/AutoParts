@@ -223,7 +223,7 @@ const Cart = () => {
                         cart={cart} 
                         currency={currency} 
                         onSuccess={clearCart}
-                    />
+                />
                 </Box>
                 
                 :   <Typography sx={{

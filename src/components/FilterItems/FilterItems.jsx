@@ -29,6 +29,7 @@ const FilterItems = ({ filters, setFilters }) => {
         } else if (value === "Category") {
             setOpenCategory(true);
         } else if (value === "On sale") {
+            setFilters({});  // Reset filters
             handleOnSale();
         } else if (value === "Select") {
             setFilters({});  // Reset filters

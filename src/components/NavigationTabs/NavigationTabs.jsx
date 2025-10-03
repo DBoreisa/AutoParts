@@ -8,8 +8,8 @@ const NavigationTabs = () => {
 
     const tabMapping = ["/", "/catalog"];
     const value = tabMapping.indexOf(location.pathname) !== -1
-    ? tabMapping.indexOf(location.pathname)
-    : false;
+        ? tabMapping.indexOf(location.pathname)
+        : false;
 
     const handleChange = (event, newValue) => {
         navigate(tabMapping[newValue]);
