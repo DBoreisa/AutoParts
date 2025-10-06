@@ -19,7 +19,7 @@ const HomePage = () => {
     const [fiveProducts, setFiveProducts] = useState([]);
     const [saleProducts, setSaleProducts] = useState([]);
     const [showSuccess, setShowSuccess] = useState(false);
-    const [showFiled, setShowFailed] = useState(false);
+    const [showFailed, setShowFailed] = useState(false);
     const { clearCart } = useCart();
 
     useEffect(() => {
@@ -214,7 +214,7 @@ const HomePage = () => {
                 </Alert>
             </Snackbar>
             <Snackbar
-                open={showSuccess}
+                open={showFailed}
                 autoHideDuration={5000}
                 onClose={() => setShowSuccess(false)}
                 anchorOrigin={{ vertical: "top", horizontal: "60px" }}
