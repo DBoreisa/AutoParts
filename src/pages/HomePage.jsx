@@ -19,6 +19,7 @@ const HomePage = () => {
     const [fiveProducts, setFiveProducts] = useState([]);
     const [saleProducts, setSaleProducts] = useState([]);
     const [showSuccess, setShowSuccess] = useState(false);
+    const [showFiled, setShowFailed] = useState(false);
     const { clearCart } = useCart();
 
     useEffect(() => {
@@ -39,9 +40,15 @@ const HomePage = () => {
 
     useEffect(() => {
         const params = new URLSearchParams(window.location.search);
-        if (params.get("payment") === "success") {
+        const paymentStatus = params.get("payment");
+
+        if (paymentStatus === "success") {
             setShowSuccess(true);
-            clearCart(); 
+            clearCart();
+            window.history.replaceState({}, document.title, "/");
+        } 
+        else if (paymentStatus === "failed") {
+            setShowFailed(true);
             window.history.replaceState({}, document.title, "/");
         }
     }, [clearCart]);
@@ -204,6 +211,52 @@ const HomePage = () => {
                     }}
                     >
                     Thank you for your purchase!
+                </Alert>
+            </Snackbar>
+            <Snackbar
+                open={showSuccess}
+                autoHideDuration={5000}
+                onClose={() => setShowSuccess(false)}
+                anchorOrigin={{ vertical: "top", horizontal: "60px" }}
+                sx={{
+                    position: "fixed",
+                    top: "50% !important",
+                    left: "50% !important",
+                    transform: "translate(-50%, -50%)",
+                    backgroundColor: "rgba(0, 0, 0, 0.5)", 
+                    width: "100vw",
+                    height: "100vh",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                }}
+            >
+                <Alert
+                    onClose={() => setShowFailed(false)}
+                    severity="error"
+                    sx={{
+                        width: "40vw",
+                        minWidth: "300px",
+                        height: "30vh",
+                        display: "flex",
+                        alignItems: "center",           // keeps icon + text aligned
+                        justifyContent: "center",       // center horizontally
+                        textAlign: "center",
+                        fontSize: "1.5rem",
+                        position: "relative",           // for close button positioning
+                        backgroundColor: theme.palette.header.default,
+                    }}
+                    slotProps={{
+                        closeButton: {
+                        sx: {
+                            position: "absolute",       // place in corner
+                            top: 8,
+                            right: 8,
+                        },
+                        },
+                    }}
+                    >
+                    Payment failed. Please try again.
                 </Alert>
             </Snackbar>
         </Box>
