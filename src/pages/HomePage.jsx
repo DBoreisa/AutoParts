@@ -89,11 +89,12 @@ const HomePage = () => {
                     
                 }}>
                     <Typography variant="h5" textAlign={"center"} marginBottom={2}>
-                        Specialists in Audi Gearboxes
+                        Premium Audi Parts – Quality You Can Trust
                     </Typography>
                     <Typography sx={{ textAlign: "justify", color: theme.palette.text.secondary }}>
-                        Looking for a reliable Audi gearbox? We specialize in high-quality new and used Audi gearboxes at competitive prices. 
-                        Whether you're replacing or upgrading, we’ve got the right fit for your model—backed by expert support and fast delivery.
+                        Discover a wide range of high-quality Audi parts—from gearboxes and engines to brakes and electronics. 
+                        New and used, all at competitive prices, with expert support and fast delivery for your Audi model. 
+                        Upgrade, replace, or maintain your vehicle with confidence.
                     </Typography>
                 </Box>
                 <Box sx={{ 
@@ -255,7 +256,7 @@ const HomePage = () => {
                         },
                         },
                     }}
-                    >
+                >
                     Payment failed. Please try again.
                 </Alert>
             </Snackbar>
