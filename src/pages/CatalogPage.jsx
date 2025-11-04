@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from "react";
 import Footer from "../components/Footer";
-import { Box, Typography, useTheme, Grid2, Button } from "@mui/material";
+import { Box, Typography, useTheme, Grid2, Button, Pagination } from "@mui/material";
 import ItemCard from "../components/ItemCard";
 import FilterItems from "../components/FilterItems";
 import SortItems from "../components/SortItems";
@@ -17,6 +17,10 @@ const CatalogPage = () => {
   const location = useLocation();
   const isCatalogPage = location.pathname === "/catalog";
 
+  // Puslapiavimas
+  const [page, setPage] = useState(1);
+  const itemsPerPage = 12;
+
   useEffect(() => {
     if (!isCatalogPage) {
       setSearchQuery(""); // isvalyti global search
@@ -27,6 +31,15 @@ const CatalogPage = () => {
   const filteredProducts = useProducts({ sort: sortBy, filters, enabled: isCatalogPage });
 
   const products = searchQuery ? searchedProducts : filteredProducts;
+
+  // resetina puslapi, kai filtravimas keiciasi
+  useEffect(() => {
+    setPage(1);
+  }, [searchQuery, JSON.stringify(filters), sortBy, products.length]);
+
+  const totalPages = Math.max(1, Math.ceil(products.length / itemsPerPage));
+  const startIdx = (page - 1) * itemsPerPage;
+  const paginatedProducts = products.slice(startIdx, startIdx + itemsPerPage);
 
   return (
     <Box sx={{minHeight: "calc(100vh - 50px)", 
@@ -117,7 +130,7 @@ const CatalogPage = () => {
             justifyContent: "center",
             paddingBottom: 4
           }}>
-            {products.map((product) => (
+            {paginatedProducts.map((product) => (
                 <Grid2 size={6} key={product.id} width={"260px"}>
                   <ItemCard 
                     id={product.id} 
@@ -130,6 +143,17 @@ const CatalogPage = () => {
                 </Grid2>
             ))}        
           </Grid2>
+          {/* Pagination controls */}
+          <Box sx={{ display: "flex", justifyContent: "center", paddingBottom: 4 }}>
+            <Pagination
+              count={totalPages}
+              page={page}
+              onChange={(_, value) => setPage(value)}
+              color="primary"
+              showFirstButton
+              showLastButton
+            />
+          </Box>
         </Box>
       </Box>
       <Footer/>
