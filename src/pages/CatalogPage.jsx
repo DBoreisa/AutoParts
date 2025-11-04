@@ -19,7 +19,7 @@ const CatalogPage = () => {
 
   // Puslapiavimas
   const [page, setPage] = useState(1);
-  const itemsPerPage = 12;
+  const itemsPerPage = 15;
 
   useEffect(() => {
     if (!isCatalogPage) {
