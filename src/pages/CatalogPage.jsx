@@ -32,10 +32,12 @@ const CatalogPage = () => {
 
   const products = searchQuery ? searchedProducts : filteredProducts;
 
+  const filtersKey = JSON.stringify(filters);
+
   // resetina puslapi, kai filtravimas keiciasi
   useEffect(() => {
     setPage(1);
-  }, [searchQuery, JSON.stringify(filters), sortBy, products.length]);
+  }, [searchQuery, filtersKey, sortBy, products.length]);
 
   const totalPages = Math.max(1, Math.ceil(products.length / itemsPerPage));
   const startIdx = (page - 1) * itemsPerPage;
