@@ -145,9 +145,10 @@ const CatalogPage = () => {
                 </Grid2>
             ))}        
           </Grid2>
-          {/* Pagination controls */}
+          {/* Puslapiavimo mygtukai */}
           <Box sx={{ display: "flex", justifyContent: "center", paddingBottom: 4 }}>
             <Pagination
+              shape="rounded"
               count={totalPages}
               page={page}
               onChange={(_, value) => setPage(value)}
