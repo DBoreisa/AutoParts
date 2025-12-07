@@ -110,13 +110,57 @@ const PaymentBtn = ({ cart, currency }) => {
                 <DialogTitle>Enter your shipping address</DialogTitle>
                 <DialogContent>
                     <TextField
+                        select
                         margin="dense"
                         label="Country"
                         name="country"
                         fullWidth
                         value={address.country}
                         onChange={handleAddressChange}
-                    />
+                        SelectProps={{
+                            native: true,
+                        }}
+                        >
+                        <option value=""></option>
+                        {[
+                            { code: "US", name: "United States" },
+                            { code: "CA", name: "Canada" },
+                            { code: "AT", name: "Austria" },
+                            { code: "BE", name: "Belgium" },
+                            { code: "BG", name: "Bulgaria" },
+                            { code: "HR", name: "Croatia" },
+                            { code: "CY", name: "Cyprus" },
+                            { code: "CZ", name: "Czechia" },
+                            { code: "DK", name: "Denmark" },
+                            { code: "EE", name: "Estonia" },
+                            { code: "FI", name: "Finland" },
+                            { code: "FR", name: "France" },
+                            { code: "DE", name: "Germany" },
+                            { code: "GR", name: "Greece" },
+                            { code: "HU", name: "Hungary" },
+                            { code: "IE", name: "Ireland" },
+                            { code: "IT", name: "Italy" },
+                            { code: "LV", name: "Latvia" },
+                            { code: "LT", name: "Lithuania" },
+                            { code: "LU", name: "Luxembourg" },
+                            { code: "MT", name: "Malta" },
+                            { code: "NL", name: "Netherlands" },
+                            { code: "PL", name: "Poland" },
+                            { code: "PT", name: "Portugal" },
+                            { code: "RO", name: "Romania" },
+                            { code: "SK", name: "Slovakia" },
+                            { code: "SI", name: "Slovenia" },
+                            { code: "ES", name: "Spain" },
+                            { code: "SE", name: "Sweden" },
+                            { code: "NO", name: "Norway" },
+                            { code: "CH", name: "Switzerland" },
+                            { code: "IS", name: "Iceland" },
+                            { code: "GB", name: "United Kingdom" },
+                        ].map(({ code, name }) => (
+                            <option key={code} value={code}>{name}</option>
+                        ))}
+                    </TextField>
+
                     <TextField
                         margin="dense"
                         label="City"
@@ -154,7 +198,7 @@ const PaymentBtn = ({ cart, currency }) => {
                 <DialogActions>
                     {!shipping && (
                         <Button onClick={calculateShipping} disabled={loadingShip}>
-                        Calculate shipping
+                            Calculate shipping
                         </Button>
                     )}
 
