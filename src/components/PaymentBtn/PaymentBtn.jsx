@@ -54,7 +54,7 @@ const PaymentBtn = ({ cart, currency }) => {
 
             const data = await res.json();
 
-            setShipping(data.shipping_price); // eur value
+            setShipping(data.shipping_price.amount); // eur value
 
         } catch (err) {
             alert("Error calculating shipping");
