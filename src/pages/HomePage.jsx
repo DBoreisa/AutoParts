@@ -1,7 +1,7 @@
 import React from "react";
 import { Box, useTheme, Typography, useMediaQuery } from "@mui/material";
 import backgroundImg from "../Images/backgroundImg.jpg"
-import Footer from "../components/Footer";
+// import Footer from "../components/Footer";
 import ItemsCarousel from "../components/ItemsCarousel";
 import RecentlyAdded from "../components/RecentlyAdded";
 import OnSale from "../components/OnSale";
@@ -142,6 +142,23 @@ const HomePage = () => {
                         <ItemsCarousel items={saleProducts} />
                     )}
                 </Box>
+                <Box sx={{
+                    color: theme.palette.text.primary,
+                    backgroundColor: theme.palette.background.paper,
+                    marginTop: 5,
+                    marginBottom: 7,
+                    padding: 5,
+                    paddingLeft: {lg: 20, xs: 4},
+                    paddingRight: {lg: 20, xs: 4},
+                    
+                }}>
+                    <Typography variant="h5" textAlign={"center"} marginBottom={2}>
+                        Purchases and delivery information:
+                    </Typography>
+                    <Typography sx={{ textAlign: "justify", color: theme.palette.text.secondary }}>
+                        - Shipping schedule: Parcels are shipped once a week — every Thursday or Friday.
+                    </Typography>
+                </Box>
                 <Box 
                     flex={1}  //vietoj width, uzima visa ploti
                     backgroundColor= {theme.palette.background.paper}
@@ -167,7 +184,7 @@ const HomePage = () => {
                     </a>
                 </Box>
             </Box>
-            <Footer />
+            {/* <Footer /> */}
             <Snackbar
                 open={showSuccess}
                 autoHideDuration={5000}
