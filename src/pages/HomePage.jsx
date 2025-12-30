@@ -156,7 +156,51 @@ const HomePage = () => {
                         Purchases and delivery information:
                     </Typography>
                     <Typography sx={{ textAlign: "justify", color: theme.palette.text.secondary }}>
-                        - Shipping schedule: Parcels are shipped once a week — every Thursday or Friday.
+                        <ul style={{ margin: 0, paddingLeft: "1.25rem" }}>
+                            <li>
+                                <Box component="span" sx={{ fontWeight: 700 }}>
+                                    Shipping schedule: 
+                                </Box> 
+                                {" "}
+                                Parcels are shipped once a week — every Thursday or Friday.
+                            </li>
+                            <li>
+                                <Box component="span" sx={{ fontWeight: 700 }}>
+                                    Shipment tracking: 
+                                </Box> 
+                                {" "}
+                                We will send the tracking number to the email address you provided within 24 hours after we receive payment.
+                            </li>
+                            <li>
+                                <Box component="span" sx={{ fontWeight: 700 }}>
+                                    Delivery (USA and worldwide): <br/>
+                                </Box> 
+                                - USA: Usually takes 10–21 business days (although sometimes deliveries are much faster — our record is 3 business days). <br/>
+                                - EU countries: 5–10 business days. <br/>
+                                - Note: Due to customs procedures, delivery time may be slightly longer, depending on the recipient country’s authorities.
+                            </li>
+                            <li>
+                                <Box component="span" sx={{ fontWeight: 700 }}>
+                                    Quality check: 
+                                </Box> 
+                                {" "}
+                                After receiving the parcel, check the condition of the item. If you notice any damage, please take photos and contact us within 48 hours.
+                            </li>
+                            <li>
+                                <Box component="span" sx={{ fontWeight: 700 }}>
+                                    Damage during shipping:
+                                </Box> 
+                                {" "}
+                                If the item is damaged during transport, we will send a new identical item or refund your money.
+                            </li>
+                            <li>
+                                <Box component="span" sx={{ fontWeight: 700 }}>
+                                    Support:
+                                </Box> 
+                                {" "}
+                                If you have any questions or concerns, message us — we’re ready to resolve any issues promptly!
+                            </li>
+                        </ul>
                     </Typography>
                 </Box>
                 <Box 
