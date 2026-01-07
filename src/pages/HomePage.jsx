@@ -260,7 +260,7 @@ const HomePage = () => {
                                 Contact us on:
                             </Box> 
                             {" "}
-                            <a href="mailto:gearpro01e@gmail.com">gearpro01e@gmail.com</a>
+                            <a href="mailto:gearpro01e@gmail.com">gearspro01e@gmail.com</a>
                         </Typography>
                     </Typography>
                 </Box>
