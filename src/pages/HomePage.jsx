@@ -201,6 +201,13 @@ const HomePage = () => {
                                 If you have any questions or concerns, message us — we’re ready to resolve any issues promptly!
                             </li>
                         </ul>
+                        <Typography marginLeft={1} marginTop={1}>
+                            <Box component="span" sx={{ fontWeight: 700 }}>
+                                Contact us on:
+                            </Box> 
+                            {" "}
+                            <a href="mailto:gearpro01e@gmail.com">gearpro01e@gmail.com</a>
+                        </Typography>
                     </Typography>
                 </Box>
                 <Box 
