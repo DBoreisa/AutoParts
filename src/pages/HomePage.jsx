@@ -78,6 +78,75 @@ const HomePage = () => {
                     marginTop: "90px"
                 }}>
                 </Box>
+                <Box
+                    sx={{
+                        display: "grid",
+                        gridTemplateColumns: { xs: "1fr", md: "repeat(3, 1fr)" },
+                        gap: 2,
+                        px: { lg: 8, xs: 2 },
+                        py: 3,
+                        backgroundColor: theme.palette.background.paper,
+                        borderBottom: `1px solid ${theme.palette.divider}`,
+                        color: theme.palette.text.primary
+                    }}
+                >
+                    <Box sx={{ textAlign: "center" }}>
+                        <Typography variant="subtitle1" fontWeight={600}>
+                            Fast shipping
+                        </Typography>
+                        <Typography variant="body2" color="text.secondary">
+                            Parcels leave every Thu–Fri with tracking.
+                        </Typography>
+                    </Box>
+
+                    <Box sx={{ textAlign: "center" }}>
+                        <Typography variant="subtitle1" fontWeight={600}>
+                            Audi gearbox & drivetrain specialist
+                        </Typography>
+                        <Typography variant="body2" color="text.secondary">
+                            Carefully selected parts for enthusiasts & mechanics.
+                        </Typography>
+                    </Box>
+
+                    <Box sx={{ textAlign: "center" }}>
+                        <Typography variant="subtitle1" fontWeight={600}>
+                            Secure checkout with Stripe
+                        </Typography>
+                        <Typography variant="body2" color="text.secondary">
+                            Pay safely with cards and modern payment methods.
+                        </Typography>
+                    </Box>
+                </Box>
+                <Box sx={{ 
+                    flexGrow: 1,  
+                    paddingTop: 2,
+                    paddingBottom: 2,
+                    width: "85%",
+                    margin: "auto",
+                    marginBottom: 4,
+                    marginTop: 4,
+                    boxShadow: 4
+                }}>
+                    <Typography variant="h5" 
+                        sx={{
+                            color: theme.palette.text.primary, 
+                            textAlign: "center",
+                            paddingBottom: 1,
+                        }}>
+                            On sale:
+                    </Typography>
+                    <Typography
+                        variant="body2"
+                        sx={{ textAlign: "center", color: theme.palette.text.secondary, mb: 2 }}
+                    >
+                        Discounted parts while stock lasts.
+                    </Typography>
+                    {isMobile ? (
+                        <OnSale />
+                    ) : (
+                        <ItemsCarousel items={saleProducts} />
+                    )}
+                </Box>
                 <Box sx={{
                     color: theme.palette.text.primary,
                     backgroundColor: theme.palette.background.paper,
@@ -88,7 +157,7 @@ const HomePage = () => {
                     paddingRight: {lg: 20, xs: 4},
                     
                 }}>
-                    <Typography variant="h5" textAlign={"center"} marginBottom={2}>
+                    <Typography variant="h5" component="h1" textAlign={"center"} marginBottom={2}>
                         Premium Audi Parts – Quality You Can Trust
                     </Typography>
                     <Typography sx={{ textAlign: "justify", color: theme.palette.text.secondary }}>
@@ -110,8 +179,15 @@ const HomePage = () => {
                         color: theme.palette.text.primary, 
                         textAlign: "center",
                         paddingBottom: 1,
-                        }}>
+                        }}
+                    >
                             Recently added:
+                    </Typography>
+                    <Typography
+                        variant="body2"
+                        sx={{ textAlign: "center", color: theme.palette.text.secondary, mb: 2 }}
+                    >
+                        Fresh stock — limited quantities available.
                     </Typography>
                     {isMobile ? (
                         <RecentlyAdded />
@@ -119,29 +195,7 @@ const HomePage = () => {
                         <ItemsCarousel items={fiveProducts} />
                     )}
                 </Box>
-                <Box sx={{ 
-                    flexGrow: 1,  
-                    paddingTop: 2,
-                    paddingBottom: 2,
-                    width: "85%",
-                    margin: "auto",
-                    marginBottom: 4,
-                    boxShadow: 4
-                }}>
-                    <Typography variant="h5" 
-                        sx={{
-                            color: theme.palette.text.primary, 
-                            textAlign: "center",
-                            paddingBottom: 1,
-                        }}>
-                            On sale:
-                    </Typography>
-                    {isMobile ? (
-                        <OnSale />
-                    ) : (
-                        <ItemsCarousel items={saleProducts} />
-                    )}
-                </Box>
+                
                 <Box sx={{
                     color: theme.palette.text.primary,
                     backgroundColor: theme.palette.background.paper,
@@ -285,7 +339,7 @@ const HomePage = () => {
             <Snackbar
                 open={showFailed}
                 autoHideDuration={5000}
-                onClose={() => setShowSuccess(false)}
+                onClose={() => setShowFailed(false)}
                 anchorOrigin={{ vertical: "top", horizontal: "60px" }}
                 sx={{
                     position: "fixed",
