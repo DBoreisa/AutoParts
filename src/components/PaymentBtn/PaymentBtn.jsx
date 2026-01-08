@@ -10,7 +10,7 @@ import {
   CircularProgress,
 } from "@mui/material";
 
-const stripePromise = loadStripe("pk_test_51SUOo9R8lJFEaS3zwhBjodvjH6JZgXKYDlwNeSOEfmbOuICE09xlDTppezLxHRafey37URbCNf9GpLj4OTLRV7SK00u2Oq6UOi");
+const stripePromise = loadStripe("pk_live_51S68h5Jtqs7nLYbt8uh6KWPVCkH1axKXxbvd32YaVHsSJyC1fG50axOvncXN5VOJ1R9ZjdNc73j4UIDYwUvP3f4800MHfXZpX4");
 
 const PaymentBtn = ({ cart, currency }) => {
     const [open, setOpen] = useState(false);
