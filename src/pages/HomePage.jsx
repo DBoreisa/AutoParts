@@ -281,7 +281,7 @@ const HomePage = () => {
                     >
                         Folow us:  
                     </Typography>
-                    <a rel="noreferrer noopener" target="_blank" href="https://facebook.com">
+                    <a rel="noreferrer noopener" target="_blank" href="https://www.facebook.com/gearpro01e">
                         <FacebookRoundedIcon color="primary" />
                     </a>
                     <a rel="noreferrer noopener" target="_blank" href="https://www.instagram.com/gearpro01e?igsh=N2d0azE4NnN3dm5k">
