@@ -1,9 +1,11 @@
 import { Box, FormGroup, FormControlLabel, Checkbox } from "@mui/material";
 import { useState, useEffect } from "react";
+//import { useNavigate } from "react-router-dom";
 
 const CategorySelection = ({ setSelectedCategories }) => {
     const [selected, setSelected] = useState({});
     const [categories, setCategories] = useState([]);
+    //const navigate = useNavigate();
 
     useEffect(() => {
         fetch("https://api.gearpro01e.com/categories/") 
@@ -23,8 +25,16 @@ const CategorySelection = ({ setSelectedCategories }) => {
     const handleChange = (categoryValue) => (event) => {
         const updated = { ...selected, [categoryValue]: event.target.checked };
         setSelected(updated);
+
         const selectedCats = Object.keys(updated).filter((key) => updated[key]);
         setSelectedCategories(selectedCats);
+
+        // if (onChange) {
+        //     onChange(selectedCats); // callback to NavBar
+        // }
+        // const params = new URLSearchParams();
+        // selectedCats.forEach(cat => params.append("categories", cat));
+        // navigate(`/catalog?${params.toString()}`);
     };
 
     return (

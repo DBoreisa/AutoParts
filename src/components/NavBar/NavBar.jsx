@@ -16,6 +16,7 @@ import logoMini from "../../Images/logo-mini.png";
 import Badge from '@mui/material/Badge';
 import { useCartContext } from "../../contexts/CartContext";
 import { styled } from '@mui/material/styles';
+//import CategorySelection from "../CategorySelection";
 
 const NavBar = () => {  
     const theme = useTheme();
@@ -40,7 +41,7 @@ const NavBar = () => {
         <Box
             role="presentation"
             sx={{
-            width: "80vw",
+            width: "60vw",
             maxWidth: 360,
             minHeight: "100vh",
             display: "flex",
@@ -51,8 +52,7 @@ const NavBar = () => {
         >
             <Box
                 sx={{
-                    display: "flex",
-                    
+                    display: "flex",                  
                     gap: 4,
                     alignItems: "center",
                     justifyContent: "center",
