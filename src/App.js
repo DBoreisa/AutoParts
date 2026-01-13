@@ -17,7 +17,7 @@ function App() {
         <CartProviderWrapper>
           <CurrencyProviderWrapper>
             <Router>
-              <NavBar />
+              <NavBar/>
               <Cart />
               <Routes>
                 <Route path="/" element={<Home />}/>

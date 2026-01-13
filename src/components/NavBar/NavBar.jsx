@@ -10,7 +10,7 @@ import { useTheme, useMediaQuery } from "@mui/material";
 import DehazeIcon from '@mui/icons-material/Dehaze';
 import Button from "@mui/material/Button";
 import Drawer from '@mui/material/Drawer';
-import List from '@mui/material/List';
+import Divider from '@mui/material/Divider';
 import logo from "../../Images/logo.png";
 import logoMini from "../../Images/logo-mini.png";
 import Badge from '@mui/material/Badge';
@@ -37,27 +37,48 @@ const NavBar = () => {
     };
 
     const DrawerList = (
-        <Box sx={{ width: "100%" }} role="presentation" >
-            <List sx={{ 
-                    gap: 3, 
-                    padding: 1,
-                    paddingTop: 2,
-                    paddingBottom: 0, 
+        <Box
+            role="presentation"
+            sx={{
+            width: "80vw",
+            maxWidth: 360,
+            minHeight: "100vh",
+            display: "flex",
+            flexDirection: "column",
+            gap: 2,
+            p: 2,
+            }}
+        >
+            <Box
+                sx={{
                     display: "flex",
-                    width: "95vw",
+                    
+                    gap: 4,
                     alignItems: "center",
-                    justifyContent: "center" 
-                }}>                   
+                    justifyContent: "center",
+                    mt: 1,
+                }}
+            >
                 <CartBadge />
                 <CurrencySwitch />
-                <ThemeSwitcher />               
-            </List>
-            <List sx={{               
-                paddingLeft: 3,
-                paddingRight: 3 
-            }}>
-                <SearchItem alwaysOpen={true}/> 
-            </List>
+                <ThemeSwitcher />
+            </Box>
+            <Divider />
+            <Box>
+                <SearchItem alwaysOpen />
+            </Box>
+
+            <Box
+                sx={{
+                    flexGrow: 1,
+                    overflowY: "auto",
+                    paddingLeft: 1,
+                }}
+            >
+            </Box>
+
+            {/*Push content up */}
+            <Box sx={{ flexGrow: 1 }} />
         </Box>
     );
     return (
@@ -109,7 +130,7 @@ const NavBar = () => {
                 <Drawer 
                     open={open} 
                     onClose={toggleDrawer(false)} 
-                    anchor={"top"} 
+                    anchor={"right"} 
                     slotProps={{
                         paper: {
                             sx: {
