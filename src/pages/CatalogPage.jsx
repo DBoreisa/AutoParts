@@ -17,7 +17,17 @@ const CatalogPage = () => {
 
   const { searchQuery, setSearchQuery } = useSearch();
 
-  const [filters, setFilters] = useState({});
+  const [filters, setFilters] = useState(() => {
+    const params = new URLSearchParams(location.search);
+    const categories = params.getAll("categories");
+
+    const nextFilters = {};
+    if (categories.length > 0) {
+      nextFilters.categories = categories;
+    }
+
+    return nextFilters;
+  });
   const [sortBy, setSortBy] = useState("Date");
 
   // Puslapiavimas
