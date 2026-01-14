@@ -11,6 +11,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { Snackbar, Alert } from "@mui/material";
 import useCart from "../hooks/useCart";
+import Link from "@mui/material/Link";
 
 const HomePage = () => {
     const theme = useTheme();
@@ -260,7 +261,12 @@ const HomePage = () => {
                                 Contact us on:
                             </Box> 
                             {" "}
-                            <a href="mailto:gearpro01e@gmail.com">gearspro01e@gmail.com</a>
+                            <Link 
+                                href="mailto:gearpro01e@gmail.com" 
+                                sx={{ color: theme.palette.text.secondary }}
+                            >
+                                gearpro01e@gmail.com
+                            </Link>
                         </Typography>
                     </Typography>
                 </Box>

@@ -1,6 +1,6 @@
 import React from "react";
 import { useState } from "react";
-import { AppBar, Toolbar, Box} from "@mui/material";
+import { AppBar, Toolbar, Box, Typography} from "@mui/material";
 import ThemeSwitcher from "../ThemeSwitcher";
 import NavigationTabs from "../NavigationTabs";
 import SearchItem from "../SearchItem";
@@ -16,12 +16,15 @@ import logoMini from "../../Images/logo-mini.png";
 import Badge from '@mui/material/Badge';
 import { useCartContext } from "../../contexts/CartContext";
 import { styled } from '@mui/material/styles';
-//import CategorySelection from "../CategorySelection";
+import CategorySelection from "../CategorySelection";
+import { useNavigate } from "react-router-dom";
 
 const NavBar = () => {  
     const theme = useTheme();
     const isMobile = useMediaQuery(theme.breakpoints.down("md")); 
     const { cart } = useCartContext();
+    const [open, setOpen] = useState(false);
+    const navigate = useNavigate();
 
     const StyledBadge = styled(Badge)(() => ({
     '& .MuiBadge-badge': {
@@ -31,23 +34,19 @@ const NavBar = () => {
         }
     }));
 
-    const [open, setOpen] = useState(false);
-
-    const toggleDrawer = (newOpen) => () => {
-        setOpen(newOpen);
-    };
+    const toggleDrawer = (newOpen) => () => setOpen(newOpen);
 
     const DrawerList = (
         <Box
             role="presentation"
             sx={{
-            width: "60vw",
-            maxWidth: 360,
-            minHeight: "100vh",
-            display: "flex",
-            flexDirection: "column",
-            gap: 2,
-            p: 2,
+                width: "60vw",
+                maxWidth: 360,
+                minHeight: "100vh",
+                display: "flex",
+                flexDirection: "column",
+                gap: 2,
+                p: 2,
             }}
         >
             <Box
@@ -67,18 +66,31 @@ const NavBar = () => {
             <Box>
                 <SearchItem alwaysOpen />
             </Box>
+            <Typography variant="h6" sx={{ textAlign: "left", mt: 1, pl: 1 }}>
+                Categories:
+            </Typography>
 
             <Box
                 sx={{
                     flexGrow: 1,
                     overflowY: "auto",
-                    paddingLeft: 1,
+                    pl: 1,
+                    
                 }}
             >
-            </Box>
+                <CategorySelection
+                    readOnly
+                    onChange={(selectedCategories) => {
+                        const params = new URLSearchParams();
+                        selectedCategories.forEach((cat) =>
+                            params.append("categories", cat)
+                        );
 
-            {/*Push content up */}
-            <Box sx={{ flexGrow: 1 }} />
+                        navigate(`/catalog?${params.toString()}`);
+                        setOpen(false); // close drawer
+                    }}
+                />
+            </Box>
         </Box>
     );
     return (

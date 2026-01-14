@@ -7,15 +7,18 @@ import SortItems from "../components/SortItems";
 import { useSearch } from "../contexts/SearchContext";
 import useProducts from "../hooks/useProducts";
 import useProductSearch from "../hooks/useProductSearch";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 const CatalogPage = () => {
   const theme = useTheme();
-  const [filters, setFilters] = useState({});
-  const [sortBy, setSortBy] = useState("Date");
-  const { searchQuery, setSearchQuery } = useSearch();
+  const navigate = useNavigate();
   const location = useLocation();
   const isCatalogPage = location.pathname === "/catalog";
+
+  const { searchQuery, setSearchQuery } = useSearch();
+
+  const [filters, setFilters] = useState({});
+  const [sortBy, setSortBy] = useState("Date");
 
   // Puslapiavimas
   const [page, setPage] = useState(1);
@@ -27,14 +30,46 @@ const CatalogPage = () => {
     }
   }, [isCatalogPage, setSearchQuery]);
 
+  // URL → filters
+  useEffect(() => {
+    const params = new URLSearchParams(location.search);
+    const categories = params.getAll("categories");
+
+    const nextFilters = {};
+    if (categories.length > 0) {
+      nextFilters.categories = categories;
+    }
+
+    setFilters(nextFilters);
+  }, [location.search]);
+
+  // filters → URL
+  const updateURLFilters = (newFilters) => {
+    const params = new URLSearchParams();
+
+    Object.entries(newFilters).forEach(([key, value]) => {
+      if (Array.isArray(value)) {
+        value.forEach((v) => params.append(key, v));
+      } else if (value) {
+        params.append(key, value);
+      }
+    });
+
+    navigate(`/catalog?${params.toString()}`, { replace: true });
+  };
+
   const searchedProducts = useProductSearch(searchQuery, isCatalogPage);
-  const filteredProducts = useProducts({ sort: sortBy, filters, enabled: isCatalogPage });
+  const filteredProducts = useProducts({
+    sort: sortBy,
+    filters,
+    enabled: isCatalogPage,
+  });
 
   const products = searchQuery ? searchedProducts : filteredProducts;
 
+  // resetina puslapi, kai filtravimas keiciasi
   const filtersKey = JSON.stringify(filters);
 
-  // resetina puslapi, kai filtravimas keiciasi
   useEffect(() => {
     setPage(1);
   }, [searchQuery, filtersKey, sortBy, products.length]);
@@ -89,17 +124,31 @@ const CatalogPage = () => {
               paddingLeft: 7
             }}>
               <Box sx={{
-                display: "flex", 
-                gap: 4, 
-                color: theme.palette.text.primary, 
-                flexDirection: { xs: "column", sm: "row" },
-                alignItems: "center"
+                  display: "flex", 
+                  gap: 4, 
+                  color: theme.palette.text.primary, 
+                  flexDirection: { xs: "column", sm: "row" },
+                  alignItems: "center"
                 }}>
-                <FilterItems filters={filters} setFilters={setFilters}/>
+                <FilterItems
+                  filters={filters}
+                  setFilters={(updater) => {
+                    setFilters((prev) => {
+                      const next =
+                        typeof updater === "function" ? updater(prev) : updater;
+
+                      updateURLFilters(next);
+                      return next;
+                    });
+                  }}
+                />
                 <SortItems sortBy={sortBy} setSortBy={setSortBy}/>
                 <Button 
                   variant="outlined"                  
-                  onClick={() => setFilters({})}
+                  onClick={() => {
+                    setFilters({});
+                    navigate("/catalog", { replace: true });
+                  }}
                   sx={{
                     alignSelf: "center", 
                     color: theme.palette.text.primary,

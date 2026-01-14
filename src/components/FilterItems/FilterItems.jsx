@@ -9,46 +9,65 @@ import {
     DialogContent, 
     Button 
 } from "@mui/material";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import PriceSlider from "../PriceSlider";
 import CategorySelection from "../CategorySelection";
 
 const FilterItems = ({ filters, setFilters }) => {
-    const [isSelected, setIsSelected] = useState("Select");
+    const [selectedFilter, setSelectedFilter] = useState("Select");
     const [openPrice, setOpenPrice] = useState(false);
     const [openCategory, setOpenCategory] = useState(false);
     const [priceRange, setPriceRange] = useState([0, 100000]);
     const [selectedCategories, setSelectedCategories] = useState([]);
 
-     const handleChange = (event) => {
+    // sinchronizuoja su pasirinktais filtrais 
+    useEffect(() => {
+        if (filters.categories) {
+            setSelectedCategories(filters.categories);
+        }
+    }, [filters.categories]);
+
+    const handleChange = (event) => {
         const value = event.target.value;
-        setIsSelected(value);
+        setSelectedFilter(value);
 
         if (value === "Price") {
-            setOpenPrice(true);
-        } else if (value === "Category") {
+        setOpenPrice(true);
+        }
+
+        if (value === "Category") {
             setOpenCategory(true);
-        } else if (value === "On sale") {
-            setFilters({});  // Reset filters
-            handleOnSale();
-        } else if (value === "Select") {
-            setFilters({});  // Reset filters
+        }
+
+        if (value === "On sale") {
+            setFilters((prev) => ({
+                ...prev,
+                on_sale: true,
+            }));
+
+            setTimeout(() => setSelectedFilter("Select"), 0);
+        }
+
+        if (value === "Select") {
+            setFilters({});
         }
     };
 
     const handleClose = () => {
         setOpenPrice(false);
         setOpenCategory(false);
-        setIsSelected("Select");
+        setSelectedFilter("Select");
     };
 
-    const handleFilterSubmit = () => {
+    const handlePriceSubmit = () => {
         const [min_price, max_price] = priceRange;
+
         setFilters((prev) => ({
-            ...prev,
-            min_price,
-            max_price,
+        ...prev,
+        min_price,
+        max_price,
         }));
+
         handleClose();
     };
 
@@ -60,13 +79,13 @@ const FilterItems = ({ filters, setFilters }) => {
         handleClose();
     };
 
-    const handleOnSale = () => {
-        setFilters((prev) => ({
-            ...prev,
-            on_sale: !prev.on_sale,
-        }));
-        handleClose();
-    };
+    // const handleOnSale = () => {
+    //     setFilters((prev) => ({
+    //         ...prev,
+    //         on_sale: !prev.on_sale,
+    //     }));
+    //     handleClose();
+    // };
 
     return (
         <>
@@ -75,11 +94,11 @@ const FilterItems = ({ filters, setFilters }) => {
                     Filter by:
                 </InputLabel>
                 <Select
-                labelId="demo-simple-select-standard-label"
-                id="demo-simple-select-standard"
-                value={isSelected}
-                onChange={handleChange}
-                label="Filter by:"
+                    labelId="demo-simple-select-standard-label"
+                    id="demo-simple-select-standard"
+                    value={selectedFilter}
+                    onChange={handleChange}
+                    label="Filter by:"
                 >
                     <MenuItem value="Select">Select</MenuItem>
                     <MenuItem value="Price">Price</MenuItem>
@@ -93,11 +112,11 @@ const FilterItems = ({ filters, setFilters }) => {
                 <DialogContent sx={{textAlign: "center"}}>
                     <PriceSlider setPriceRange={setPriceRange}/>
                     <Button 
-                        onClick={handleFilterSubmit} 
+                        onClick={handlePriceSubmit} 
                         variant="contained" color="primary" 
                         sx={{ mt: 2 }}
                     >
-                        Submit
+                        Apply
                     </Button>
                 </DialogContent>
             </Dialog>
@@ -105,13 +124,16 @@ const FilterItems = ({ filters, setFilters }) => {
             <Dialog open={openCategory} onClose={handleClose}>
                 <DialogTitle sx={{textAlign: "center"}}>Select category:</DialogTitle>
                 <DialogContent sx={{textAlign: "center"}}>
-                    <CategorySelection setSelectedCategories={setSelectedCategories}/>
+                    <CategorySelection
+                        selectedCategories={selectedCategories}
+                        setSelectedCategories={setSelectedCategories}
+                    />
                     <Button onClick={handleCategorySubmit} 
                         variant="contained" 
                         color="primary" 
                         sx={{ mt: 2 }}
                     >
-                        Submit
+                        Apply
                     </Button>
                 </DialogContent>
             </Dialog>
