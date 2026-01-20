@@ -4,7 +4,7 @@ import { Box, Button, Typography, useTheme } from "@mui/material";
 import { useParams } from "react-router-dom";
 import ImagesCarousel from "../components/ImagesCarousel";
 import ShoppingCartTwoToneIcon from '@mui/icons-material/ShoppingCartTwoTone'; 
-import useCart from "../hooks/useCart";
+// import useCart from "../hooks/useCart";
 import useCurrencyRate from "../hooks/useCurrencyRate";
 import { useCurrencyContext } from "../contexts/CurrencyContext";
 import useProduct from "../hooks/useProduct";
@@ -13,7 +13,7 @@ const DetailsPage = () => {
     const theme = useTheme();
     const { id } = useParams();
     const product = useProduct(id);
-    const { addToCart, addToCartText, isInCart, removeFromCart} = useCart(); 
+    // const { addToCart, addToCartText, isInCart, removeFromCart} = useCart(); 
     const rate = useCurrencyRate();
     const { currency } = useCurrencyContext();
     
@@ -58,7 +58,7 @@ const DetailsPage = () => {
                         margin: { xs: "auto", lg: 0 }
                     }}>
                         <Typography 
-                            variant="h3" 
+                            variant="h4" 
                             color={theme.palette.text.primary} 
                             sx={{ textAlign: 'center', paddingBottom: 2}}
                         >
@@ -120,7 +120,7 @@ const DetailsPage = () => {
                             )}
                         <Typography 
                             color={theme.palette.text.secondary}
-                            sx={{ textAlign: 'justify' }}
+                            sx={{ textAlign: 'justify', pt: 2 }}
                         >
                             {description}
                         </Typography>
@@ -134,16 +134,17 @@ const DetailsPage = () => {
                                 width: "250px",
                                 alignSelf: "center"
                             }}
-                            onClick={(e) => {
-                                e.stopPropagation(); // Prevent triggering handleItemClick
-                                if (isInCart(product)) {
-                                    removeFromCart(product);  
-                                } else {
-                                    addToCart(product);      
-                                } 
-                            }}
+                            // onClick={(e) => {
+                            //     e.stopPropagation(); // Prevent triggering handleItemClick
+                            //     if (isInCart(product)) {
+                            //         removeFromCart(product);  
+                            //     } else {
+                            //         addToCart(product);      
+                            //     } 
+                            // }}
                         >
-                            {addToCartText(product)}
+                            {/* {addToCartText(product)} */}
+                            Add to cart (disabled)
                         </Button>
                     </Box>
                 </Box>
