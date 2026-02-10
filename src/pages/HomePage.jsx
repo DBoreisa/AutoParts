@@ -262,10 +262,10 @@ const HomePage = () => {
                             </Box> 
                             {" "}
                             <Link 
-                                href="mailto:gearpro01e@gmail.com" 
+                                href="mailto:info@gearpro01e.com" 
                                 sx={{ color: theme.palette.text.secondary }}
                             >
-                                gearpro01e@gmail.com
+                                info@gearpro01e.com
                             </Link>
                         </Typography>
                     </Typography>
